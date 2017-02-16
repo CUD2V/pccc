@@ -5,7 +5,9 @@
 #' The \code{data.frame} passed to the function should be in wide format.
 #'
 #' @references
-#' Feudtner C, et al. Pediatric complex chronic conditions classification system version 2:
+#' Feudtner C, et al. Pediatric complex chronic conditions classification system
+#' version 2: updated for ICD-10 and complex medical technology dependence and
+#' transplantation
 #'
 #' @param .data a \code{data.frame} containing a patient id and all the ICD-9-CM
 #' or ICD-10-CM codes.
