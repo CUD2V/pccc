@@ -5,14 +5,18 @@
 #' classification system.  Implemented for the International Classification of
 #' Disease (ICD) 9th and 10th revisions.
 #'
-#' @section Reference Material:
-#' The original paper, 
+#' @author Peter DeWitt
+#'
+#' @references
 #' Feudtner C, et al. Pediatric complex chronic conditions classification system
 #' version 2: updated for ICD-10 and complex medical technology dependence and
-#' transplantation, was publish with open access.  For ease, a copy of the paper
-#' is included in this package.  See the examples below for instructions on
-#' opening this pdf from within R or outside of R.  You can view the publication
-#' online at
+#' transplantation, BMC Pediatrics, 2014, 14:199, DOI: 10.1186/1471-2431-14-199
+#'
+#' @section Reference Material:
+#' The original paper, Feudtner C, et al. (2014), was publish with open access.
+#' For ease, a copy of the paper is included in this package.  See the examples
+#' below for instructions on opening this pdf from within R or outside of R.
+#' You can view the publication online at
 #' \url{http://bmcpediatr.biomedcentral.com/articles/10.1186/1471-2431-14-199}.
 #'
 #' Feudtner et. al. provided a SAS macro and STATA program to implement the CCC.

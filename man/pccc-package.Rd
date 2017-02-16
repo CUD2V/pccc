@@ -11,18 +11,15 @@ Disease (ICD) 9th and 10th revisions.
 }
 \section{Reference Material}{
 
-The original paper, 
-Feudtner C, et al. Pediatric complex chronic conditions classification system
-version 2: updated for ICD-10 and complex medical technology dependence and
-transplantation, was publish with open access.  For ease, a copy of the paper
-is included in this package.  See the examples below for instructions on
-opening this pdf from within R or outside of R.  You can view the publication
-online at
+The original paper, Feudtner C, et al. (2014), was publish with open access.
+For ease, a copy of the paper is included in this package.  See the examples
+below for instructions on opening this pdf from within R or outside of R.
+You can view the publication online at
 \url{http://bmcpediatr.biomedcentral.com/articles/10.1186/1471-2431-14-199}.
 
 Feudtner et. al. provided a SAS macro and STATA program to implement the CCC.
 These files are also provided for reference.  See the Examples for
-instrucitons on opening these files.
+instructions on opening these files.
 
 Lastly, the appendix tables in the file
 Categories_of_CCCv2_and_Corresponding_ICD.docx have also been included with
@@ -49,4 +46,12 @@ file.show(system.file("pccc_references", "ccc_version2_sas.sas", package = "pccc
 file.show(system.file("pccc_references", "ccc.do", package = "pccc"))
 }
 
+}
+\references{
+Feudtner C, et al. Pediatric complex chronic conditions classification system
+version 2: updated for ICD-10 and complex medical technology dependence and
+transplantation, BMC Pediatrics, 2014, 14:199, DOI: 10.1186/1471-2431-14-199
+}
+\author{
+Peter DeWitt
 }
