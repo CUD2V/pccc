@@ -2,9 +2,9 @@ Package: pccc
 Title: Pediatric Complex Chronic Conditions
 Version: 0.0.0.9000
 Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
-Description: An implementation of the pediactic complex chronic conditions (CCC)
+Description: An implementation of the pediatric complex chronic conditions (CCC)
     classification system.  Implemented for the International Classification of
-    Disease ICD 9th and 10th edition.
+    Disease (ICD) 9th and 10th revisions.
 Depends: R (>= 3.0.2)
 License: GPL-2
 Encoding: UTF-8

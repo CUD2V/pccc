@@ -1,5 +1,5 @@
 # pccc
-Pediatric Complex Chronic Condition: An R Package
+Pediatric Complex Chronic Conditions: An R Package
 
 The paper ["Pediatric complex chronic conditions classification system version
 2: updated for ICD-10 and complex medical technology dependence and
