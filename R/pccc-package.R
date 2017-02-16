@@ -50,3 +50,6 @@
 #' @docType package
 #' @name pccc-package
 NULL
+
+# Define globalVariables so R CMD check doesn't freak out
+utils::globalVariables(".")

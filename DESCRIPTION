@@ -9,6 +9,10 @@ Depends: R (>= 3.0.2)
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
+Imports:
+  dplyr,
+  lazyeval,
+  tidyr
 Suggests:
     covr,
 RoxygenNote: 6.0.1

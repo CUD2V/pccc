@@ -4,7 +4,7 @@
 \alias{ccc}
 \title{Complex Chronic Conditions (CCC)}
 \usage{
-ccc(.data, id, dx_cols, px_cols, icdv = 10)
+ccc(.data, id, dx_cols, pc_cols, icdv = 10)
 }
 \arguments{
 \item{.data}{a \code{data.frame} containing a patient id and all the ICD-9-CM
@@ -12,11 +12,13 @@ or ICD-10-CM codes.}
 
 \item{id}{bare name of the column containing the patient id}
 
-\item{dx_cols}{using the select functions from dplyr.}
+\item{dx_cols}{column names with the diagnositic codes, use
+\code{\link[dplyr]{vars}} from \code{dplyr} to identify the column(s).}
 
-\item{px_cols}{the column(s) containing the procedure codes.}
+\item{pc_cols}{the column(s) containing the procedure codes.  Use
+\code{\link[dplyr]{vars}} from \code{dplyr} to identify the column(s).}
 
-\item{icdv}{ICD version 9 or 10, defaults to 10}
+\item{icdv}{ICD version 9 or 10, defaiults to 10}
 }
 \description{
 Generate CCC and CCC subcategory flags and the number of categories.

@@ -25,7 +25,7 @@ ICD codes for Complex Chronic Conditions (CCC) categories.
 The CCC categories for diagnostic and procedure codes are:
 \tabular{lcc}{
 category        \tab \code{dxc} \tab \code{pcc} \cr
-neuromuscular   \tab      X     \tab      X     \cr
+neuromuscul     \tab      X     \tab      X     \cr
 cvd             \tab      X     \tab      X     \cr
 respiratory     \tab      X     \tab      X     \cr
 renal           \tab      X     \tab      X     \cr
