@@ -13,8 +13,7 @@ transplantation" by Chris Feudtner, James A Feinstein, Wenjun Zhong, Matt Hall
 and Dingwei Dai](http://bmcpediatr.biomedcentral.com/articles/10.1186/1471-2431-14-199),
 and provided SAS and STATA code.
 
-Since I work in R more than SAS or STATA it seemed reasonable to build
-comperable R functions for CCC.
+This package provides equivalent R functions to generate the CCC classifiers.
 
 ## Install
 This package is currently only on github.  You can install the
