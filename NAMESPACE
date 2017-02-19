@@ -3,3 +3,4 @@
 export(ccc)
 export(dxc)
 export(pcc)
+importFrom(dplyr,"%>%")

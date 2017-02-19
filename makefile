@@ -3,10 +3,11 @@ PKG_NAME    = $(shell awk '/^Package:/{print $$2}' DESCRIPTION)
 
 SRC    = $(wildcard src/*.cpp)
 RFILES = $(wildcard R/*.R)
+EGS    = $(wildcard examples/*.R)
 
 all: $(PKG_NAME)_$(PKG_VERSION).tar.gz
 
-$(PKG_NAME)_$(PKG_VERSION).tar.gz: $(RFILES) $(SRC) DESCRIPTION
+$(PKG_NAME)_$(PKG_VERSION).tar.gz: $(RFILES) $(SRC) $(EGS) DESCRIPTION
 	R -e "devtools::document()"
 	R CMD build .
 

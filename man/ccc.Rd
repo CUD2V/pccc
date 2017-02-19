@@ -26,6 +26,20 @@ Generate CCC and CCC subcategory flags and the number of categories.
 \details{
 The \code{data.frame} passed to the function should be in wide format.
 }
+\examples{
+eg_data <-
+  dplyr::data_frame(id = letters,
+                    dx1 = c(NA, NA, sample(dxc("hemato_immu", 10), 24)),
+                    dx2 = sample(dxc("malignancy", 10), 26),
+                    dx3 = LETTERS,
+                    pc1 = sample(pcc("cvd", 10), 26),
+                    pc2 = LETTERS,
+                    other_col = LETTERS)
+
+ccc(eg_data, id,
+    dx_cols = dplyr::vars(dplyr::starts_with('dx')),
+    pc_cols = dplyr::vars(dplyr::starts_with("pc"))) 
+}
 \references{
 Feudtner C, et al. Pediatric complex chronic conditions classification system
 version 2: updated for ICD-10 and complex medical technology dependence and
