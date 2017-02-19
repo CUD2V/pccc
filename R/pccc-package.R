@@ -51,5 +51,6 @@
 #' @name pccc-package
 NULL
 
+#' @importFrom dplyr "%>%"
 # Define globalVariables so R CMD check doesn't freak out
 utils::globalVariables(".")

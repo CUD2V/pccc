@@ -11,8 +11,7 @@ Encoding: UTF-8
 LazyData: true
 Imports:
   dplyr,
-  lazyeval,
-  tidyr
+  lazyeval
 Suggests:
     covr,
 RoxygenNote: 6.0.1

@@ -20,37 +20,80 @@
 #' \code{\link[dplyr]{vars}} from \code{dplyr} to identify the column(s).
 #' @param icdv ICD version 9 or 10, defaults to 10
 #'
+#' @example examples/ccc.R
+#'
 #' @export
 ccc <- function(.data, id, dx_cols, pc_cols, icdv = 10) {
+  dx <-
+    .data %>%
+    dplyr::rowwise() %>%
+    dplyr::summarize_at(.cols = dx_cols,
+                        .funs = dplyr::funs(neuromusc_ccc       = . %in% dxc("neuromusc", 10),
+                                            cvd_ccc             = . %in% dxc("cvd", icdv),
+                                            respiratory_ccc     = . %in% dxc("respiratory", icdv),
+                                            renal_ccc           = . %in% dxc("renal", icdv),
+                                            gi_ccc              = . %in% dxc("gi", icdv),
+                                            hemato_immu_ccc     = . %in% dxc("hemato_immu", icdv),
+                                            metabolic_ccc       = . %in% dxc("metabolic", icdv),
+                                            congeni_genetic_ccc = . %in% dxc("congeni_genetic", icdv),
+                                            malignancy_ccc      = . %in% dxc("malignancy", icdv),
+                                            neonatal_ccc        = . %in% dxc("neonatal", icdv),
+                                            tech_dep_ccc        = . %in% dxc("tech_dep", icdv),
+                                            transplant_ccc      = . %in% dxc("transplant", icdv)))
+    dx_neuromusc_ccc       <- dplyr::select(dx, dplyr::ends_with("neuromusc_ccc"))       %>% apply(1, any)
+    dx_cvd_ccc             <- dplyr::select(dx, dplyr::ends_with("cvd_ccc"))             %>% apply(1, any)
+    dx_respiratory_ccc     <- dplyr::select(dx, dplyr::ends_with("respiratory_ccc"))     %>% apply(1, any)
+    dx_renal_ccc           <- dplyr::select(dx, dplyr::ends_with("renal_ccc"))           %>% apply(1, any)
+    dx_gi_ccc              <- dplyr::select(dx, dplyr::ends_with("gi_ccc"))              %>% apply(1, any)
+    dx_hemato_immu_ccc     <- dplyr::select(dx, dplyr::ends_with("hemato_immu_ccc"))     %>% apply(1, any)
+    dx_metabolic_ccc       <- dplyr::select(dx, dplyr::ends_with("metabolic_ccc"))       %>% apply(1, any)
+    dx_congeni_genetic_ccc <- dplyr::select(dx, dplyr::ends_with("congeni_genetic_ccc")) %>% apply(1, any)
+    dx_malignancy_ccc      <- dplyr::select(dx, dplyr::ends_with("malgnancy_ccc"))       %>% apply(1, any)
+    dx_neonatal_ccc        <- dplyr::select(dx, dplyr::ends_with("neonatal_ccc"))        %>% apply(1, any)
+    dx_tech_dep_ccc        <- dplyr::select(dx, dplyr::ends_with("tech_dep_ccc"))        %>% apply(1, any)
+    dx_transplant_ccc      <- dplyr::select(dx, dplyr::ends_with("transplant_ccc"))      %>% apply(1, any)
 
-  df <- dplyr::group_by_(.data, .dots = lazyeval::interp( ~ d, d = substitute(id)))
-  dx_cols <- names(dplyr::select_(.data, .dots = dx_cols))
-  pc_cols <- names(dplyr::select_(.data, .dots = pc_cols))
+  pc <-
+    .data %>%
+    dplyr::rowwise() %>%
+    dplyr::summarize_at(.cols = pc_cols,
+                        .funs = dplyr::funs(neuromusc_ccc       = . %in% pcc("neuromusc", 10),
+                                            cvd_ccc             = . %in% pcc("cvd", icdv),
+                                            respiratory_ccc     = . %in% pcc("respiratory", icdv),
+                                            renal_ccc           = . %in% pcc("renal", icdv),
+                                            gi_ccc              = . %in% pcc("gi", icdv),
+                                            hemato_immu_ccc     = . %in% pcc("hemato_immu", icdv),
+                                            metabolic_ccc       = . %in% pcc("metabolic", icdv),
+                                            malignancy_ccc      = . %in% pcc("malignancy", icdv),
+                                            tech_dep_ccc        = . %in% pcc("tech_dep", icdv),
+                                            transplant_ccc      = . %in% pcc("transplant", icdv)))
+    pc_neuromusc_ccc       <- dplyr::select(pc, dplyr::ends_with("neuromusc_ccc"))       %>% apply(1, any)
+    pc_cvd_ccc             <- dplyr::select(pc, dplyr::ends_with("cvd_ccc"))             %>% apply(1, any)
+    pc_respiratory_ccc     <- dplyr::select(pc, dplyr::ends_with("respiratory_ccc"))     %>% apply(1, any)
+    pc_renal_ccc           <- dplyr::select(pc, dplyr::ends_with("renal_ccc"))           %>% apply(1, any)
+    pc_gi_ccc              <- dplyr::select(pc, dplyr::ends_with("gi_ccc"))              %>% apply(1, any)
+    pc_hemato_immu_ccc     <- dplyr::select(pc, dplyr::ends_with("hemato_immu_ccc"))     %>% apply(1, any)
+    pc_metabolic_ccc       <- dplyr::select(pc, dplyr::ends_with("metabolic_ccc"))       %>% apply(1, any)
+    pc_malignancy_ccc      <- dplyr::select(pc, dplyr::ends_with("malgnancy_ccc"))       %>% apply(1, any)
+    pc_tech_dep_ccc        <- dplyr::select(pc, dplyr::ends_with("tech_dep_ccc"))        %>% apply(1, any)
+    pc_transplant_ccc      <- dplyr::select(pc, dplyr::ends_with("transplant_ccc"))      %>% apply(1, any)
 
-  df <- dplyr::bind_rows(tidyr::gather_(df, key_col = "code", "value", dx_cols),
-                         tidyr::gather_(df, key_col = "code", "value", pc_cols))
+  out <-
+  .data %>%
+  dplyr::select_(.dots = lazyeval::interp( ~ i, i = substitute(id))) %>%
+  dplyr::mutate(neuromusc_ccc       = cbind(dx_neuromusc_ccc      ,  dx_neuromusc_ccc      ) %>% apply(1, any) %>% as.integer, 
+                cvd_ccc             = cbind(dx_cvd_ccc            ,  dx_cvd_ccc            ) %>% apply(1, any) %>% as.integer, 
+                respiratory_ccc     = cbind(dx_respiratory_ccc    ,  dx_respiratory_ccc    ) %>% apply(1, any) %>% as.integer, 
+                renal_ccc           = cbind(dx_renal_ccc          ,  dx_renal_ccc          ) %>% apply(1, any) %>% as.integer, 
+                gi_ccc              = cbind(dx_gi_ccc             ,  dx_gi_ccc             ) %>% apply(1, any) %>% as.integer, 
+                hemato_immu_ccc     = cbind(dx_hemato_immu_ccc    ,  dx_hemato_immu_ccc    ) %>% apply(1, any) %>% as.integer, 
+                metabolic_ccc       = cbind(dx_metabolic_ccc      ,  dx_metabolic_ccc      ) %>% apply(1, any) %>% as.integer, 
+                congeni_genetic_ccc = cbind(dx_congeni_genetic_ccc,  dx_congeni_genetic_ccc) %>% apply(1, any) %>% as.integer, 
+                malignancy_ccc      = cbind(dx_malignancy_ccc     ,  dx_malignancy_ccc     ) %>% apply(1, any) %>% as.integer, 
+                neonatal_ccc        = cbind(dx_neonatal_ccc       ,  dx_neonatal_ccc       ) %>% apply(1, any) %>% as.integer, 
+                tech_dep_ccc        = cbind(dx_tech_dep_ccc       ,  dx_tech_dep_ccc       ) %>% apply(1, any) %>% as.integer, 
+                transplant_ccc      = cbind(dx_transplant_ccc     ,  dx_transplant_ccc     ) %>% apply(1, any) %>% as.integer)
 
-  df <-
-    dplyr::summarize_at(df,
-                        dplyr::vars(dplyr::matches("value")),
-                        dplyr::funs(neuromusc_ccc       = as.integer(any(. %in% c(dxc("neuromusc", icdv),         pcc("neuromusc", icdv)))),
-                                    cvd_ccc             = as.integer(any(. %in% c(dxc("cvd", icdv),               pcc("cvd", icdv)))),
-                                    respiratory_ccc     = as.integer(any(. %in% c(dxc("respiratory", icdv),       pcc("respiratory", icdv)))),
-                                    renal_ccc           = as.integer(any(. %in% c(dxc("renal", icdv),             pcc("renal", icdv)))),
-                                    gi_ccc              = as.integer(any(. %in% c(dxc("gi", icdv),                pcc("gi", icdv)))),
-                                    hemato_immu_ccc     = as.integer(any(. %in% c(dxc("hemato_immu", icdv),       pcc("hemato_immu", icdv)))),
-                                    metabolic_ccc       = as.integer(any(. %in% c(dxc("metabolic", icdv),         pcc("metabolic", icdv)))),
-                                    congeni_genetic_ccc = as.integer(any(. %in% c(dxc("congeni_genetic", icdv)))),
-                                    malignancy_ccc      = as.integer(any(. %in% c(dxc("malignancy", icdv),        pcc("malignancy", icdv)))),
-                                    neonatal_ccc        = as.integer(any(. %in% c(dxc("neonatal", icdv)))),
-                                    tech_dep_ccc        = as.integer(any(. %in% c(dxc("tech_dep", icdv),          pcc("tech_dep", icdv)))),
-                                    transplant_ccc      = as.integer(any(. %in% c(dxc("transplant", icdv),        pcc("transplant", icdv))))))
-  df <-
-    dplyr::mutate_(df, .dots = list("num_ccc" = ~ neuromusc_ccc + cvd_ccc + respiratory_ccc +
-                                    renal_ccc + gi_ccc + hemato_immu_ccc +
-                                    metabolic_ccc + congeni_genetic_ccc +
-                                    malignancy_ccc + neuromusc_ccc,
-                                    "ccc_flag" = ~ as.integer(num_ccc > 0 | tech_dep_ccc == 1 | transplant_ccc == 1)))
-  df 
+  out 
 }
 
