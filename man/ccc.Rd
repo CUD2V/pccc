@@ -12,13 +12,13 @@ or ICD-10-CM codes.}
 
 \item{id}{bare name of the column containing the patient id}
 
-\item{dx_cols}{column names with the diagnositic codes, use
+\item{dx_cols}{column names with the diagnostic codes, use
 \code{\link[dplyr]{vars}} from \code{dplyr} to identify the column(s).}
 
 \item{pc_cols}{the column(s) containing the procedure codes.  Use
 \code{\link[dplyr]{vars}} from \code{dplyr} to identify the column(s).}
 
-\item{icdv}{ICD version 9 or 10, defaiults to 10}
+\item{icdv}{ICD version 9 or 10, defaults to 10}
 }
 \description{
 Generate CCC and CCC subcategory flags and the number of categories.
