@@ -14,11 +14,11 @@
 #' @param .data a \code{data.frame} containing a patient id and all the ICD-9-CM
 #' or ICD-10-CM codes.
 #' @param id bare name of the column containing the patient id
-#' @param dx_cols column names with the diagnositic codes, use
+#' @param dx_cols column names with the diagnostic codes, use
 #' \code{\link[dplyr]{vars}} from \code{dplyr} to identify the column(s).
 #' @param pc_cols the column(s) containing the procedure codes.  Use
 #' \code{\link[dplyr]{vars}} from \code{dplyr} to identify the column(s).
-#' @param icdv ICD version 9 or 10, defaiults to 10
+#' @param icdv ICD version 9 or 10, defaults to 10
 #'
 #' @export
 ccc <- function(.data, id, dx_cols, pc_cols, icdv = 10) {

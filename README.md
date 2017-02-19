@@ -6,15 +6,14 @@ Pediatric Complex Chronic Conditions: An R Package
 [![Coverage Status](https://img.shields.io/codecov/c/github/dewittpe/pccc/master.svg)](https://codecov.io/github/dewittpe/pccc?branch=master)
 
 ## Inspiration
-The Pediatric Complex Conditions (CCC) was published 
+Version 2 of the Pediatric Complex Chronic Conditions (CCC) system was published 
 ["Pediatric complex chronic conditions classification system version
 2: updated for ICD-10 and complex medical technology dependence and
 transplantation" by Chris Feudtner, James A Feinstein, Wenjun Zhong, Matt Hall
-and Dingwei Dai](http://bmcpediatr.biomedcentral.com/articles/10.1186/1471-2431-14-199),
-and provided SAS and STATA code.
+and Dingwei Dai](http://bmcpediatr.biomedcentral.com/articles/10.1186/1471-2431-14-199).
+SAS and STATA code were included as an appendix.
 
-Since I work in R more than SAS or STATA it seemed reasonable to build
-comperable R functions for CCC.
+This package provides equivalent R functions to generate the CCC classifiers.
 
 ## Install
 This package is currently only on github.  You can install the
