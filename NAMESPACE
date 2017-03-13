@@ -3,4 +3,6 @@
 export(ccc)
 export(dxc)
 export(pcc)
+importFrom(Rcpp,sourceCpp)
 importFrom(dplyr,"%>%")
+useDynLib(pccc)

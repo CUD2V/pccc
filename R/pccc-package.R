@@ -49,6 +49,8 @@
 #'
 #' @docType package
 #' @name pccc-package
+#' @useDynLib pccc
+#' @importFrom Rcpp sourceCpp
 NULL
 
 #' @importFrom dplyr "%>%"
