@@ -5,6 +5,17 @@
 
 using namespace Rcpp;
 
+// code_test
+Rcpp::List code_test(int version);
+RcppExport SEXP pccc_code_test(SEXP versionSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< int >::type version(versionSEXP);
+    rcpp_result_gen = Rcpp::wrap(code_test(version));
+    return rcpp_result_gen;
+END_RCPP
+}
 // dx_codes
 Rcpp::List dx_codes(int version);
 RcppExport SEXP pccc_dx_codes(SEXP versionSEXP) {

@@ -436,6 +436,96 @@ struct icd10_pc_codes {
     "30263G0","30263G1","30263X0","30263X1","30263Y0","30263Y1"};
 };
 
+class codes {
+  private:
+    int version;
+    int dx_neuromusc_length;
+    std::vector<std::string> dx_neuromusc;
+    int dx_cvd_length;
+    int dx_respiratory_length;
+    int dx_renal_length;
+    int dx_gi_length;
+    int dx_hemato_immu_length;
+    int dx_metabolic_length;
+    int dx_congeni_genetic_length;
+    int dx_malignancy_length;
+    int dx_neonatal_length;
+    int dx_tech_dep_length;
+    int dx_transplant_length;
+    int pc_neuromusc_length;
+    int pc_cvd_length;
+    int pc_respiratory_length;
+    int pc_renal_length;
+    int pc_gi_length;
+    int pc_hemato_immu_length;
+    int pc_metabolic_length;
+    int pc_congeni_genetic_length;
+    int pc_malignancy_length;
+    int pc_neonatal_length;
+    int pc_tech_dep_length;
+    int pc_transplant_length;
+
+  public:
+    codes(int v = 9);
+
+    int get_version() { return version;};
+    std::vector<std::string> get_dx_neuromusc() {return dx_neuromusc;};
+};
+
+codes::codes(int v /* = 9 */) 
+{
+  if (v == 9 | v == 10) {
+  version = v; 
+  } else {
+    ::Rf_error("Only ICD version 9 and 10 are supported.");
+  }
+
+  if (version == 9) {
+    dx_neuromusc = {"3180","3181","3182","330","33111","33119","3314","33189","3319","3320","3321",
+      "3330","3332","3334","3335","3337","3339","334","335","343","34501","34581","3590","3591",
+      "3592","3593","3361","3368","3379","3418","34290","343","3440","34481","3449","34511",
+      "3453","34541","34561","34571","34591","3481","3484","3491","43401","43491","359","740",
+      "741","742","7595","78003","9962","99663","V452","V5301","V5302"};
+  } else if (version == 10) {
+    dx_neuromusc = {"E750","E751","E752","E754","F71","F72","F73","F842","G111","G112","G114","G118",
+      "G119","G120","G121","G122","G128","G129","G3101","G3109","G318","G3189","G3289","G71",
+      "G72","G80","G901","G938","G939","G94","Q00","Q01","Q02","Q03","Q04","Q05","Q06","Q07",
+      "G911","G319","G253","G9519","G9589","G909","G40311","G40301","G40211","G40219","G40411",
+      "G40419","G40804","G40111","G40119","G40911","G40919","G371","G372","G378","G8190","G8290",
+      "G8250","G8251","G8252","G8253","G8254","G835","G839","G931","G935","I6330","I6350","G10",
+      "G20","G210","G2111","G2119","G218","G230","G231","G232","G238","G2402","G248","G253",
+      "G254","G255","G2581","G2582","G2583","G2589","G259","G803","R403","G9782","T8509XA",
+      "T85190A","T85192A","T85199A","T8579XA","Z982","Z4541","Z4542"};
+  }
+
+}
+
+// [[Rcpp::export]]
+Rcpp::List code_test(int version) {
+  codes cds(version);
+  return Rcpp::List::create(Rcpp::Named("version") = cds.get_version(), 
+      Rcpp::Named("dx_neuromusc") = Rcpp::wrap(cds.get_dx_neuromusc()));
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // [[Rcpp::export]]
 Rcpp::List dx_codes(int version) { 
   if (version == 9) { 
