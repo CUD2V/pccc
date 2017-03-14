@@ -111,6 +111,7 @@ Rcpp::IntegerVector ccc_rcpp(std::vector<std::string>& dx, std::vector<std::stri
       Rcpp::Named("metabolic")       = metabolic,
       Rcpp::Named("congeni_genetic") = congeni_genetic,
       Rcpp::Named("malignancy")      = malignancy,
+      Rcpp::Named("neonatal")        = neonatal,
       Rcpp::Named("tech_dep")        = tech_dep,
       Rcpp::Named("transplant")      = transplant
       ); 

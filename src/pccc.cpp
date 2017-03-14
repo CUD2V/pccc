@@ -4,7 +4,7 @@
 
 codes::codes(int v /* = 9 */) 
 {
-  if (v == 9 | v == 10) {
+  if (v == 9 || v == 10) {
     version = v; 
   } else {
     ::Rf_error("Only ICD version 9 and 10 are supported.");
