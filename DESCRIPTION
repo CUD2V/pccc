@@ -12,8 +12,7 @@ LazyData: true
 Imports:
     dplyr,
     lazyeval,
-    Rcpp (>= 0.10.3),
-    tibble
+    Rcpp (>= 0.10.3)
 Suggests:
     covr,
 RoxygenNote: 6.0.1
