@@ -17,7 +17,7 @@ BEGIN_RCPP
 END_RCPP
 }
 // ccc_rcpp
-Rcpp::NumericVector ccc_rcpp(std::vector<std::string>& dx, std::vector<std::string>& pc, int version);
+Rcpp::IntegerVector ccc_rcpp(std::vector<std::string>& dx, std::vector<std::string>& pc, int version);
 RcppExport SEXP pccc_ccc_rcpp(SEXP dxSEXP, SEXP pcSEXP, SEXP versionSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;

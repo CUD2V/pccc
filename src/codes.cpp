@@ -84,7 +84,7 @@ Rcpp::List get_codes(int version = 9) {
 }
 
 // [[Rcpp::export]]
-Rcpp::NumericVector ccc_rcpp(std::vector<std::string>& dx, std::vector<std::string>& pc, int version = 9)
+Rcpp::IntegerVector ccc_rcpp(std::vector<std::string>& dx, std::vector<std::string>& pc, int version = 9)
 { 
   codes cdv(version);
 
@@ -101,7 +101,7 @@ Rcpp::NumericVector ccc_rcpp(std::vector<std::string>& dx, std::vector<std::stri
   int tech_dep        = cdv.tech_dep(dx, pc);
   int transplant      = cdv.transplant(dx, pc);
 
-  return Rcpp::NumericVector::create(
+  return Rcpp::IntegerVector::create(
       Rcpp::Named("neuromusc")       = neuromusc,
       Rcpp::Named("cvd")             = cvd,
       Rcpp::Named("respiratory")     = respiratory,
