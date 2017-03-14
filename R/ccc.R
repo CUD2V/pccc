@@ -34,6 +34,6 @@ ccc <- function(.data, id, dx_cols, pc_cols, icdv = 10) {
       MoreArgs = list(version = icdv)) %>%
   do.call(rbind, .) %>%
   dplyr::as_data_frame() %>%
-  tibble::add_column(., ids, .before = 1) 
+  tibble::add_column(., stats::setNames(ids, deparse(substitute(id))), .before = 1) 
 }
 

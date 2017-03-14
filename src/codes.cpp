@@ -100,6 +100,13 @@ Rcpp::IntegerVector ccc_rcpp(std::vector<std::string>& dx, std::vector<std::stri
   int neonatal        = cdv.neonatal(dx);
   int tech_dep        = cdv.tech_dep(dx, pc);
   int transplant      = cdv.transplant(dx, pc);
+  int ccc_flag        = 0;
+
+  if (neuromusc + cvd + respiratory + renal + gi + hemato_immu + metabolic + congeni_genetic + malignancy + neonatal + 
+      tech_dep + transplant) {
+    ccc_flag = 1;
+  }
+
 
   return Rcpp::IntegerVector::create(
       Rcpp::Named("neuromusc")       = neuromusc,
@@ -113,7 +120,8 @@ Rcpp::IntegerVector ccc_rcpp(std::vector<std::string>& dx, std::vector<std::stri
       Rcpp::Named("malignancy")      = malignancy,
       Rcpp::Named("neonatal")        = neonatal,
       Rcpp::Named("tech_dep")        = tech_dep,
-      Rcpp::Named("transplant")      = transplant
+      Rcpp::Named("transplant")      = transplant,
+      Rcpp::Named("ccc_flag")        = ccc_flag
       ); 
 }
 
