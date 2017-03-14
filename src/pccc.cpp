@@ -394,3 +394,252 @@ codes::codes(int v /* = 9 */)
     "30263G0","30263G1","30263X0","30263X1","30263Y0","30263Y1"};
   }
 };
+
+int codes::neuromusc(std::vector<std::string>& dx, std::vector<std::string>& pc) 
+{
+  int dxitr, pcitr, itr; 
+
+  for (dxitr = 0; dxitr < dx.size(); ++dxitr) { 
+    for (itr = 0; itr < dx_neuromusc.size(); ++itr) {
+      if (dx[dxitr].compare(dx_neuromusc[itr]) == 0) {
+        return 1;
+      }
+    } 
+  } 
+
+  for (pcitr = 0; pcitr < pc.size(); ++pcitr) { 
+    for (itr = 0; itr < pc_neuromusc.size(); ++itr) {
+      if (pc[pcitr].compare(pc_neuromusc[itr]) == 0) {
+        return 1;
+      }
+    } 
+  }
+  return 0;
+}
+
+int codes::cvd(std::vector<std::string>& dx, std::vector<std::string>& pc) 
+{
+  int dxitr, pcitr, itr; 
+
+  for (dxitr = 0; dxitr < dx.size(); ++dxitr) { 
+    for (itr = 0; itr < dx_cvd.size(); ++itr) {
+      if (dx[dxitr].compare(dx_cvd[itr]) == 0) {
+        return 1;
+      }
+    } 
+  } 
+
+  for (pcitr = 0; pcitr < pc.size(); ++pcitr) { 
+    for (itr = 0; itr < pc_cvd.size(); ++itr) {
+      if (pc[pcitr].compare(pc_cvd[itr]) == 0) {
+        return 1;
+      }
+    } 
+  }
+  return 0;
+}
+
+int codes::respiratory(std::vector<std::string>& dx, std::vector<std::string>& pc) 
+{
+  int dxitr, pcitr, itr; 
+
+  for (dxitr = 0; dxitr < dx.size(); ++dxitr) { 
+    for (itr = 0; itr < dx_respiratory.size(); ++itr) {
+      if (dx[dxitr].compare(dx_respiratory[itr]) == 0) {
+        return 1;
+      }
+    } 
+  } 
+
+  for (pcitr = 0; pcitr < pc.size(); ++pcitr) { 
+    for (itr = 0; itr < pc_respiratory.size(); ++itr) {
+      if (pc[pcitr].compare(pc_respiratory[itr]) == 0) {
+        return 1;
+      }
+    } 
+  }
+  return 0;
+}
+
+int codes::renal(std::vector<std::string>& dx, std::vector<std::string>& pc) 
+{
+  int dxitr, pcitr, itr; 
+
+  for (dxitr = 0; dxitr < dx.size(); ++dxitr) { 
+    for (itr = 0; itr < dx_renal.size(); ++itr) {
+      if (dx[dxitr].compare(dx_renal[itr]) == 0) {
+        return 1;
+      }
+    } 
+  } 
+
+  for (pcitr = 0; pcitr < pc.size(); ++pcitr) { 
+    for (itr = 0; itr < pc_renal.size(); ++itr) {
+      if (pc[pcitr].compare(pc_renal[itr]) == 0) {
+        return 1;
+      }
+    } 
+  }
+  return 0;
+}
+
+int codes::gi(std::vector<std::string>& dx, std::vector<std::string>& pc) 
+{
+  int dxitr, pcitr, itr; 
+
+  for (dxitr = 0; dxitr < dx.size(); ++dxitr) { 
+    for (itr = 0; itr < dx_gi.size(); ++itr) {
+      if (dx[dxitr].compare(dx_gi[itr]) == 0) {
+        return 1;
+      }
+    } 
+  } 
+
+  for (pcitr = 0; pcitr < pc.size(); ++pcitr) { 
+    for (itr = 0; itr < pc_gi.size(); ++itr) {
+      if (pc[pcitr].compare(pc_gi[itr]) == 0) {
+        return 1;
+      }
+    } 
+  }
+  return 0;
+}
+
+int codes::hemato_immu(std::vector<std::string>& dx, std::vector<std::string>& pc) 
+{
+  int dxitr, pcitr, itr; 
+
+  for (dxitr = 0; dxitr < dx.size(); ++dxitr) { 
+    for (itr = 0; itr < dx_hemato_immu.size(); ++itr) {
+      if (dx[dxitr].compare(dx_hemato_immu[itr]) == 0) {
+        return 1;
+      }
+    } 
+  } 
+
+  for (pcitr = 0; pcitr < pc.size(); ++pcitr) { 
+    for (itr = 0; itr < pc_hemato_immu.size(); ++itr) {
+      if (pc[pcitr].compare(pc_hemato_immu[itr]) == 0) {
+        return 1;
+      }
+    } 
+  }
+  return 0;
+}
+
+int codes::metabolic(std::vector<std::string>& dx, std::vector<std::string>& pc) 
+{
+  int dxitr, pcitr, itr; 
+
+  for (dxitr = 0; dxitr < dx.size(); ++dxitr) { 
+    for (itr = 0; itr < dx_metabolic.size(); ++itr) {
+      if (dx[dxitr].compare(dx_metabolic[itr]) == 0) {
+        return 1;
+      }
+    } 
+  } 
+
+  for (pcitr = 0; pcitr < pc.size(); ++pcitr) { 
+    for (itr = 0; itr < pc_metabolic.size(); ++itr) {
+      if (pc[pcitr].compare(pc_metabolic[itr]) == 0) {
+        return 1;
+      }
+    } 
+  }
+  return 0;
+}
+
+int codes::congeni_genetic(std::vector<std::string>& dx) 
+{
+  int dxitr, itr; 
+
+  for (dxitr = 0; dxitr < dx.size(); ++dxitr) { 
+    for (itr = 0; itr < dx_congeni_genetic.size(); ++itr) {
+      if (dx[dxitr].compare(dx_congeni_genetic[itr]) == 0) {
+        return 1;
+      }
+    } 
+  } 
+
+  return 0;
+}
+
+int codes::malignancy(std::vector<std::string>& dx, std::vector<std::string>& pc) 
+{
+  int dxitr, pcitr, itr; 
+
+  for (dxitr = 0; dxitr < dx.size(); ++dxitr) { 
+    for (itr = 0; itr < dx_malignancy.size(); ++itr) {
+      if (dx[dxitr].compare(dx_malignancy[itr]) == 0) {
+        return 1;
+      }
+    } 
+  } 
+
+  for (pcitr = 0; pcitr < pc.size(); ++pcitr) { 
+    for (itr = 0; itr < pc_malignancy.size(); ++itr) {
+      if (pc[pcitr].compare(pc_malignancy[itr]) == 0) {
+        return 1;
+      }
+    } 
+  }
+  return 0;
+}
+
+int codes::neonatal(std::vector<std::string>& dx) 
+{
+  int dxitr, itr; 
+
+  for (dxitr = 0; dxitr < dx.size(); ++dxitr) { 
+    for (itr = 0; itr < dx_neonatal.size(); ++itr) {
+      if (dx[dxitr].compare(dx_neonatal[itr]) == 0) {
+        return 1;
+      }
+    } 
+  } 
+  return 0;
+}
+
+int codes::tech_dep(std::vector<std::string>& dx, std::vector<std::string>& pc) 
+{
+  int dxitr, pcitr, itr; 
+
+  for (dxitr = 0; dxitr < dx.size(); ++dxitr) { 
+    for (itr = 0; itr < dx_tech_dep.size(); ++itr) {
+      if (dx[dxitr].compare(dx_tech_dep[itr]) == 0) {
+        return 1;
+      }
+    } 
+  } 
+
+  for (pcitr = 0; pcitr < pc.size(); ++pcitr) { 
+    for (itr = 0; itr < pc_tech_dep.size(); ++itr) {
+      if (pc[pcitr].compare(pc_tech_dep[itr]) == 0) {
+        return 1;
+      }
+    } 
+  }
+  return 0;
+}
+
+int codes::transplant(std::vector<std::string>& dx, std::vector<std::string>& pc) 
+{
+  int dxitr, pcitr, itr; 
+
+  for (dxitr = 0; dxitr < dx.size(); ++dxitr) { 
+    for (itr = 0; itr < dx_transplant.size(); ++itr) {
+      if (dx[dxitr].compare(dx_transplant[itr]) == 0) {
+        return 1;
+      }
+    } 
+  } 
+
+  for (pcitr = 0; pcitr < pc.size(); ++pcitr) { 
+    for (itr = 0; itr < pc_transplant.size(); ++itr) {
+      if (pc[pcitr].compare(pc_transplant[itr]) == 0) {
+        return 1;
+      }
+    } 
+  }
+  return 0;
+}
