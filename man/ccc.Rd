@@ -8,7 +8,8 @@ ccc(.data, id, dx_cols, pc_cols, icdv = 10)
 }
 \arguments{
 \item{.data}{a \code{data.frame} containing a patient id and all the ICD-9-CM
-or ICD-10-CM codes.}
+or ICD-10-CM codes.  The \code{data.frame} passed to the function should be
+in wide format.}
 
 \item{id}{bare name of the column containing the patient id}
 
@@ -24,7 +25,10 @@ or ICD-10-CM codes.}
 Generate CCC and CCC subcategory flags and the number of categories.
 }
 \details{
-The \code{data.frame} passed to the function should be in wide format.
+It is recommended that you view the codes defining the CCC via
+\code{\link{get_codes}} and make sure that the ICD codes in your data set are
+formatted in the same way.  The ICD codes used for CCC are character strings
+and *do not* have decimal points.
 }
 \examples{
 eg_data <-
@@ -45,6 +49,10 @@ ccc(eg_data,
 Feudtner C, et al. Pediatric complex chronic conditions classification system
 version 2: updated for ICD-10 and complex medical technology dependence and
 transplantation, BMC Pediatrics, 2014, 14:199, DOI: 10.1186/1471-2431-14-199
+}
+\seealso{
+\code{\link{get_codes}} to view the ICD codes used to define the
+CCC.
 }
 \author{
 Peter DeWitt
