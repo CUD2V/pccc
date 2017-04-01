@@ -10,4 +10,6 @@ eg_data <-
 ccc(eg_data, 
     id,
     dx_cols = dplyr::vars(dplyr::starts_with('dx')),
-    pc_cols = dplyr::vars(dplyr::starts_with("pc")))
+    pc_cols = dplyr::vars(dplyr::starts_with("pc")),
+    icdv = 10)
+
