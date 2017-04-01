@@ -105,8 +105,7 @@ Rcpp::IntegerVector ccc_rcpp(std::vector<std::string>& dx, std::vector<std::stri
   if (neuromusc + cvd + respiratory + renal + gi + hemato_immu + metabolic + congeni_genetic + malignancy + neonatal + 
       tech_dep + transplant) {
     ccc_flag = 1;
-  }
-
+  } 
 
   return Rcpp::IntegerVector::create(
       Rcpp::Named("neuromusc")       = neuromusc,

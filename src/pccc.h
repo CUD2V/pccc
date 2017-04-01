@@ -35,22 +35,22 @@ class codes {
     std::vector<std::string> pc_transplant;
 
   public:
-    codes(int v = 9);
+    codes(int v);
 
-    int get_version() { return version;};
+    int get_version() { return version; };
 
-    int neuromusc(std::vector<std::string>& dx, std::vector<std::string>& pc);
-    int cvd(std::vector<std::string>& dx, std::vector<std::string>& pc);
-    int respiratory(std::vector<std::string>& dx, std::vector<std::string>& pc);
-    int renal(std::vector<std::string>& dx, std::vector<std::string>& pc);
-    int gi(std::vector<std::string>& dx, std::vector<std::string>& pc);
-    int hemato_immu(std::vector<std::string>& dx, std::vector<std::string>& pc);
-    int metabolic(std::vector<std::string>& dx, std::vector<std::string>& pc);
+    int neuromusc(      std::vector<std::string>& dx, std::vector<std::string>& pc);
+    int cvd(            std::vector<std::string>& dx, std::vector<std::string>& pc);
+    int respiratory(    std::vector<std::string>& dx, std::vector<std::string>& pc);
+    int renal(          std::vector<std::string>& dx, std::vector<std::string>& pc);
+    int gi(             std::vector<std::string>& dx, std::vector<std::string>& pc);
+    int hemato_immu(    std::vector<std::string>& dx, std::vector<std::string>& pc);
+    int metabolic(      std::vector<std::string>& dx, std::vector<std::string>& pc);
     int congeni_genetic(std::vector<std::string>& dx);
-    int malignancy(std::vector<std::string>& dx, std::vector<std::string>& pc);
-    int neonatal(std::vector<std::string>& dx);
-    int tech_dep(std::vector<std::string>& dx, std::vector<std::string>& pc);
-    int transplant(std::vector<std::string>& dx, std::vector<std::string>& pc);
+    int malignancy(     std::vector<std::string>& dx, std::vector<std::string>& pc);
+    int neonatal(       std::vector<std::string>& dx);
+    int tech_dep(       std::vector<std::string>& dx, std::vector<std::string>& pc);
+    int transplant(     std::vector<std::string>& dx, std::vector<std::string>& pc);
 
     std::vector<std::string> get_dx_neuromusc()       { return dx_neuromusc; };
     std::vector<std::string> get_dx_cvd()             { return dx_cvd; };

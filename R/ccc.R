@@ -22,7 +22,7 @@
 #' \code{\link[dplyr]{vars}} from \code{dplyr} to identify the column(s).
 #' @param pc_cols the column(s) containing the procedure codes.  Use
 #' \code{\link[dplyr]{vars}} from \code{dplyr} to identify the column(s).
-#' @param icdv ICD version 9 or 10, defaults to 10
+#' @param icdv ICD version 9 or 10, defaults to 9
 #'
 #' @seealso \code{\link{get_codes}} to view the ICD codes used to define the
 #' CCC.
@@ -30,7 +30,7 @@
 #' @example examples/ccc.R
 #'
 #' @export
-ccc <- function(.data, id, dx_cols, pc_cols, icdv = 10) {
+ccc <- function(.data, id, dx_cols, pc_cols, icdv = 9) {
   dxmat <- as.matrix(dplyr::select_(.data, .dots = dx_cols))
   pcmat <- as.matrix(dplyr::select_(.data, .dots = dx_cols))
   ids <- dplyr::select_(.data, .dots = lazyeval::interp( ~ i, i = substitute(id)))

@@ -1,6 +1,6 @@
 Package: pccc
 Title: Pediatric Complex Chronic Conditions
-Version: 0.1.0
+Version: 0.1.0.9000
 Authors@R: person("Peter", "DeWitt", email = "dewittpe@gmail.com", role = c("aut", "cre"))
 Description: An implementation of the pediatric complex chronic conditions (CCC)
     classification system.  Implemented for the International Classification of
