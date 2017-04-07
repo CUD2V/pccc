@@ -30,9 +30,20 @@
 #' @example examples/ccc.R
 #'
 #' @export
-ccc <- function(.data, id, dx_cols, pc_cols, icdv = 9) {
-  dxmat <- as.matrix(dplyr::select_(.data, .dots = dx_cols))
-  pcmat <- as.matrix(dplyr::select_(.data, .dots = dx_cols))
+ccc <- function(.data, id, dx_cols = NULL, pc_cols = NULL, icdv = 9) {
+
+  if (!is.null(dx_cols)) {
+    dxmat <- as.matrix(dplyr::select_(.data, .dots = dx_cols))
+  } else {
+    dxmat <- matrix("")
+  }
+
+  if (!is.null(pc_cols)) {
+    pcmat <- as.matrix(dplyr::select_(.data, .dots = pc_cols))
+  } else {
+    pcmat <- matrix("")
+  }
+
   ids <- dplyr::select_(.data, .dots = lazyeval::interp( ~ i, i = substitute(id)))
 
   Map(ccc_rcpp,

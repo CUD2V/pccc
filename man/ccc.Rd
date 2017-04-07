@@ -4,7 +4,7 @@
 \alias{ccc}
 \title{Complex Chronic Conditions (CCC)}
 \usage{
-ccc(.data, id, dx_cols, pc_cols, icdv = 9)
+ccc(.data, id, dx_cols = NULL, pc_cols = NULL, icdv = 9)
 }
 \arguments{
 \item{.data}{a \code{data.frame} containing a patient id and all the ICD-9-CM
