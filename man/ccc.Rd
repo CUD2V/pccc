@@ -4,7 +4,7 @@
 \alias{ccc}
 \title{Complex Chronic Conditions (CCC)}
 \usage{
-ccc(.data, id, dx_cols = NULL, pc_cols = NULL, icdv = 9)
+ccc(.data, id, codes, icdv = 9)
 }
 \arguments{
 \item{.data}{a \code{data.frame} containing a patient id and all the ICD-9-CM
@@ -13,10 +13,7 @@ in wide format.}
 
 \item{id}{bare name of the column containing the patient id}
 
-\item{dx_cols}{column names with the diagnostic codes, use
-\code{\link[dplyr]{vars}} from \code{dplyr} to identify the column(s).}
-
-\item{pc_cols}{the column(s) containing the procedure codes.  Use
+\item{codes}{column names with the diagnostic codes, use
 \code{\link[dplyr]{vars}} from \code{dplyr} to identify the column(s).}
 
 \item{icdv}{ICD version 9 or 10, defaults to 9}
@@ -33,17 +30,16 @@ and *do not* have decimal points.
 \examples{
 eg_data <-
   dplyr::data_frame(id = letters,
-                    dx1 = c(NA, NA, sample(get_codes(10)$dx[["hemato_immu"]], 24)),
-                    dx2 = sample(get_codes(10)$dx[["gi"]], 26),
+                    dx1 = c(NA, NA, sample(get_codes(10)[["hemato_immu"]], 24)),
+                    dx2 = c("A", "B", "B", sample(get_codes(10)[["gi"]], 23)),
                     dx3 = LETTERS,
-                    pc1 = sample(get_codes(10)$pc[["cvd"]], 26),
+                    pc1 = c("42", sample(get_codes(10)[["cvd"]], 25)),
                     pc2 = LETTERS,
                     other_col = LETTERS)
 
 ccc(eg_data, 
     id,
-    dx_cols = dplyr::vars(dplyr::starts_with('dx')),
-    pc_cols = dplyr::vars(dplyr::starts_with("pc")),
+    codes = dplyr::vars(dplyr::starts_with("dx"), dplyr::starts_with("pc")),
     icdv = 10)
 
 }

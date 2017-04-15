@@ -51,92 +51,67 @@
 //' @export
 // [[Rcpp::export]]
 Rcpp::List get_codes(int version = 9) {
-  codes cds(version);
+  ccc_codes cds(version);
   return Rcpp::List::create(
-      Rcpp::Named("version") = cds.get_version(),
-      Rcpp::Named("dx") = 
-        Rcpp::List::create( 
-          Rcpp::Named("neuromusc")       = Rcpp::wrap(cds.get_dx_neuromusc()),
-          Rcpp::Named("cvd")             = Rcpp::wrap(cds.get_dx_cvd()),
-          Rcpp::Named("respiratory")     = Rcpp::wrap(cds.get_dx_respiratory()),
-          Rcpp::Named("renal")           = Rcpp::wrap(cds.get_dx_renal()),
-          Rcpp::Named("gi")              = Rcpp::wrap(cds.get_dx_gi()),
-          Rcpp::Named("hemato_immu")     = Rcpp::wrap(cds.get_dx_hemato_immu()),
-          Rcpp::Named("metabolic")       = Rcpp::wrap(cds.get_dx_metabolic()),
-          Rcpp::Named("congeni_genetic") = Rcpp::wrap(cds.get_dx_congeni_genetic()),
-          Rcpp::Named("malignancy")      = Rcpp::wrap(cds.get_dx_malignancy()),
-          Rcpp::Named("neonatal")        = Rcpp::wrap(cds.get_dx_neonatal()),
-          Rcpp::Named("tech_dep")        = Rcpp::wrap(cds.get_dx_tech_dep()),
-          Rcpp::Named("transplant")      = Rcpp::wrap(cds.get_dx_transplant())),
-      Rcpp::Named("pc") =
-        Rcpp::List::create(
-           Rcpp::Named("neuromusc")       = Rcpp::wrap(cds.get_pc_neuromusc()),
-           Rcpp::Named("cvd")             = Rcpp::wrap(cds.get_pc_cvd()),
-           Rcpp::Named("respiratory")     = Rcpp::wrap(cds.get_pc_respiratory()),
-           Rcpp::Named("renal")           = Rcpp::wrap(cds.get_pc_renal()),
-           Rcpp::Named("gi")              = Rcpp::wrap(cds.get_pc_gi()),
-           Rcpp::Named("hemato_immu")     = Rcpp::wrap(cds.get_pc_hemato_immu()),
-           Rcpp::Named("metabolic")       = Rcpp::wrap(cds.get_pc_metabolic()),
-           Rcpp::Named("malignancy")      = Rcpp::wrap(cds.get_pc_malignancy()),
-           Rcpp::Named("tech_dep")        = Rcpp::wrap(cds.get_pc_tech_dep()),
-           Rcpp::Named("transplant")      = Rcpp::wrap(cds.get_pc_transplant()))
-      );
+      Rcpp::Named("version")         = cds.get_version(),
+      Rcpp::Named("neuromusc")       = Rcpp::wrap(cds.get_neuromusc()),
+      Rcpp::Named("cvd")             = Rcpp::wrap(cds.get_cvd()),
+      Rcpp::Named("respiratory")     = Rcpp::wrap(cds.get_respiratory()),
+      Rcpp::Named("renal")           = Rcpp::wrap(cds.get_renal()),
+      Rcpp::Named("gi")              = Rcpp::wrap(cds.get_gi()),
+      Rcpp::Named("hemato_immu")     = Rcpp::wrap(cds.get_hemato_immu()),
+      Rcpp::Named("metabolic")       = Rcpp::wrap(cds.get_metabolic()),
+      Rcpp::Named("congeni_genetic") = Rcpp::wrap(cds.get_congeni_genetic()),
+      Rcpp::Named("malignancy")      = Rcpp::wrap(cds.get_malignancy()),
+      Rcpp::Named("neonatal")        = Rcpp::wrap(cds.get_neonatal()),
+      Rcpp::Named("tech_dep")        = Rcpp::wrap(cds.get_tech_dep()),
+      Rcpp::Named("transplant")      = Rcpp::wrap(cds.get_transplant())
+    );
 }
 
 // [[Rcpp::export]]
-Rcpp::IntegerVector ccc_rcpp(std::vector<std::string>& dx, std::vector<std::string>& pc, int version = 9)
-{ 
-  codes cdv(version);
+Rcpp::DataFrame ccc_rcpp(Rcpp::CharacterMatrix& MAT, int version) {
+  ccc_codes cds(version);
 
-  int neuromusc       = cdv.neuromusc(dx, pc);
-  int cvd             = cdv.cvd(dx, pc);
-  int respiratory     = cdv.respiratory(dx, pc);
-  int renal           = cdv.renal(dx, pc);
-  int gi              = cdv.gi(dx, pc);
-  int hemato_immu     = cdv.hemato_immu(dx, pc);
-  int metabolic       = cdv.metabolic(dx, pc);
-  int congeni_genetic = cdv.congeni_genetic(dx);
-  int malignancy      = cdv.malignancy(dx, pc);
-  int neonatal        = cdv.neonatal(dx);
-  int tech_dep        = cdv.tech_dep(dx, pc);
-  int transplant      = cdv.transplant(dx, pc);
-  int ccc_flag        = 0;
+  Rcpp::NumericMatrix OUT(MAT.nrow(), 13);
+  std::vector<std::string> these_codes(MAT.ncol());
 
-  if (neuromusc + cvd + respiratory + renal + gi + hemato_immu + metabolic + congeni_genetic + malignancy + neonatal + 
-      tech_dep + transplant) {
-    ccc_flag = 1;
-  } 
+  size_t i, j;
 
-  return Rcpp::IntegerVector::create(
-      Rcpp::Named("neuromusc")       = neuromusc,
-      Rcpp::Named("cvd")             = cvd,
-      Rcpp::Named("respiratory")     = respiratory,
-      Rcpp::Named("renal")           = renal,
-      Rcpp::Named("gi")              = gi,
-      Rcpp::Named("hemato_immu")     = hemato_immu,
-      Rcpp::Named("metabolic")       = metabolic,
-      Rcpp::Named("congeni_genetic") = congeni_genetic,
-      Rcpp::Named("malignancy")      = malignancy,
-      Rcpp::Named("neonatal")        = neonatal,
-      Rcpp::Named("tech_dep")        = tech_dep,
-      Rcpp::Named("transplant")      = transplant,
-      Rcpp::Named("ccc_flag")        = ccc_flag
-      ); 
+    
+  for (size_t i = 0; i < MAT.nrow(); ++i) {
+    for(j = 0; j < MAT.ncol(); ++j) {
+      these_codes[j] = MAT(i, j);
+    }
+
+    OUT(i,  0) = cds.neuromusc(these_codes);
+    OUT(i,  1) = cds.cvd(these_codes);
+    OUT(i,  2) = cds.respiratory(these_codes);
+    OUT(i,  3) = cds.renal(these_codes);
+    OUT(i,  4) = cds.gi(these_codes);
+    OUT(i,  5) = cds.hemato_immu(these_codes);
+    OUT(i,  6) = cds.metabolic(these_codes);
+    OUT(i,  7) = cds.congeni_genetic(these_codes);
+    OUT(i,  8) = cds.malignancy(these_codes);
+    OUT(i,  9) = cds.neonatal(these_codes);
+    OUT(i, 10) = cds.tech_dep(these_codes);
+    OUT(i, 11) = cds.transplant(these_codes);
+
+    if (OUT(i,  0) + OUT(i,  1) + OUT(i,  2) + OUT(i,  3) + 
+        OUT(i,  4) + OUT(i,  5) + OUT(i,  6) + OUT(i,  7) +
+        OUT(i,  8) + OUT(i,  9) + OUT(i, 10) + OUT(i, 11)) {
+      OUT(i, 12) = 1;
+    } else {
+      OUT(i, 12) = 0;
+    }
+  }
+
+  Rcpp::DataFrame OUTD = Rcpp::internal::convert_using_rfunction(OUT, "as.data.frame");
+
+  OUTD.attr("names") = Rcpp::CharacterVector::create("neuromusc",
+      "cvd", "respiratory", "renal", "gi", "hemato_immu", "metabolic",
+      "congeni_genetic", "malignancy", "neonatal", "tech_dep", "transplant",
+      "ccc_flag");
+
+  return OUTD;
 }
-
-//Rcpp::NumericMatrix ccc_mat(Rcpp::NumericMatrix& dxmat, Rcpp::NumericMatrix& pcmat, int version = 9)
-//{ 
-//  codes cdv(version);
-//
-//  if (dxmat.rows() != pcmat.rows()) {
-//    ::Rf_error("number of rows for dxmat and pcmat need to be equal.");
-//  }
-//
-//  Rcpp::NumericMatrix out(dxmat.rows(), 12);
-//
-//  for (int i = 0; i < out.rows(); ++i) {
-//    out.row(i) = ccc_rcpp(Rcpp::as<std::vector<std::string>>(dxmat.row(i)), Rcpp::as<std::vector<std::string>>(pcmat.row(i)), version);
-//  }
-//
-//  return out; 
-//}

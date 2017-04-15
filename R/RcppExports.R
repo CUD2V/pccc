@@ -49,7 +49,7 @@ get_codes <- function(version = 9L) {
     .Call('pccc_get_codes', PACKAGE = 'pccc', version)
 }
 
-ccc_rcpp <- function(dx, pc, version = 9L) {
-    .Call('pccc_ccc_rcpp', PACKAGE = 'pccc', dx, pc, version)
+ccc_rcpp <- function(MAT, version) {
+    .Call('pccc_ccc_rcpp', PACKAGE = 'pccc', MAT, version)
 }
 
