@@ -12,12 +12,10 @@ LazyData: true
 Imports:
     dplyr,
     lazyeval,
-    Rcpp (>= 0.10.3),
-    RcppParallel
+    Rcpp (>= 0.10.3)
 Suggests:
     covr,
 RoxygenNote: 6.0.1
 LinkingTo: 
     Rcpp,
-    RcppParallel
 SystemRequirements: GNU make

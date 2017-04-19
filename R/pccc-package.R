@@ -51,7 +51,6 @@
 #' @name pccc-package
 #' @useDynLib pccc
 #' @importFrom Rcpp sourceCpp
-#' @importFrom RcppParallel RcppParallelLibs
 NULL
 
 #' @importFrom dplyr "%>%"
