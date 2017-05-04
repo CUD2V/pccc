@@ -396,7 +396,7 @@ codes::codes(int v)
 
 int codes::neuromusc(std::vector<std::string>& dx, std::vector<std::string>& pc) 
 {
-  int dxitr, pcitr, itr; 
+  size_t dxitr, pcitr, itr; 
 
   for (dxitr = 0; dxitr < dx.size(); ++dxitr) { 
     for (itr = 0; itr < dx_neuromusc.size(); ++itr) {
@@ -418,7 +418,7 @@ int codes::neuromusc(std::vector<std::string>& dx, std::vector<std::string>& pc)
 
 int codes::cvd(std::vector<std::string>& dx, std::vector<std::string>& pc) 
 {
-  int dxitr, pcitr, itr; 
+  size_t dxitr, pcitr, itr; 
 
   for (dxitr = 0; dxitr < dx.size(); ++dxitr) { 
     for (itr = 0; itr < dx_cvd.size(); ++itr) {
@@ -440,7 +440,7 @@ int codes::cvd(std::vector<std::string>& dx, std::vector<std::string>& pc)
 
 int codes::respiratory(std::vector<std::string>& dx, std::vector<std::string>& pc) 
 {
-  int dxitr, pcitr, itr; 
+  size_t dxitr, pcitr, itr; 
 
   for (dxitr = 0; dxitr < dx.size(); ++dxitr) { 
     for (itr = 0; itr < dx_respiratory.size(); ++itr) {
@@ -462,7 +462,7 @@ int codes::respiratory(std::vector<std::string>& dx, std::vector<std::string>& p
 
 int codes::renal(std::vector<std::string>& dx, std::vector<std::string>& pc) 
 {
-  int dxitr, pcitr, itr; 
+  size_t dxitr, pcitr, itr; 
 
   for (dxitr = 0; dxitr < dx.size(); ++dxitr) { 
     for (itr = 0; itr < dx_renal.size(); ++itr) {
@@ -484,7 +484,7 @@ int codes::renal(std::vector<std::string>& dx, std::vector<std::string>& pc)
 
 int codes::gi(std::vector<std::string>& dx, std::vector<std::string>& pc) 
 {
-  int dxitr, pcitr, itr; 
+  size_t dxitr, pcitr, itr; 
 
   for (dxitr = 0; dxitr < dx.size(); ++dxitr) { 
     for (itr = 0; itr < dx_gi.size(); ++itr) {
@@ -506,7 +506,7 @@ int codes::gi(std::vector<std::string>& dx, std::vector<std::string>& pc)
 
 int codes::hemato_immu(std::vector<std::string>& dx, std::vector<std::string>& pc) 
 {
-  int dxitr, pcitr, itr; 
+  size_t dxitr, pcitr, itr; 
 
   for (dxitr = 0; dxitr < dx.size(); ++dxitr) { 
     for (itr = 0; itr < dx_hemato_immu.size(); ++itr) {
@@ -528,7 +528,7 @@ int codes::hemato_immu(std::vector<std::string>& dx, std::vector<std::string>& p
 
 int codes::metabolic(std::vector<std::string>& dx, std::vector<std::string>& pc) 
 {
-  int dxitr, pcitr, itr; 
+  size_t dxitr, pcitr, itr; 
 
   for (dxitr = 0; dxitr < dx.size(); ++dxitr) { 
     for (itr = 0; itr < dx_metabolic.size(); ++itr) {
@@ -550,7 +550,7 @@ int codes::metabolic(std::vector<std::string>& dx, std::vector<std::string>& pc)
 
 int codes::congeni_genetic(std::vector<std::string>& dx) 
 {
-  int dxitr, itr; 
+  size_t dxitr, itr; 
 
   for (dxitr = 0; dxitr < dx.size(); ++dxitr) { 
     for (itr = 0; itr < dx_congeni_genetic.size(); ++itr) {
@@ -565,7 +565,7 @@ int codes::congeni_genetic(std::vector<std::string>& dx)
 
 int codes::malignancy(std::vector<std::string>& dx, std::vector<std::string>& pc) 
 {
-  int dxitr, pcitr, itr; 
+  size_t dxitr, pcitr, itr; 
 
   for (dxitr = 0; dxitr < dx.size(); ++dxitr) { 
     for (itr = 0; itr < dx_malignancy.size(); ++itr) {
@@ -587,7 +587,7 @@ int codes::malignancy(std::vector<std::string>& dx, std::vector<std::string>& pc
 
 int codes::neonatal(std::vector<std::string>& dx) 
 {
-  int dxitr, itr; 
+  size_t dxitr, itr; 
 
   for (dxitr = 0; dxitr < dx.size(); ++dxitr) { 
     for (itr = 0; itr < dx_neonatal.size(); ++itr) {
@@ -601,7 +601,7 @@ int codes::neonatal(std::vector<std::string>& dx)
 
 int codes::tech_dep(std::vector<std::string>& dx, std::vector<std::string>& pc) 
 {
-  int dxitr, pcitr, itr; 
+  size_t dxitr, pcitr, itr; 
 
   for (dxitr = 0; dxitr < dx.size(); ++dxitr) { 
     for (itr = 0; itr < dx_tech_dep.size(); ++itr) {
@@ -623,7 +623,7 @@ int codes::tech_dep(std::vector<std::string>& dx, std::vector<std::string>& pc)
 
 int codes::transplant(std::vector<std::string>& dx, std::vector<std::string>& pc) 
 {
-  int dxitr, pcitr, itr; 
+  size_t dxitr, pcitr, itr; 
 
   for (dxitr = 0; dxitr < dx.size(); ++dxitr) { 
     for (itr = 0; itr < dx_transplant.size(); ++itr) {
