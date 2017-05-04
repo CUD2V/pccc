@@ -4,10 +4,11 @@
 \alias{get_codes}
 \title{Get (view) Diagnostic and Procedure Codes}
 \usage{
-get_codes(version = 9L)
+get_codes(icdv)
 }
 \arguments{
-\item{version}{and integer value specifying ICD version 9 (default) or 10.}
+\item{icdv}{and integer value specifying ICD verion.  Accepted values are 9
+or 10.}
 }
 \value{
 A list with three elements
