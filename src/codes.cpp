@@ -36,7 +36,8 @@
 //'
 //' @author Peter DeWitt
 //'
-//' @param version and integer value specifying ICD version 9 (default) or 10.
+//' @param icdv and integer value specifying ICD verion.  Accepted values are 9
+//' or 10.
 //'
 //' @return
 //' A list with three elements
@@ -50,8 +51,8 @@
 //'
 //' @export
 // [[Rcpp::export]]
-Rcpp::List get_codes(int version = 9) {
-  codes cds(version);
+Rcpp::List get_codes(int icdv) {
+  codes cds(icdv);
   return Rcpp::List::create(
       Rcpp::Named("version") = cds.get_version(),
       Rcpp::Named("dx") = 
@@ -82,61 +83,3 @@ Rcpp::List get_codes(int version = 9) {
            Rcpp::Named("transplant")      = Rcpp::wrap(cds.get_pc_transplant()))
       );
 }
-
-// [[Rcpp::export]]
-Rcpp::IntegerVector ccc_rcpp(std::vector<std::string>& dx, std::vector<std::string>& pc, int version = 9)
-{ 
-  codes cdv(version);
-
-  int neuromusc       = cdv.neuromusc(dx, pc);
-  int cvd             = cdv.cvd(dx, pc);
-  int respiratory     = cdv.respiratory(dx, pc);
-  int renal           = cdv.renal(dx, pc);
-  int gi              = cdv.gi(dx, pc);
-  int hemato_immu     = cdv.hemato_immu(dx, pc);
-  int metabolic       = cdv.metabolic(dx, pc);
-  int congeni_genetic = cdv.congeni_genetic(dx);
-  int malignancy      = cdv.malignancy(dx, pc);
-  int neonatal        = cdv.neonatal(dx);
-  int tech_dep        = cdv.tech_dep(dx, pc);
-  int transplant      = cdv.transplant(dx, pc);
-  int ccc_flag        = 0;
-
-  if (neuromusc + cvd + respiratory + renal + gi + hemato_immu + metabolic + congeni_genetic + malignancy + neonatal + 
-      tech_dep + transplant) {
-    ccc_flag = 1;
-  } 
-
-  return Rcpp::IntegerVector::create(
-      Rcpp::Named("neuromusc")       = neuromusc,
-      Rcpp::Named("cvd")             = cvd,
-      Rcpp::Named("respiratory")     = respiratory,
-      Rcpp::Named("renal")           = renal,
-      Rcpp::Named("gi")              = gi,
-      Rcpp::Named("hemato_immu")     = hemato_immu,
-      Rcpp::Named("metabolic")       = metabolic,
-      Rcpp::Named("congeni_genetic") = congeni_genetic,
-      Rcpp::Named("malignancy")      = malignancy,
-      Rcpp::Named("neonatal")        = neonatal,
-      Rcpp::Named("tech_dep")        = tech_dep,
-      Rcpp::Named("transplant")      = transplant,
-      Rcpp::Named("ccc_flag")        = ccc_flag
-      ); 
-}
-
-//Rcpp::NumericMatrix ccc_mat(Rcpp::NumericMatrix& dxmat, Rcpp::NumericMatrix& pcmat, int version = 9)
-//{ 
-//  codes cdv(version);
-//
-//  if (dxmat.rows() != pcmat.rows()) {
-//    ::Rf_error("number of rows for dxmat and pcmat need to be equal.");
-//  }
-//
-//  Rcpp::NumericMatrix out(dxmat.rows(), 12);
-//
-//  for (int i = 0; i < out.rows(); ++i) {
-//    out.row(i) = ccc_rcpp(Rcpp::as<std::vector<std::string>>(dxmat.row(i)), Rcpp::as<std::vector<std::string>>(pcmat.row(i)), version);
-//  }
-//
-//  return out; 
-//}
