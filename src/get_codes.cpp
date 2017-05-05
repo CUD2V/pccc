@@ -12,19 +12,19 @@
 //'
 //'  The CCC categories for diagnostic and procedure codes are:
 //'  \tabular{lcc}{                                            
-//'  category        \tab \code{dxc} \tab \code{pcc} \cr       
-//'  neuromuscul     \tab      X     \tab      X     \cr       
-//'  cvd             \tab      X     \tab      X     \cr       
-//'  respiratory     \tab      X     \tab      X     \cr       
-//'  renal           \tab      X     \tab      X     \cr       
-//'  gi              \tab      X     \tab      X     \cr       
-//'  hemato_immu     \tab      X     \tab      X     \cr       
-//'  metabolic       \tab      X     \tab      X     \cr       
-//'  congeni_genetic \tab      X     \tab            \cr       
-//'  malignancy      \tab      X     \tab      X     \cr       
-//'  neonatal        \tab      X     \tab            \cr       
-//'  tech_dep        \tab      X     \tab      X     \cr       
-//'  transplant      \tab      X     \tab      X     \cr       
+//'  category        \tab \code{dx} \tab \code{pc} \cr       
+//'  neuromuscul     \tab      X    \tab      X    \cr       
+//'  cvd             \tab      X    \tab      X    \cr       
+//'  respiratory     \tab      X    \tab      X    \cr       
+//'  renal           \tab      X    \tab      X    \cr       
+//'  gi              \tab      X    \tab      X    \cr       
+//'  hemato_immu     \tab      X    \tab      X    \cr       
+//'  metabolic       \tab      X    \tab      X    \cr       
+//'  congeni_genetic \tab      X    \tab           \cr       
+//'  malignancy      \tab      X    \tab      X    \cr       
+//'  neonatal        \tab      X    \tab           \cr       
+//'  tech_dep        \tab      X    \tab      X    \cr       
+//'  transplant      \tab      X    \tab      X    \cr       
 //'  }                                                         
 //'
 //' The ICD codes were taken from the SAS macro provided by the reference paper.
@@ -39,47 +39,62 @@
 //' @param icdv and integer value specifying ICD verion.  Accepted values are 9
 //' or 10.
 //'
-//' @return
-//' A list with three elements
-//' \describe{
-//'   \item{version}{ICD version}
-//'   \item{dx}{A list of diagnostic codes.  Each element is for a CCC category
-//'    as noted in the details}
-//'   \item{pc}{A list of diagnostic codes.  Each element is for a CCC category
-//'    as noted in the details}
-//' }
+//' @example examples/get_codes.R
 //'
-//' @export
+//' @return
+//' A matrix of character vectors.  Rows are the categories and columns for
+//' diagnostic and procedure codes.
+//'
+//' @export 
 // [[Rcpp::export]]
 Rcpp::List get_codes(int icdv) {
   codes cds(icdv);
-  return Rcpp::List::create(
-      Rcpp::Named("version") = cds.get_version(),
-      Rcpp::Named("dx") = 
-        Rcpp::List::create( 
-          Rcpp::Named("neuromusc")       = Rcpp::wrap(cds.get_dx_neuromusc()),
-          Rcpp::Named("cvd")             = Rcpp::wrap(cds.get_dx_cvd()),
-          Rcpp::Named("respiratory")     = Rcpp::wrap(cds.get_dx_respiratory()),
-          Rcpp::Named("renal")           = Rcpp::wrap(cds.get_dx_renal()),
-          Rcpp::Named("gi")              = Rcpp::wrap(cds.get_dx_gi()),
-          Rcpp::Named("hemato_immu")     = Rcpp::wrap(cds.get_dx_hemato_immu()),
-          Rcpp::Named("metabolic")       = Rcpp::wrap(cds.get_dx_metabolic()),
-          Rcpp::Named("congeni_genetic") = Rcpp::wrap(cds.get_dx_congeni_genetic()),
-          Rcpp::Named("malignancy")      = Rcpp::wrap(cds.get_dx_malignancy()),
-          Rcpp::Named("neonatal")        = Rcpp::wrap(cds.get_dx_neonatal()),
-          Rcpp::Named("tech_dep")        = Rcpp::wrap(cds.get_dx_tech_dep()),
-          Rcpp::Named("transplant")      = Rcpp::wrap(cds.get_dx_transplant())),
-      Rcpp::Named("pc") =
-        Rcpp::List::create(
-           Rcpp::Named("neuromusc")       = Rcpp::wrap(cds.get_pc_neuromusc()),
-           Rcpp::Named("cvd")             = Rcpp::wrap(cds.get_pc_cvd()),
-           Rcpp::Named("respiratory")     = Rcpp::wrap(cds.get_pc_respiratory()),
-           Rcpp::Named("renal")           = Rcpp::wrap(cds.get_pc_renal()),
-           Rcpp::Named("gi")              = Rcpp::wrap(cds.get_pc_gi()),
-           Rcpp::Named("hemato_immu")     = Rcpp::wrap(cds.get_pc_hemato_immu()),
-           Rcpp::Named("metabolic")       = Rcpp::wrap(cds.get_pc_metabolic()),
-           Rcpp::Named("malignancy")      = Rcpp::wrap(cds.get_pc_malignancy()),
-           Rcpp::Named("tech_dep")        = Rcpp::wrap(cds.get_pc_tech_dep()),
-           Rcpp::Named("transplant")      = Rcpp::wrap(cds.get_pc_transplant()))
+
+  Rcpp::List dx = Rcpp::List::create(
+          Rcpp::wrap(cds.get_dx_neuromusc()),
+          Rcpp::wrap(cds.get_dx_cvd()),
+          Rcpp::wrap(cds.get_dx_respiratory()),
+          Rcpp::wrap(cds.get_dx_renal()),
+          Rcpp::wrap(cds.get_dx_gi()),
+          Rcpp::wrap(cds.get_dx_hemato_immu()),
+          Rcpp::wrap(cds.get_dx_metabolic()),
+          Rcpp::wrap(cds.get_dx_congeni_genetic()),
+          Rcpp::wrap(cds.get_dx_malignancy()),
+          Rcpp::wrap(cds.get_dx_neonatal()),
+          Rcpp::wrap(cds.get_dx_tech_dep()),
+          Rcpp::wrap(cds.get_dx_transplant()));
+
+  Rcpp::List pc = Rcpp::List::create( 
+          Rcpp::wrap(cds.get_pc_neuromusc()),
+          Rcpp::wrap(cds.get_pc_cvd()),
+          Rcpp::wrap(cds.get_pc_respiratory()),
+          Rcpp::wrap(cds.get_pc_renal()),
+          Rcpp::wrap(cds.get_pc_gi()),
+          Rcpp::wrap(cds.get_pc_hemato_immu()),
+          Rcpp::wrap(cds.get_pc_metabolic()),
+          Rcpp::CharacterVector::create(),
+          Rcpp::wrap(cds.get_pc_malignancy()),
+          Rcpp::CharacterVector::create(),
+          Rcpp::wrap(cds.get_pc_tech_dep()),
+          Rcpp::wrap(cds.get_pc_transplant())
+            );
+
+  size_t i=0;
+  Rcpp::List rtn(24);
+
+  for(i=0; i<dx.length(); ++i) {
+    rtn[i] = dx[i];
+  }
+  for(i=0; i<pc.length(); ++i) {
+    rtn[12 + i] = pc[i];
+  }
+
+  rtn.attr("version") = icdv;
+  rtn.attr("dim") = Rcpp::NumericVector::create(12, 2);
+  rtn.attr("dimnames") = Rcpp::List::create(
+      Rcpp::CharacterVector::create("neuromusc", "cvd", "respiratory", "renal", "gi", "hemato_immu", "metabolic", "congeni_genetic", "malignancy", "neonatal", "tech_dep", "transplant"),
+      Rcpp::CharacterVector::create("dx", "pc")
       );
+
+  return(rtn);
 }
