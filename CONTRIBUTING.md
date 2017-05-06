@@ -1,4 +1,4 @@
-# Contributing and Extending pccc
+# Contributing to and extending pccc
 
 ## Current Contents of pccc
 As of version 0.1.0 there are only two functions exported in the `pccc`
@@ -21,11 +21,11 @@ flags.
 The primary workhorse object in this package is the `ccc_codes` object defined in
 `src/pccc.h` and `src/pccc.cpp`.  This class has private members for (ICD)
 version and a vector of strings for each of the possible ccc categories.
-Public members of the class include access for each of the categories string
+Public members of the class include access for each of the categories' string
 vectors and the version.  There are tweleve member functions for determining if
 a diagnostic or procedure code is in one of the CCC categories.
 
-The constructor for the `ccc_codes` class set the version and the vector of strings.
+The constructor for the `ccc_codes` class sets the version and the vector of strings.
 The vectors of ICD strings are defined by version number.  These vectors were
 copied from the SAS code found in `inst/pccc_references/ccc_version2_sas.sas`.
 Edit accordingly.  If/when ICD-11 is released extend this constructor.  All

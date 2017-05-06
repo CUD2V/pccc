@@ -5,7 +5,7 @@
   the diagnostic and procedure codes inputted seperatly.
 
 ## Non-User Visible Changes
-* Redesign of the C++ code.  Improved speed, fewer arguements, fewer operations.
+* Redesign of the C++ code.  Improved speed, fewer arguments, fewer operations.
 
 # Version 0.1.1
 
