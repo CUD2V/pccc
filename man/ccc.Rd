@@ -21,6 +21,10 @@ in wide format.}
 
 \item{icdv}{ICD version 9 or 10}
 }
+\value{
+A \code{data.frame} with a column for the subject id and integer (0
+or 1) columns for each each of the categories.
+}
 \description{
 Generate CCC and CCC subcategory flags and the number of categories.
 }

@@ -27,6 +27,9 @@
 #' @seealso \code{\link{get_codes}} to view the ICD codes used to define the
 #' CCC.
 #'
+#' @return A \code{data.frame} with a column for the subject id and integer (0
+#' or 1) columns for each each of the categories.
+#'
 #' @example examples/ccc.R
 #'
 #' @export
@@ -57,7 +60,5 @@ ccc.data.frame <- function(.data, id, dx_cols = NULL, pc_cols = NULL, icdv) {
 
   ids <- dplyr::select_(.data, .dots = lazyeval::interp( ~ i, i = substitute(id)))
 
-  ccc_mat_rcpp(dxmat, pcmat, icdv) %>%
-  dplyr::as_data_frame() %>%
-  dplyr::bind_cols(ids, .)
+  dplyr::bind_cols(ids, ccc_mat_rcpp(dxmat, pcmat, icdv))
 }

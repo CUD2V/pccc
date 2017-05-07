@@ -6,7 +6,7 @@
 #include "pccc.h"
 
 // [[Rcpp::export]]
-Rcpp::IntegerMatrix ccc_mat_rcpp(Rcpp::CharacterMatrix& dx, Rcpp::CharacterMatrix& pc, int version = 9)
+Rcpp::DataFrame ccc_mat_rcpp(Rcpp::CharacterMatrix& dx, Rcpp::CharacterMatrix& pc, int version = 9)
 { 
   codes cdv(version);
 
@@ -42,5 +42,12 @@ Rcpp::IntegerMatrix ccc_mat_rcpp(Rcpp::CharacterMatrix& dx, Rcpp::CharacterMatri
     } 
   }
 
-  return outmat; 
+  outmat.attr("dimnames") = Rcpp::List::create(Rcpp::CharacterVector::create(),
+      Rcpp::CharacterVector::create("Neuromuscular", "CVD", "Respiratory", "Renal", "GI", "Hemato_immu", "Metabolic", "Congeni_genetric", "Malignancy", "Neonatal", "Tech_dep", "Transplant", "ccc_flag")
+      );
+
+//  return outmat; 
+ Rcpp::DataFrame out = Rcpp::internal::convert_using_rfunction(outmat, "as.data.frame");
+ return out;
+
 }

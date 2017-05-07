@@ -19,5 +19,8 @@ Imports:
     Rcpp (>= 0.10.3)
 Suggests:
     covr,
+    knitr,
+    rmarkdown
 RoxygenNote: 6.0.1
 LinkingTo: Rcpp
+VignetteBuilder: knitr

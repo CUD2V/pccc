@@ -6,7 +6,7 @@
 using namespace Rcpp;
 
 // ccc_mat_rcpp
-Rcpp::IntegerMatrix ccc_mat_rcpp(Rcpp::CharacterMatrix& dx, Rcpp::CharacterMatrix& pc, int version);
+Rcpp::DataFrame ccc_mat_rcpp(Rcpp::CharacterMatrix& dx, Rcpp::CharacterMatrix& pc, int version);
 RcppExport SEXP pccc_ccc_mat_rcpp(SEXP dxSEXP, SEXP pcSEXP, SEXP versionSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
