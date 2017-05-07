@@ -51,8 +51,10 @@
 #' @name pccc-package
 #' @useDynLib pccc
 #' @importFrom Rcpp sourceCpp
+#' @importFrom dplyr as.tbl
 NULL
 
 #' @importFrom dplyr "%>%"
 # Define globalVariables so R CMD check doesn't freak out
 utils::globalVariables(".")
+

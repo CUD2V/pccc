@@ -1,4 +1,5 @@
 #' @method as.data.frame pccc_codes
+#' @export
 as.data.frame.pccc_codes <- function(x, ...) {
   v <- attr(x, "version")
 
@@ -18,4 +19,5 @@ as.data.frame.pccc_codes <- function(x, ...) {
 }
 
 #' @method as.tbl pccc_codes
+#' @export
 as.tbl.pccc_codes <- as.data.frame.pccc_codes

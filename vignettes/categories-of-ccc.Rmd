@@ -1,0 +1,213 @@
+---
+title: "Categories of CCC"
+author: "Peter DeWitt"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{categories-of-ccc}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+library(knitr)
+opts_chunk$set(collapse = TRUE)
+```
+
+This vignette reports the ICD codes, as formated for string matching, by
+Categories of CCC.  A references document, provided as a supplement to Feudtner
+2014, is provided with the pccc package.  You can find the file on your system
+with a `system.file` call.  Open the file with your preferred/available program
+for `.docx` files.
+
+```{r, eval = FALSE}
+system.file("pccc_references/Categories_of_CCCv2_and_Corresponding_ICD.docx", package = "pccc")
+```
+
+To evaluate the code chunks in this example you will need to attach the
+following namespaces.
+```{r, message = FALSE}
+library(pccc)
+library(dplyr)
+```
+
+# ICD Codes
+The ICD codes used in this work are matched exactly.  For example, ICD-9 Code
+04.92 for subcategory Devices under Category Neurologic or Neuromuscular will be
+matched by the string 0492.  492 _will not_ match.  For example, the
+`data.frame` `dat` below has three subjects, each will a different, and
+reasonable, string for the ICD-9 code 04.92.  When sent to the `ccc` function we
+only get a positive return for subject `A`.
+
+```{r}
+dat <- data.frame(ids = c("A", "B", "C"), code = c("0492", "492", "04.92"))
+dat
+ccc(dat, ids, vars(code), vars(code), icdv = 9)
+```
+
+It is critical that the end users of the pccc package understand how the ICD-9
+and ICD-10 codes they have are coded and that the strings are as expected for
+the pccc package.
+
+## Viewing ICD Codes
+The ICD codes used to define the categories of CCC have been hard coded into the
+C++ backend of the pccc package.  The `get_codes` function provides the end user
+a easy way to view all the strings.
+
+```{r}
+get_codes(9)   # ICD-9
+get_codes(10)  # ICD-10
+```
+
+The codes are returned to the end user as a matrix of character vectors.  The
+categories of CCC are the rows and the columns for the diagnostic (`dx`) or
+procedure (`pc`) codes.  If you need to view the ICD-9 codes for `cvd`, for an
+example, subset as usual for matrices.
+```{r}
+get_codes(9)["cvd", ]
+```
+
+If a `data.frame` would be more helpful for you to expore the ICD codes with
+then use the `as.data.frame` method to convert the return from `get_codes` to a
+`data.frame`.
+
+```{r}
+as.data.frame(get_codes(9))
+```
+
+# Neuromuscular
+## ICD-9
+```{r}
+get_codes(9)["neuromusc", ]
+```
+
+## ICD-10
+```{r}
+get_codes(10)["neuromusc", ]
+```
+
+# CVD
+## ICD-9
+```{r}
+get_codes(9)["cvd", ]
+```
+
+## ICD-10
+```{r}
+get_codes(10)["cvd", ]
+```
+
+# Respiratory
+## ICD-9
+```{r}
+get_codes(9)["respiratory", ]
+```
+
+## ICD-10
+```{r}
+get_codes(10)["respiratory", ]
+```
+
+# Renal
+## ICD-9
+```{r}
+get_codes(9)["renal", ]
+```
+
+## ICD-10
+```{r}
+get_codes(10)["renal", ]
+```
+
+# GI
+## ICD-9
+```{r}
+get_codes(9)["gi", ]
+```
+
+## ICD-10
+```{r}
+get_codes(10)["gi", ]
+```
+
+# Hemato Immu
+## ICD-9
+```{r}
+get_codes(9)["hemato_immu", ]
+```
+
+## ICD-10
+```{r}
+get_codes(10)["hemato_immu", ]
+```
+
+# Metabolic
+## ICD-9
+```{r}
+get_codes(9)["metabolic", ]
+```
+
+## ICD-10
+```{r}
+get_codes(10)["metabolic", ]
+```
+
+# Congeni Genetic
+## ICD-9
+```{r}
+get_codes(9)["congeni_genetic", ]
+```
+
+## ICD-10
+```{r}
+get_codes(10)["congeni_genetic", ]
+```
+
+# Malignancy
+## ICD-9
+```{r}
+get_codes(9)["malignancy", ]
+```
+
+## ICD-10
+```{r}
+get_codes(10)["malignancy", ]
+```
+
+# Neonatal
+## ICD-9
+```{r}
+get_codes(9)["neonatal", ]
+```
+
+## ICD-10
+```{r}
+get_codes(10)["neonatal", ]
+```
+
+# Tech Dep
+## ICD-9
+```{r}
+get_codes(9)["tech_dep", ]
+```
+
+## ICD-10
+```{r}
+get_codes(10)["tech_dep", ]
+```
+
+# Transplant
+## ICD-9
+```{r}
+get_codes(9)["transplant", ]
+```
+
+## ICD-10
+```{r}
+get_codes(10)["transplant", ]
+```
+
+
+# References
+
+* Feudtner C, et al. Pediatric complex chronic conditions classification system version 2: updated for ICD-10 and complex medical technology dependence and transplantation, BMC Pediatrics, 2014, 14:199, DOI: 10.1186/1471-2431-14-199
