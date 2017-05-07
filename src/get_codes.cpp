@@ -95,6 +95,7 @@ Rcpp::List get_codes(int icdv) {
       Rcpp::CharacterVector::create("neuromusc", "cvd", "respiratory", "renal", "gi", "hemato_immu", "metabolic", "congeni_genetic", "malignancy", "neonatal", "tech_dep", "transplant"),
       Rcpp::CharacterVector::create("dx", "pc")
       );
+  rtn.attr("class") = "pccc_codes";
 
   return(rtn);
 }
