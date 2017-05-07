@@ -30,13 +30,24 @@
 #' @example examples/ccc.R
 #'
 #' @export
-ccc <- function(.data, id, dx_cols = NULL, pc_cols = NULL, icdv) {
+ccc <- function(.data, id, dx_cols = NULL, pc_cols = NULL, icdv) { 
+  UseMethod("ccc")
+}
+
+#' @export
+ccc.data.frame <- function(.data, id, dx_cols = NULL, pc_cols = NULL, icdv) { 
+
+  if (is.null(dx_cols) & is.null(pc_cols)) {
+    stop("dx_cols and pc_cols are both NULL.  At least one need not be.")
+  }
+
 
   if (!is.null(dx_cols)) {
     dxmat <- as.matrix(dplyr::select_(.data, .dots = dx_cols))
   } else {
-    dxmat <- matrix("")
+    dxmat <- matrix("", nrow = (.data))
   }
+
 
   if (!is.null(pc_cols)) {
     pcmat <- as.matrix(dplyr::select_(.data, .dots = pc_cols))
@@ -46,12 +57,7 @@ ccc <- function(.data, id, dx_cols = NULL, pc_cols = NULL, icdv) {
 
   ids <- dplyr::select_(.data, .dots = lazyeval::interp( ~ i, i = substitute(id)))
 
-  Map(ccc_rcpp,
-      dx = split(dxmat, seq(1, nrow(dxmat))),
-      pc = split(pcmat, seq(1, nrow(pcmat))),
-      MoreArgs = list(version = icdv)) %>%
-  do.call(rbind, .) %>%
+  ccc_mat_rcpp(dxmat, pcmat, icdv) %>%
   dplyr::as_data_frame() %>%
   dplyr::bind_cols(ids, .)
 }
-

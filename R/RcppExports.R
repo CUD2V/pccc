@@ -5,6 +5,10 @@ ccc_rcpp <- function(dx, pc, version = 9L) {
     .Call('pccc_ccc_rcpp', PACKAGE = 'pccc', dx, pc, version)
 }
 
+ccc_mat_rcpp <- function(dx, pc, version = 9L) {
+    .Call('pccc_ccc_mat_rcpp', PACKAGE = 'pccc', dx, pc, version)
+}
+
 #' Get (view) Diagnostic and Procedure Codes
 #'
 #' View the ICD, verion 9 or 10, for the Complex Chronic Conditions (CCC)

@@ -18,6 +18,19 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// ccc_mat_rcpp
+Rcpp::IntegerMatrix ccc_mat_rcpp(Rcpp::CharacterMatrix& dx, Rcpp::CharacterMatrix& pc, int version);
+RcppExport SEXP pccc_ccc_mat_rcpp(SEXP dxSEXP, SEXP pcSEXP, SEXP versionSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::CharacterMatrix& >::type dx(dxSEXP);
+    Rcpp::traits::input_parameter< Rcpp::CharacterMatrix& >::type pc(pcSEXP);
+    Rcpp::traits::input_parameter< int >::type version(versionSEXP);
+    rcpp_result_gen = Rcpp::wrap(ccc_mat_rcpp(dx, pc, version));
+    return rcpp_result_gen;
+END_RCPP
+}
 // get_codes
 Rcpp::List get_codes(int icdv);
 RcppExport SEXP pccc_get_codes(SEXP icdvSEXP) {
