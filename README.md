@@ -1,5 +1,5 @@
 # pccc
-Pediatric Complex Chronic Conditions: An R Package
+Pediatric Complex Chronic Conditions: A R Package
 
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 [![Build Status](https://travis-ci.org/dewittpe/pccc.svg?branch=master)](https://travis-ci.org/dewittpe/pccc)
@@ -14,6 +14,10 @@ and Dingwei Dai](http://bmcpediatr.biomedcentral.com/articles/10.1186/1471-2431-
 SAS and STATA code were included as an appendix.
 
 This package provides R functions to generate the CCC classifiers with a C++ back-end.
+
+## Testing and Benchmarking
+
+See (https://github.com/dewittpe/pccc-testing)
 
 ## Install
 This package is currently only on github.  You can install the
