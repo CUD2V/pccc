@@ -19,10 +19,10 @@ opts_chunk$set(collapse = TRUE)
 
 # Introduction
 This vignette describes how the `pccc` package generates the CCC categories from ICD-9 and
-ICD-10 codes. The categorization is based on the work of Feudtner et al (2014). A reference document
-showing the lists of codes for each category was published as a supplement to Feudtner 2014 and we
+ICD-10 codes. The categorization is based on the work of Feudtner et al.(2014). A reference document
+showing the lists of codes for each category was published as a supplement to Feudtner et al.(2014) and we
 have made it available as part of the `pccc` package. After installing the package, you can find the file on your system
-with a `system.file` call.  Open the file with your preferred/available program
+with the below `system.file` call. Open the file with your preferred/available program
 for `.docx` files (Word, etc.).
 
 ```{r, eval = FALSE}
@@ -38,23 +38,21 @@ library(dplyr)
 
 # Generating CCC categories from ICD codes
 The `ccc` function is the workhorse here. Simply put, a user will provide ICD codes as strings
-and `ccc` will return CCC categories. The ICD codes are matched exactly.  For example, ICD-9-CM
-04.92 for subcategory "Devices"" under category "Neurologic or Neuromuscular"" will be
-matched by the string 0492.  492 _will not_ match.  
+and `ccc` will return CCC categories. The ICD codes are matched exactly and should include leading zeroes,
+but should not include periods. Users of the `pccc` package will need to pre-process the ICD-9
+and ICD-10 codes in their data so that the strings are formatted in the way that
+the `pccc` package will recognize them. For example, ICD-9-CM 04.92 will only be matched by the string "0492". 
+"492" _will not_ match.  
 
-The `data.frame` named `dat` below has three subjects, each of whom has a different, 
+The `data.frame` named `dat` below has information about three patients (A-C), each of whom has a different 
 string for the ICD-9 code 04.92. The `ccc` function will only identify subject `A`
-as having a "Neurologic or Neuromuscular" CCC.
+as having a CCC.
 
 ```{r}
 dat <- data.frame(ids = c("A", "B", "C"), code = c("0492", "492", "04.92"))
 dat
 ccc(dat, ids, vars(code), vars(code), icdv = 9)
 ```
-
-Users of the `pccc` package will need to process the ICD-9
-and ICD-10 codes they have so that the strings are formatted in the way that
-the `pccc` package can recognize them.
 
 ## Viewing ICD Codes
 The ICD codes used to define the categories of CCC have been hard-coded into the
