@@ -1,6 +1,9 @@
 ---
 title: "Categories of CCC"
-author: "Peter DeWitt"
+author: 
+- Peter DeWitt
+- James Feinstein
+- Tell Bennett
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -14,30 +17,36 @@ library(knitr)
 opts_chunk$set(collapse = TRUE)
 ```
 
-This vignette reports the ICD codes, as formated for string matching, by
-Categories of CCC.  A references document, provided as a supplement to Feudtner
-2014, is provided with the pccc package.  You can find the file on your system
-with a `system.file` call.  Open the file with your preferred/available program
-for `.docx` files.
+# Introduction
+This vignette describes how the `pccc` package generates the CCC categories from ICD-9 and
+ICD-10 codes. The categorization is based on the work of Feudtner et al.(2014). A reference document
+showing the lists of codes for each category was published as a supplement to Feudtner et al.(2014) and we
+have made it available as part of the `pccc` package. After installing the package, you can find the file on your system
+with the below `system.file` call. Open the file with your preferred/available program
+for `.docx` files (Word, etc.).
 
 ```{r, eval = FALSE}
 system.file("pccc_references/Categories_of_CCCv2_and_Corresponding_ICD.docx", package = "pccc")
 ```
 
-To evaluate the code chunks in this example you will need to attach the
-following namespaces.
+To evaluate the code chunks in this example you will need to load the
+following R packages.
 ```{r, message = FALSE}
 library(pccc)
 library(dplyr)
 ```
 
-# ICD Codes
-The ICD codes used in this work are matched exactly.  For example, ICD-9 Code
-04.92 for subcategory Devices under Category Neurologic or Neuromuscular will be
-matched by the string 0492.  492 _will not_ match.  For example, the
-`data.frame` `dat` below has three subjects, each will a different, and
-reasonable, string for the ICD-9 code 04.92.  When sent to the `ccc` function we
-only get a positive return for subject `A`.
+# Generating CCC categories from ICD codes
+The `ccc` function is the workhorse here. Simply put, a user will provide ICD codes as strings
+and `ccc` will return CCC categories. The ICD codes are matched exactly and should include leading zeroes,
+but should not include periods. Users of the `pccc` package will need to pre-process the ICD-9
+and ICD-10 codes in their data so that the strings are formatted in the way that
+the `pccc` package will recognize them. For example, ICD-9-CM 04.92 will only be matched by the string "0492". 
+"492" _will not_ match.  
+
+The `data.frame` named `dat` below has information about three patients (A-C), each of whom has a different 
+string for the ICD-9 code 04.92. The `ccc` function will only identify subject `A`
+as having a CCC.
 
 ```{r}
 dat <- data.frame(ids = c("A", "B", "C"), code = c("0492", "492", "04.92"))
@@ -45,30 +54,26 @@ dat
 ccc(dat, ids, vars(code), vars(code), icdv = 9)
 ```
 
-It is critical that the end users of the pccc package understand how the ICD-9
-and ICD-10 codes they have are coded and that the strings are as expected for
-the pccc package.
-
 ## Viewing ICD Codes
-The ICD codes used to define the categories of CCC have been hard coded into the
-C++ backend of the pccc package.  The `get_codes` function provides the end user
-a easy way to view all the strings.
+The ICD codes used to define the categories of CCC have been hard-coded into the
+C++ backend of the `pccc` package.  The `get_codes` function provides the end user
+a easy way to view all of the ICD codes as strings.
 
 ```{r}
 get_codes(9)   # ICD-9
 get_codes(10)  # ICD-10
 ```
 
-The codes are returned to the end user as a matrix of character vectors.  The
-categories of CCC are the rows and the columns for the diagnostic (`dx`) or
-procedure (`pc`) codes.  If you need to view the ICD-9 codes for `cvd`, for an
+`get_codes` returns a matrix of character vectors.  The
+categories of CCC are the rows and the diagnostic (`dx`) or
+procedure (`pc`) codes are the columns.  If you need to view the ICD-9 codes for `cvd`, for
 example, subset as usual for matrices.
 ```{r}
 get_codes(9)["cvd", ]
 ```
 
-If a `data.frame` would be more helpful for you to expore the ICD codes with
-then use the `as.data.frame` method to convert the return from `get_codes` to a
+If a user prefers to explore the ICD codes in a `data.frame`, then use the base R
+`as.data.frame` method to convert the output from `get_codes` to a
 `data.frame`.
 
 ```{r}
