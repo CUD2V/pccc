@@ -7,7 +7,7 @@ using namespace Rcpp;
 
 // ccc_mat_rcpp
 Rcpp::DataFrame ccc_mat_rcpp(Rcpp::CharacterMatrix& dx, Rcpp::CharacterMatrix& pc, int version);
-RcppExport SEXP pccc_ccc_mat_rcpp(SEXP dxSEXP, SEXP pcSEXP, SEXP versionSEXP) {
+RcppExport SEXP _pccc_ccc_mat_rcpp(SEXP dxSEXP, SEXP pcSEXP, SEXP versionSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -20,7 +20,7 @@ END_RCPP
 }
 // get_codes
 Rcpp::List get_codes(int icdv);
-RcppExport SEXP pccc_get_codes(SEXP icdvSEXP) {
+RcppExport SEXP _pccc_get_codes(SEXP icdvSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -28,4 +28,15 @@ BEGIN_RCPP
     rcpp_result_gen = Rcpp::wrap(get_codes(icdv));
     return rcpp_result_gen;
 END_RCPP
+}
+
+static const R_CallMethodDef CallEntries[] = {
+    {"_pccc_ccc_mat_rcpp", (DL_FUNC) &_pccc_ccc_mat_rcpp, 3},
+    {"_pccc_get_codes", (DL_FUNC) &_pccc_get_codes, 1},
+    {NULL, NULL, 0}
+};
+
+RcppExport void R_init_pccc(DllInfo *dll) {
+    R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
+    R_useDynamicSymbols(dll, FALSE);
 }

@@ -1,6 +1,6 @@
 Package: pccc
 Title: Pediatric Complex Chronic Conditions
-Version: 0.2.0.9000
+Version: 0.2.1
 Authors@R: c(
     person("Peter", "DeWitt", , "dewittpe@gmail.com", role = c("aut", "cre")),
     person("Tell",  "Bennett", , "tell.bennett@ucdenver.edu", role = c("ctb")),
@@ -16,11 +16,11 @@ LazyData: true
 Imports:
     dplyr,
     lazyeval,
-    Rcpp (>= 0.10.3)
+    Rcpp (>= 0.12.11)
 Suggests:
     covr,
     knitr,
     rmarkdown
 RoxygenNote: 6.0.1
-LinkingTo: Rcpp
+LinkingTo: Rcpp (>= 0.12.11)
 VignetteBuilder: knitr

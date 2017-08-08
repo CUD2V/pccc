@@ -2,7 +2,7 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 ccc_mat_rcpp <- function(dx, pc, version = 9L) {
-    .Call('pccc_ccc_mat_rcpp', PACKAGE = 'pccc', dx, pc, version)
+    .Call('_pccc_ccc_mat_rcpp', PACKAGE = 'pccc', dx, pc, version)
 }
 
 #' Get (view) Diagnostic and Procedure Codes
@@ -47,6 +47,6 @@ ccc_mat_rcpp <- function(dx, pc, version = 9L) {
 #'
 #' @export 
 get_codes <- function(icdv) {
-    .Call('pccc_get_codes', PACKAGE = 'pccc', icdv)
+    .Call('_pccc_get_codes', PACKAGE = 'pccc', icdv)
 }
 
