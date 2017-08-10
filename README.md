@@ -24,7 +24,29 @@ are built with a C++ back-end, they are very computationally efficient.
 See (https://github.com/dewittpe/pccc-testing)
 
 ## Installation
-This package is currently only on github.  You can install the
+This package is currently only on github.  Adding to The Comprehensive R Archive
+Network might occur.  For now, you can install a released version or the
+developmental version from github.
+
+### Released version
+Starting with version 0.2.2 we are placing the source R package in the releases.
+You can view the releases at https://github.com/dewittpe/pccc/releases.  Drill
+into the release you are interested in and download the `pccc_X.Y.Z.tar.gz`
+file.  (`X.Y.Z` represents the version number string).
+
+On you computer you can install the packge via command line
+
+    R CMD INSTALL <path>/pccc_<version>.tar.gz
+
+Or in R via
+
+    install.packages("<path>/pccc_<version>.tar.gz", repos = NULL)
+
+Or in RStudio by using the menu `Tools > Install Packages...`
+
+### Developmental 
+
+You can install the
 development version of `pccc` directly from github via the 
 [`devtools`](https://github.com/hadley/devtools/) package:
 
