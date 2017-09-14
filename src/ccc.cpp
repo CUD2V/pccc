@@ -43,7 +43,7 @@ Rcpp::DataFrame ccc_mat_rcpp(Rcpp::CharacterMatrix& dx, Rcpp::CharacterMatrix& p
   }
 
   outmat.attr("dimnames") = Rcpp::List::create(Rcpp::CharacterVector::create(),
-      Rcpp::CharacterVector::create("Neuromuscular", "CVD", "Respiratory", "Renal", "GI", "Hemato_immu", "Metabolic", "Congeni_genetric", "Malignancy", "Neonatal", "Tech_dep", "Transplant", "ccc_flag")
+      Rcpp::CharacterVector::create("Neuromuscular", "CVD", "Respiratory", "Renal", "GI", "Hemato_immu", "Metabolic", "Congeni_genetic", "Malignancy", "Neonatal", "Tech_dep", "Transplant", "ccc_flag")
       );
 
 //  return outmat; 
