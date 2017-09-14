@@ -13,7 +13,7 @@ codes::codes(int v)
   if (version == 9) {
     dx_neuromusc = {"3180","3181","3182","330","33111","33119","3314","33189","3319","3320","3321",
       "3330","3332","3334","3335","3337","3339","334","335","343","34501","34581","3590","3591",
-      "3592","3593","3361","3368","3379","3418","34290","343","3440","34481","3449","34511",
+      "3592","3593","3361","3368","3379","3418","34290","3440","34481","3449","34511",
       "3453","34541","34561","34571","34591","3481","3484","3491","43401","43491","359","740",
       "741","742","7595","78003","9962","99663","V452","V5301","V5302"};
 
@@ -400,7 +400,7 @@ int codes::neuromusc(std::vector<std::string>& dx, std::vector<std::string>& pc)
 
   for (dxitr = 0; dxitr < dx.size(); ++dxitr) { 
     for (itr = 0; itr < dx_neuromusc.size(); ++itr) {
-      if (dx[dxitr].compare(dx_neuromusc[itr]) == 0) {
+      if (dx[dxitr].compare(0, dx_neuromusc[itr].size(),dx_neuromusc[itr]) == 0) {
         return 1;
       }
     } 
@@ -408,7 +408,7 @@ int codes::neuromusc(std::vector<std::string>& dx, std::vector<std::string>& pc)
 
   for (pcitr = 0; pcitr < pc.size(); ++pcitr) { 
     for (itr = 0; itr < pc_neuromusc.size(); ++itr) {
-      if (pc[pcitr].compare(pc_neuromusc[itr]) == 0) {
+      if (pc[pcitr].compare(0, pc_neuromusc[itr].size(),pc_neuromusc[itr]) == 0) {
         return 1;
       }
     } 
