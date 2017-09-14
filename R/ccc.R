@@ -46,14 +46,14 @@ ccc.data.frame <- function(.data, id, dx_cols = NULL, pc_cols = NULL, icdv) {
 
 
   if (!is.null(dx_cols)) {
-    dxmat <- as.matrix(dplyr::select_(.data, .dots = dx_cols))
+    dxmat <- sapply(dplyr::select_(.data, .dots = dx_cols), as.character)
   } else {
     dxmat <- matrix("", nrow = (.data))
   }
 
 
   if (!is.null(pc_cols)) {
-    pcmat <- as.matrix(dplyr::select_(.data, .dots = pc_cols))
+    pcmat <- sapply(dplyr::select_(.data, .dots = pc_cols), as.character)
   } else {
     pcmat <- matrix("")
   }
