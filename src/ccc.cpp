@@ -12,13 +12,12 @@ Rcpp::DataFrame ccc_mat_rcpp(Rcpp::CharacterMatrix& dx, Rcpp::CharacterMatrix& p
 
   Rcpp::IntegerMatrix outmat(dx.nrow(), 13);
 
-  size_t i=0;
   Rcpp::CharacterVector dx_row;
   Rcpp::CharacterVector pc_row;
   std::vector<std::string> dx_str;
   std::vector<std::string> pc_str;
 
-  for (i; i < dx.nrow(); ++i) { 
+  for (size_t i=0; i < dx.nrow(); ++i) { 
     dx_row = dx.row(i);
     pc_row = pc.row(i);
     dx_str = Rcpp::as<std::vector<std::string>>(dx_row);

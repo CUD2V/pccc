@@ -33,6 +33,11 @@ class codes {
     //std::vector<std::string> pc_neonatal;
     std::vector<std::string> pc_tech_dep;
     std::vector<std::string> pc_transplant;
+    
+    int find_match(const std::vector<std::string>& dx,
+                   const std::vector<std::string>& pc,
+                   const std::vector<std::string>& dx_codes,
+                   const std::vector<std::string>& pc_codes);
 
   public:
     codes(int v);
