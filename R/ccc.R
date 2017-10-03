@@ -48,14 +48,14 @@ ccc.data.frame <- function(.data, id, dx_cols = NULL, pc_cols = NULL, icdv) {
   if (!is.null(dx_cols)) {
     dxmat <- sapply(dplyr::select_(.data, .dots = dx_cols), as.character)
   } else {
-    dxmat <- matrix("", nrow = (.data))
+    dxmat <- matrix("", nrow = nrow(.data))
   }
 
 
   if (!is.null(pc_cols)) {
     pcmat <- sapply(dplyr::select_(.data, .dots = pc_cols), as.character)
   } else {
-    pcmat <- matrix("")
+    pcmat <- matrix("", nrow = nrow(.data))
   }
 
   ids <- dplyr::select_(.data, .dots = lazyeval::interp( ~ i, i = substitute(id)))
