@@ -13,11 +13,8 @@ in wide format.}
 
 \item{id}{bare name of the column containing the patient id}
 
-\item{dx_cols}{column names with the diagnostic codes, use
-\code{\link[dplyr]{vars}} from \code{dplyr} to identify the column(s).}
-
-\item{pc_cols}{the column(s) containing the procedure codes.  Use
-\code{\link[dplyr]{vars}} from \code{dplyr} to identify the column(s).}
+\item{dx_cols, pc_cols}{column names with the diagnostic codes and procedure
+codes respectively.  These argument are passed to \code{\link[dplyr]{select}}.}
 
 \item{icdv}{ICD version 9 or 10}
 }
@@ -58,7 +55,8 @@ transplantation, BMC Pediatrics, 2014, 14:199, DOI: 10.1186/1471-2431-14-199
 }
 \seealso{
 \code{\link{get_codes}} to view the ICD codes used to define the
-CCC.
+CCC.  \code{\link[dplyr]{select}} for more examples and details on how to
+identify and select the diagnostic and procedure code columns.
 }
 \author{
 Peter DeWitt

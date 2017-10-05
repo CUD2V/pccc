@@ -18,14 +18,13 @@
 #' or ICD-10-CM codes.  The \code{data.frame} passed to the function should be
 #' in wide format.
 #' @param id bare name of the column containing the patient id
-#' @param dx_cols column names with the diagnostic codes, use
-#' \code{\link[dplyr]{vars}} from \code{dplyr} to identify the column(s).
-#' @param pc_cols the column(s) containing the procedure codes.  Use
-#' \code{\link[dplyr]{vars}} from \code{dplyr} to identify the column(s).
+#' @param dx_cols,pc_cols column names with the diagnostic codes and procedure
+#' codes respectively.  These argument are passed to \code{\link[dplyr]{select}}.
 #' @param icdv ICD version 9 or 10
 #'
 #' @seealso \code{\link{get_codes}} to view the ICD codes used to define the
-#' CCC.
+#' CCC.  \code{\link[dplyr]{select}} for more examples and details on how to
+#' identify and select the diagnostic and procedure code columns.
 #'
 #' @return A \code{data.frame} with a column for the subject id and integer (0
 #' or 1) columns for each each of the categories.
