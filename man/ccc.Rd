@@ -4,10 +4,10 @@
 \alias{ccc}
 \title{Complex Chronic Conditions (CCC)}
 \usage{
-ccc(.data, id, dx_cols = NULL, pc_cols = NULL, icdv)
+ccc(data, id, dx_cols = NULL, pc_cols = NULL, icdv)
 }
 \arguments{
-\item{.data}{a \code{data.frame} containing a patient id and all the ICD-9-CM
+\item{data}{a \code{data.frame} containing a patient id and all the ICD-9-CM
 or ICD-10-CM codes.  The \code{data.frame} passed to the function should be
 in wide format.}
 
@@ -46,8 +46,8 @@ eg_data <-
 
 ccc(eg_data, 
     id,
-    dx_cols = dplyr::vars(dplyr::starts_with('dx')),
-    pc_cols = dplyr::vars(dplyr::starts_with("pc")),
+    dx_cols = dplyr::starts_with("dx"),
+    pc_cols = dplyr::starts_with("pc"),
     icdv = 10)
 
 }

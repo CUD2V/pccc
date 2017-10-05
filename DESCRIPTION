@@ -16,7 +16,6 @@ Encoding: UTF-8
 LazyData: true
 Imports:
     dplyr (>= 0.7.0),
-    lazyeval,
     Rcpp (>= 0.12.11)
 Suggests:
     covr,

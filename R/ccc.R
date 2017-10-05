@@ -14,7 +14,7 @@
 #'
 #' @author Peter DeWitt
 #'
-#' @param .data a \code{data.frame} containing a patient id and all the ICD-9-CM
+#' @param data a \code{data.frame} containing a patient id and all the ICD-9-CM
 #' or ICD-10-CM codes.  The \code{data.frame} passed to the function should be
 #' in wide format.
 #' @param id bare name of the column containing the patient id
@@ -33,32 +33,32 @@
 #' @example examples/ccc.R
 #'
 #' @export
-ccc <- function(.data, id, dx_cols = NULL, pc_cols = NULL, icdv) { 
+ccc <- function(data, id, dx_cols = NULL, pc_cols = NULL, icdv) { 
   UseMethod("ccc")
 }
 
+#' @method ccc data.frame
 #' @export
-ccc.data.frame <- function(.data, id, dx_cols = NULL, pc_cols = NULL, icdv) { 
+ccc.data.frame <- function(data, id, dx_cols, pc_cols, icdv) { 
 
-  if (is.null(dx_cols) & is.null(pc_cols)) {
-    stop("dx_cols and pc_cols are both NULL.  At least one need not be.")
-  }
+  if (missing(dx_cols) & missing(pc_cols)) {
+    stop("dx_cols and pc_cols are both missing.  At least one need not be.",
+         call. = FALSE)
+  } 
 
-
-  if (!is.null(dx_cols)) {
-    dxmat <- sapply(dplyr::select_(.data, .dots = dx_cols), as.character)
+  if (!missing(dx_cols)) {
+    dxmat <- sapply(dplyr::select(data, !!dplyr::enquo(dx_cols)), as.character)
   } else {
-    dxmat <- matrix("", nrow = nrow(.data))
+    dxmat <- matrix("", nrow = nrow(data))
   }
 
-
-  if (!is.null(pc_cols)) {
-    pcmat <- sapply(dplyr::select_(.data, .dots = pc_cols), as.character)
+  if (!missing(pc_cols)) {
+    pcmat <- sapply(dplyr::select(data, !!dplyr::enquo(pc_cols)), as.character)
   } else {
-    pcmat <- matrix("", nrow = nrow(.data))
+    pcmat <- matrix("", nrow = nrow(data))
   }
 
-  ids <- dplyr::select_(.data, .dots = lazyeval::interp( ~ i, i = substitute(id)))
+  ids <- dplyr::select(data, !!dplyr::enquo(id))
 
   dplyr::bind_cols(ids, ccc_mat_rcpp(dxmat, pcmat, icdv))
 }

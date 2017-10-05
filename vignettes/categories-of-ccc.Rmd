@@ -51,7 +51,7 @@ as having a CCC.
 ```{r}
 dat <- data.frame(ids = c("A", "B", "C"), code = c("0492", "492", "04.92"))
 dat
-ccc(dat, ids, vars(code), vars(code), icdv = 9)
+ccc(dat, ids, code, code, icdv = 9)
 ```
 
 ## Viewing ICD Codes
@@ -211,7 +211,6 @@ get_codes(9)["transplant", ]
 ```{r}
 get_codes(10)["transplant", ]
 ```
-
 
 # References
 
