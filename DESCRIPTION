@@ -1,10 +1,11 @@
 Package: pccc
 Title: Pediatric Complex Chronic Conditions
-Version: 0.2.2
+Version: 0.2.2.9000
 Authors@R: c(
     person("Peter", "DeWitt", , "dewittpe@gmail.com", role = c("aut", "cre")),
     person("Tell",  "Bennett", , "tell.bennett@ucdenver.edu", role = c("ctb")),
-    person("James", "Feinstein", , "james.feinstein.ucdenver.edu", role = c("ctb"))
+    person("James", "Feinstein", , "james.feinstein@ucdenver.edu", role = c("aut", "ctb")),
+    person("Seth", "Russell", , "seth.russell@ucdenver.edu", role = c("ctb"))
     )
 Description: An implementation of the pediatric complex chronic conditions (CCC)
     classification system using R and C++. Designed for the International Classification of
@@ -14,7 +15,7 @@ License: GPL-2
 Encoding: UTF-8
 LazyData: true
 Imports:
-    dplyr,
+    dplyr (>= 0.7.0),
     lazyeval,
     Rcpp (>= 0.12.11)
 Suggests:
