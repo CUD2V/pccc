@@ -1,6 +1,6 @@
 #' @title pccc: Pediatric Complex Chronic Conditions
 #'
-#' @description 
+#' @description
 #' An implementation of the pediatric complex chronic conditions (CCC)
 #' classification system.  Implemented for the International Classification of
 #' Disease (ICD) 9th and 10th revisions.
@@ -26,7 +26,7 @@
 #' Lastly, the appendix tables in the file
 #' Categories_of_CCCv2_and_Corresponding_ICD.docx have also been included with
 #' this package.
-#' 
+#'
 #' @examples
 #' \dontrun{
 #' # To open the Feudtner et.al. pdf from within R use the following
@@ -35,7 +35,7 @@
 #'                 file.path(system.file("pccc_references", package = "pccc")), "/",
 #'                 "Feudtner_etal_2014.pdf"))
 #' }
-#' 
+#'
 #' # If the pdf cannot be opened, you should be able to open it manually by
 #' # navagating to
 #' file.path(system.file("pccc_references", package = "pccc"))
@@ -57,4 +57,3 @@ NULL
 #' @importFrom dplyr "%>%"
 # Define globalVariables so R CMD check doesn't freak out
 utils::globalVariables(".")
-

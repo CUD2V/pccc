@@ -32,18 +32,18 @@
 #' @example examples/ccc.R
 #'
 #' @export
-ccc <- function(data, id, dx_cols = NULL, pc_cols = NULL, icdv) { 
+ccc <- function(data, id, dx_cols = NULL, pc_cols = NULL, icdv) {
   UseMethod("ccc")
 }
 
 #' @method ccc data.frame
 #' @export
-ccc.data.frame <- function(data, id, dx_cols, pc_cols, icdv) { 
+ccc.data.frame <- function(data, id, dx_cols, pc_cols, icdv) {
 
   if (missing(dx_cols) & missing(pc_cols)) {
     stop("dx_cols and pc_cols are both missing.  At least one need not be.",
          call. = FALSE)
-  } 
+  }
 
   if (!missing(dx_cols)) {
     dxmat <- sapply(dplyr::select(data, !!dplyr::enquo(dx_cols)), as.character)
