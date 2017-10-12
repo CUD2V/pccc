@@ -11,21 +11,21 @@ ccc_mat_rcpp <- function(dx, pc, version = 9L) {
 #' categories.
 #'
 #'  The CCC categories for diagnostic and procedure codes are:
-#'  \tabular{lcc}{
-#'  category        \tab \code{dx} \tab \code{pc} \cr
-#'  neuromuscul     \tab      X    \tab      X    \cr
-#'  cvd             \tab      X    \tab      X    \cr
-#'  respiratory     \tab      X    \tab      X    \cr
-#'  renal           \tab      X    \tab      X    \cr
-#'  gi              \tab      X    \tab      X    \cr
-#'  hemato_immu     \tab      X    \tab      X    \cr
-#'  metabolic       \tab      X    \tab      X    \cr
-#'  congeni_genetic \tab      X    \tab           \cr
-#'  malignancy      \tab      X    \tab      X    \cr
-#'  neonatal        \tab      X    \tab           \cr
-#'  tech_dep        \tab      X    \tab      X    \cr
-#'  transplant      \tab      X    \tab      X    \cr
-#'  }
+#'  \tabular{lcc}{                                            
+#'  category        \tab \code{dx} \tab \code{pc} \cr       
+#'  neuromuscul     \tab      X    \tab      X    \cr       
+#'  cvd             \tab      X    \tab      X    \cr       
+#'  respiratory     \tab      X    \tab      X    \cr       
+#'  renal           \tab      X    \tab      X    \cr       
+#'  gi              \tab      X    \tab      X    \cr       
+#'  hemato_immu     \tab      X    \tab      X    \cr       
+#'  metabolic       \tab      X    \tab      X    \cr       
+#'  congeni_genetic \tab      X    \tab           \cr       
+#'  malignancy      \tab      X    \tab      X    \cr       
+#'  neonatal        \tab      X    \tab           \cr       
+#'  tech_dep        \tab      X    \tab      X    \cr       
+#'  transplant      \tab      X    \tab      X    \cr       
+#'  }                                                         
 #'
 #' The ICD codes were taken from the SAS macro provided by the reference paper.
 #'
@@ -45,7 +45,8 @@ ccc_mat_rcpp <- function(dx, pc, version = 9L) {
 #' A matrix of character vectors.  Rows are the categories and columns for
 #' diagnostic and procedure codes.
 #'
-#' @export
+#' @export 
 get_codes <- function(icdv) {
     .Call('_pccc_get_codes', PACKAGE = 'pccc', icdv)
 }
+

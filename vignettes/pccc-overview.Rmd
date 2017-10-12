@@ -1,0 +1,105 @@
+---
+title: "Pediatric Complex Chronic Conditions"
+author: 
+- Peter DeWitt
+- James Feinstein
+- Tell Bennett
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{pccc-overview}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+```
+
+# Introduction
+This vignette describes how the `pccc` package generates the Complex Chronic Condition Categories (CCC) from ICD-9 and
+ICD-10 codes. The categorization is based on the work of Feudtner et al.(2014). A reference document
+showing the lists of codes for each category was published as a supplement to Feudtner et al.(2014) and we
+have made it available as part of the `pccc` package. After installing the package, you can find the file on your system
+with the below `system.file` call. Open the file with your preferred/available program
+for `.docx` files (Word, etc.).
+
+```{r, eval = FALSE}
+system.file("pccc_references/Categories_of_CCCv2_and_Corresponding_ICD.docx", package = "pccc")
+```
+
+To evaluate the code chunks in this example you will need to load the
+following R packages.
+
+```{r, message = FALSE}
+library(pccc)
+library(dplyr)
+```
+
+# Generating CCC categories from ICD codes
+The `ccc` function is the workhorse here. Simply put, a user will provide ICD codes as strings
+and `ccc` will return CCC categories. The ICD codes are matched exactly and should include leading zeroes,
+but should not include periods. Users of the `pccc` package will need to pre-process the ICD-9
+and ICD-10 codes in their data so that the strings are formatted in the way that
+the `pccc` package will recognize them. For example, ICD-9-CM 04.92 will only be matched by the string "0492". 
+"492" _will not_ match.
+
+Specific rules for ICD Codes are:
+
+* Codes should be alphanumeric only - no periods, spaces or other separator characters (e.g. _Diabetes with renal manifestations, type II or unspecified type, uncontrolled_ should be sent as 25042)
+* ICD 9 codes should be at a minimum 3 digits long:
+    * Codes less than 10 should be left padded with 2 zeros. E.g. _Cholera due to vibrio cholerae el tor_ should be sent as 0011) 
+    * Codes less than 100 should be left padded with 1 zero. E.g. _Whooping cough_ should be sent as 033)
+    
+Users of PCCC may find the R Package [ICD](https://jackwasey.github.io/icd/) useful.
+
+# PCCC Example
+
+The `data.frame` named `dat` below has information about three patients (A-C), each of whom has a different 
+string for the ICD-9 code 04.92. The `ccc` function will only identify subject `A`
+as having a CCC.
+
+## Basic Example
+
+```{r}
+dat <- data.frame(ids = c("A", "B", "C"), code = c("0492", "492", "04.92"))
+dat
+ccc(dat, ids, code, code, icdv = 9)
+```
+
+## Full Featured Example
+
+```{r}
+
+# Seth to provide code here
+
+```
+
+
+# Logic employed
+
+There are 12 total categories of CCCs used in this package. The first group of 10 are mutually exclusive - only of them can be derived from a ICD code:
+
+* Neurologic and Neuromuscular
+* Cardiovascular
+* Respiratory
+* Renal and Urologic
+* Gastrointestinal
+* Hematologic or immunologic
+* Metabolic
+* Other Congenital or Genetic Defect
+* Malignancy
+* Premature and Neonatal
+
+The last 2 can be be selected in addition to the above codes - so for example, one ICD code could be both a Gastrointestinal and Technical Dependency:
+
+* Technical Dependency
+* Transplant
+
+Most of the ICD diagnosis codes are matched by substring, so as new versions of ICD-10-CM are released, some refinement of the CCC code lists may be required.
+
+To see actual specific ICD codes by category, see [pccc-icd-codes](pccc-icd-codes.html)
+
+# References
+
+* Feudtner C, et al. Pediatric complex chronic conditions classification system version 2: updated for ICD-10 and complex medical technology dependence and transplantation, BMC Pediatrics, 2014, 14:199, DOI: 10.1186/1471-2431-14-199

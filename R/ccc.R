@@ -5,12 +5,18 @@
 #' It is recommended that you view the codes defining the CCC via
 #' \code{\link{get_codes}} and make sure that the ICD codes in your data set are
 #' formatted in the same way.  The ICD codes used for CCC are character strings
-#' and *do not* have decimal points.
+#' must be formatted as follows:
+#' \itemize{
+#' \item *Do not* use decimal points or other separators
+#' \item ICD 9 codes: Codes less than 10 should be left padded with 2 zeros. Codes
+#' less than 100 should be left padded with 1 zero.
+#' }
+#'
+#' See See `vignette("pccc-overview")` for more details.
 #'
 #' @references
-#' Feudtner C, et al. Pediatric complex chronic conditions classification system
-#' version 2: updated for ICD-10 and complex medical technology dependence and
-#' transplantation, BMC Pediatrics, 2014, 14:199, DOI: 10.1186/1471-2431-14-199
+#' See \code{\link{pccc-package}} for published paper on the topic of identifying
+#' Complex Chronix Conditions
 #'
 #' @author Peter DeWitt
 #'
