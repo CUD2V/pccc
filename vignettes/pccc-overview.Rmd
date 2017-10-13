@@ -4,6 +4,7 @@ author:
 - Peter DeWitt
 - James Feinstein
 - Tell Bennett
+- Seth Russell
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -67,11 +68,46 @@ dat
 ccc(dat, ids, code, code, icdv = 9)
 ```
 
-## Full Featured Example
+## Extended Example
+
+This example used code available at https://github.com/magic-lantern/icd_file_generator to create a sample data file for ICD9 and ICD10. The generated data files contain randomly generated ICD codes for 1,000 patients and is comprised of 10 columns of diagnosis codes (d_cols), 10 columns of procedure codes (p_cols), and 10 columns of other data (g_cols).
+
+Sample of how ICD9 test file was generated:
+
+```{r eval = FALSE}
+pccc_icd9_dataset <- generate_sample(
+  v = 9,
+  n_rows = 10000,
+  d_cols = 10,
+  p_cols = 10,
+  g_cols = 10
+)
+
+save(pccc_icd9_dataset, file="pccc_icd9_dataset.rda")
+```
+
+Example using sample patient data set:
 
 ```{r}
+library(dplyr)
+library(pccc)
 
-# Seth to provide code here
+ccc_result <-
+    ccc(pccc::pccc_icd9_dataset[, c(1:21)], # get id, dx, and pc columns
+        id      = id,
+        dx_cols = dplyr::starts_with("dx"),
+        pc_cols = dplyr::starts_with("pc"),
+        icdv    = 09)
+
+# review results
+head(ccc_result)
+
+# view number of patients with each CCC
+sum_results <- dplyr::summarize_at(ccc_result, vars(-id), sum) %>% print.data.frame
+
+# view percent of total population with each CCC
+dplyr::summarize_at(ccc_result, vars(-id), mean) %>% print.data.frame
+
 
 ```
 
