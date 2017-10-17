@@ -47,7 +47,7 @@ ccc <- function(data, id, dx_cols = NULL, pc_cols = NULL, icdv) {
 ccc.data.frame <- function(data, id, dx_cols, pc_cols, icdv) {
 
   if (missing(dx_cols) & missing(pc_cols)) {
-    stop("dx_cols and pc_cols are both missing.  At least one need not be.",
+    stop("dx_cols and pc_cols are both missing.  At least one must not be.",
          call. = FALSE)
   }
 
