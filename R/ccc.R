@@ -53,12 +53,18 @@ ccc.data.frame <- function(data, id, dx_cols, pc_cols, icdv) {
 
   if (!missing(dx_cols)) {
     dxmat <- sapply(dplyr::select(data, !!dplyr::enquo(dx_cols)), as.character)
+    if(! is.matrix(dxmat)) {
+      dxmat <- as.matrix(dxmat)
+    }
   } else {
     dxmat <- matrix("", nrow = nrow(data))
   }
 
   if (!missing(pc_cols)) {
     pcmat <- sapply(dplyr::select(data, !!dplyr::enquo(pc_cols)), as.character)
+    if(! is.matrix(pcmat)) {
+      pcmat <- as.matrix(pcmat)
+    }
   } else {
     pcmat <- matrix("", nrow = nrow(data))
   }
