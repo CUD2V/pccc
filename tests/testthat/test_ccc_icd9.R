@@ -177,6 +177,18 @@ test_that("random data set with all parameters ICD9 - result should be unchanged
   )
 })
 
+# As the next block of tests rely on specific column names to be present, first validate they are as expected.
+test_that("Column names returned from ccc are as expected", {
+  expect_equal(
+    c("neuromusc", "cvd", "respiratory", "renal", "gi", "hemato_immu", "metabolic", "congeni_genetic", "malignancy", "neonatal", "tech_dep", "transplant", "ccc_flag"),
+    colnames(
+      ccc(dplyr::data_frame(id = 'a',
+                            dx1 = NA),
+          dx_cols = dplyr::starts_with("dx"),
+          icdv    = 9))
+    )
+})
+
 
 # This test case catches a bug (now resolved) that where if only 1 patient with 1 diagnosis code
 # is passed, ccc fails.
@@ -189,6 +201,7 @@ for (row in rownames(get_codes(9))) {
                 id      = id,
                 dx_cols = dplyr::starts_with("dx"),
                 icdv    = 9)
+
   test_that(paste0("Checking that dx code drawn from '", row, "' sets only that one category to true."), {
     expect_true(result[row] == 1)
   })
