@@ -7,8 +7,11 @@
 
 // [[Rcpp::export]]
 Rcpp::DataFrame ccc_mat_rcpp(Rcpp::CharacterMatrix& dx, Rcpp::CharacterMatrix& pc, int version = 9)
-{ 
+{
   codes cdv(version);
+
+  Rcpp::CharacterVector ccc_mat_rcpp_col_names(codes::col_names);
+  ccc_mat_rcpp_col_names.push_back("ccc_flag");
 
   Rcpp::IntegerMatrix outmat(dx.nrow(), 13);
 
@@ -17,7 +20,7 @@ Rcpp::DataFrame ccc_mat_rcpp(Rcpp::CharacterMatrix& dx, Rcpp::CharacterMatrix& p
   std::vector<std::string> dx_str;
   std::vector<std::string> pc_str;
 
-  for (size_t i=0; i < dx.nrow(); ++i) { 
+  for (size_t i=0; i < dx.nrow(); ++i) {
     dx_row = dx.row(i);
     pc_row = pc.row(i);
     dx_str = Rcpp::as<std::vector<std::string>>(dx_row);
@@ -34,18 +37,18 @@ Rcpp::DataFrame ccc_mat_rcpp(Rcpp::CharacterMatrix& dx, Rcpp::CharacterMatrix& p
     outmat(i,  9) = cdv.neonatal(dx_str);
     outmat(i, 10) = cdv.tech_dep(dx_str, pc_str);
     outmat(i, 11) = cdv.transplant(dx_str, pc_str);
-    outmat(i, 12) = 0; 
+    outmat(i, 12) = 0;
 
     if (sum(outmat.row(i))) {
-      outmat(i, 12) = 1; 
-    } 
+      outmat(i, 12) = 1;
+    }
   }
 
   outmat.attr("dimnames") = Rcpp::List::create(Rcpp::CharacterVector::create(),
-      Rcpp::CharacterVector::create("Neuromuscular", "CVD", "Respiratory", "Renal", "GI", "Hemato_immu", "Metabolic", "Congeni_genetic", "Malignancy", "Neonatal", "Tech_dep", "Transplant", "ccc_flag")
-      );
+              ccc_mat_rcpp_col_names
+  );
 
-//  return outmat; 
+//  return outmat;
  Rcpp::DataFrame out = Rcpp::internal::convert_using_rfunction(outmat, "as.data.frame");
  return out;
 
