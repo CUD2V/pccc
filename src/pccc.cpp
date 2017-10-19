@@ -2,10 +2,10 @@
 #include <Rcpp.h>
 #include "pccc.h"
 
-codes::codes(int v) 
+codes::codes(int v)
 {
   if (v == 9 || v == 10) {
-    version = v; 
+    version = v;
   } else {
     ::Rf_error("Only ICD version 9 and 10 are supported.");
   }
@@ -37,7 +37,7 @@ codes::codes(int v)
       "2826","2881","2882","284","2860","2863","28732","28733","28739","28801","28802",
       "2884","4460","4461","44621","4464","4465","4466","4467","7100","7101","7103","V08"};
 
-    dx_metabolic = {"243","2532","2535","2536","2359","2550","25513","2552","270","271","272",
+    dx_metabolic = {"243","2532","2535","2536","2539","2550","25513","2552","270","271","272",
       "2750","2751","2752","2753","2772","2773","2774","2775","2776","2778","2779",
       "V4585","V5391","V6546"};
 
@@ -81,7 +81,7 @@ codes::codes(int v)
       "4643","4697","504", "5051","5059","526","527","5280","5282","5283","5284","5285","5286",
       "5471","9624","9636","9702"};
 
-    pc_hemato_immu = {"4100","4101","4102","4103","4104","4105","4106","4107","4108","4109","415", 
+    pc_hemato_immu = {"4100","4101","4102","4103","4104","4105","4106","4107","4108","4109","415",
       "4194"};
 
     pc_metabolic = {"064","0652","0681","073","0764","0765","0768","0769","624","6241","645","6551",
@@ -104,21 +104,21 @@ codes::codes(int v)
 
     pc_transplant = {"3751","3350","3351","3352","336", "5561","5569","4697","5051","5059","5280","5282",
       "5283","5284","5285","5286","4100","4101","4102","4103","4104","4105","4106","4107","4108",
-      "4109","4194","0091","0092","0093"}; 
+      "4109","4194","0091","0092","0093"};
 
-  } else if (version == 10) { 
+  } else if (version == 10) {
     dx_neuromusc = {"E750","E751","E752","E754","F71","F72","F73","F842","G111","G112","G114","G118",
       "G119","G120","G121","G122","G128","G129","G3101","G3109","G318","G3189","G3289","G71",
       "G72","G80","G901","G938","G939","G94","Q00","Q01","Q02","Q03","Q04","Q05","Q06","Q07",
       "G911","G319","G253","G9519","G9589","G909","G40311","G40301","G40211","G40219","G40411",
       "G40419","G40804","G40111","G40119","G40911","G40919","G371","G372","G378","G8190","G8290",
       "G8250","G8251","G8252","G8253","G8254","G835","G839","G931","G935","I6330","I6350","G10",
-      "G20","G210","G2111","G2119","G218","G230","G231","G232","G238","G2402","G248","G253",
+      "G20","G210","G2111","G2119","G218","G230","G231","G232","G238","G2402","G248",
       "G254","G255","G2581","G2582","G2583","G2589","G259","G803","R403","G9782","T8509XA",
       "T85190A","T85192A","T85199A","T8579XA","Z982","Z4541","Z4542"};
 
     dx_cvd = {"I270","I271","I272","I2781","I2789","I279","I340","I348","I360","I368","I370",
-      "I378","I42","I43","I44","I45","I47","I48","I490","I491","I493","I494","I495","I498","I499", 
+      "I378","I42","I43","I44","I45","I47","I48","I490","I491","I493","I494","I495","I498","I499",
       "I509","I515","I517","I5181","I63139","I63239","Q20","Q212","Q213","Q214","Q218","Q22","Q23",
       "Q24","Q251","Q252","Q253","Q254","Q255","Q256","Q257","Q26","R001","Q282","Q283","Q289",
       "Z951","T82519A","T82529A","T82539A","T82599A","T82110A","T82111A","T82120A","T82121A",
@@ -141,12 +141,12 @@ codes::codes(int v)
       "Z431","Z432","Z433","Z434","Z4651","Z4659","T8640","T8641","T8642","T86890","T86891",
       "T86899","T86850","T86851","T86859"};
 
-    dx_hemato_immu = {"B20", "D55","D56","D57","D58","D60","D61","D71","D720","D80","D81","D82", 
+    dx_hemato_immu = {"B20", "D55","D56","D57","D58","D60","D61","D71","D720","D80","D81","D82",
       "D83","D84","D85","D87","D88","D86","M303","M359","B21","B22","B23","B24","D700","D704",
       "D66", "D682","D6941","D6942","D761","D762","D763","D869","M300","M310","M311","M3130","M314",
       "M316","M3210","M3390","M340","M341","M349","Z21"};
 
-    dx_metabolic = {"D841","E700","E702","E703","E704","E705","E708","E710","E711","E712","E713", 
+    dx_metabolic = {"D841","E700","E702","E703","E704","E705","E708","E710","E711","E712","E713",
       "E714","E715","E720","E721","E722","E723","E724","E728","E729","E740","E741","E742","E743",
       "E744","E748","E749","E75","E760","E761","E762","E763","E770","E771","E780","E781","E782",
       "E783","E784","E785","E786","E787","E788","E789","E791","E798","E804","E805","E806","E807",
@@ -177,15 +177,15 @@ codes::codes(int v)
       "Z9911","Z9912","T8571XA","Z940","Z9350","Z9351","Z9352","Z9359","Z936","Z9115","Z992",
       "Z435","Z436","Z446","K9420","K9422","K9423","K9429","Z931","Z932","Z933","Z934","Z431",
       "Z432","Z433","Z434","Z4651","Z4659","Z4681","Z9641","T84019A","T84029A","T84039A","T84049A",
-      "T84059A","T84069A","T84099A","T84498A","T84119A","T84129A","T84199A","T84498A","T8450XA",
+      "T84059A","T84069A","T84099A","T84498A","T84119A","T84129A","T84199A","T8450XA",
       "T8460XA","T847XXA","T8690","T8691","T8692","T8699","T8610","T8611","T8612","T8640","T8641",
       "T8642","T8620","T8621","T8622","T86810","T86811","T86819","T8600","T8601","T8602","T8609",
-      "T86890","T86891","T86899","T86850","T86851","T86859","T865","T86890","T86891","T86899",
+      "T86890","T86891","T86899","T86850","T86851","T86859","T865",
       "T870X9","T871X9","T872","Y831","Y833"};
 
     dx_transplant = {"T8600","T8601","T8602","T8609","T8610","T8611","T8612","T8620","T8621","T8622",
       "T86810","T86811","T86819","T8640","T8641","T8642","T86890","T86891","T86899","T86850",
-      "T86851","T86859","T865","T8690","T8691","T8692","T8699","T86890","T86891","T86899"};
+      "T86851","T86859","T865","T8690","T8691","T8692","T8699"};
 
     pc_neuromusc = {"0016070","0016071","0016072","0016073","0016074","0016075","0016076","0016077",
       "0016078","001607B","00160J0","00160J1","00160J2","00160J4","00160J5","00160J6","00160J7",
@@ -397,86 +397,86 @@ codes::codes(int v)
 int codes::find_match(const std::vector<std::string>& dx,
                       const std::vector<std::string>& pc,
                       const std::vector<std::string>& dx_codes,
-                      const std::vector<std::string>& pc_codes) 
+                      const std::vector<std::string>& pc_codes)
 {
   size_t dxitr, pcitr, itr;
-  
-  for (dxitr = 0; dxitr < dx.size(); ++dxitr) { 
+
+  for (dxitr = 0; dxitr < dx.size(); ++dxitr) {
     for (itr = 0; itr < dx_codes.size(); ++itr) {
       if (dx[dxitr].compare(0, dx_codes[itr].size(),dx_codes[itr]) == 0) {
         return 1;
       }
-    } 
-  } 
-  
-  for (pcitr = 0; pcitr < pc.size(); ++pcitr) { 
+    }
+  }
+
+  for (pcitr = 0; pcitr < pc.size(); ++pcitr) {
     for (itr = 0; itr < pc_codes.size(); ++itr) {
       if (pc[pcitr].compare(0, pc_codes[itr].size(),pc_codes[itr]) == 0) {
         return 1;
       }
-    } 
+    }
   }
   return 0;
 }
 
-int codes::neuromusc(std::vector<std::string>& dx, std::vector<std::string>& pc) 
+int codes::neuromusc(std::vector<std::string>& dx, std::vector<std::string>& pc)
 {
   return find_match(dx, pc, dx_neuromusc, pc_neuromusc);
 }
 
-int codes::cvd(std::vector<std::string>& dx, std::vector<std::string>& pc) 
+int codes::cvd(std::vector<std::string>& dx, std::vector<std::string>& pc)
 {
   return find_match(dx, pc, dx_cvd, pc_cvd);
 }
 
-int codes::respiratory(std::vector<std::string>& dx, std::vector<std::string>& pc) 
+int codes::respiratory(std::vector<std::string>& dx, std::vector<std::string>& pc)
 {
   return find_match(dx, pc, dx_respiratory, pc_respiratory);
 }
 
-int codes::renal(std::vector<std::string>& dx, std::vector<std::string>& pc) 
+int codes::renal(std::vector<std::string>& dx, std::vector<std::string>& pc)
 {
   return find_match(dx, pc, dx_renal, pc_renal);
 }
 
-int codes::gi(std::vector<std::string>& dx, std::vector<std::string>& pc) 
+int codes::gi(std::vector<std::string>& dx, std::vector<std::string>& pc)
 {
   return find_match(dx, pc, dx_gi, pc_gi);
 }
 
-int codes::hemato_immu(std::vector<std::string>& dx, std::vector<std::string>& pc) 
+int codes::hemato_immu(std::vector<std::string>& dx, std::vector<std::string>& pc)
 {
   return find_match(dx, pc, dx_hemato_immu, pc_hemato_immu);
 }
 
-int codes::metabolic(std::vector<std::string>& dx, std::vector<std::string>& pc) 
+int codes::metabolic(std::vector<std::string>& dx, std::vector<std::string>& pc)
 {
   return find_match(dx, pc, dx_metabolic, pc_metabolic);
 }
 
-int codes::congeni_genetic(std::vector<std::string>& dx) 
+int codes::congeni_genetic(std::vector<std::string>& dx)
 {
   std::vector<std::string> empty;
   return find_match(dx, empty, dx_congeni_genetic, empty);
 }
 
-int codes::malignancy(std::vector<std::string>& dx, std::vector<std::string>& pc) 
+int codes::malignancy(std::vector<std::string>& dx, std::vector<std::string>& pc)
 {
   return find_match(dx, pc, dx_malignancy, pc_malignancy);
 }
 
-int codes::neonatal(std::vector<std::string>& dx) 
+int codes::neonatal(std::vector<std::string>& dx)
 {
   std::vector<std::string> empty;
   return find_match(dx, empty, dx_neonatal, empty);
 }
 
-int codes::tech_dep(std::vector<std::string>& dx, std::vector<std::string>& pc) 
+int codes::tech_dep(std::vector<std::string>& dx, std::vector<std::string>& pc)
 {
   return find_match(dx, pc, dx_tech_dep, pc_tech_dep);
 }
 
-int codes::transplant(std::vector<std::string>& dx, std::vector<std::string>& pc) 
+int codes::transplant(std::vector<std::string>& dx, std::vector<std::string>& pc)
 {
   return find_match(dx, pc, dx_transplant, pc_transplant);
 }

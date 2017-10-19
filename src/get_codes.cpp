@@ -5,27 +5,29 @@
 #include <Rcpp.h>
 #include "pccc.h"
 
+const Rcpp::CharacterVector codes::col_names = Rcpp::CharacterVector::create("neuromusc", "cvd", "respiratory", "renal", "gi", "hemato_immu", "metabolic", "congeni_genetic", "malignancy", "neonatal", "tech_dep", "transplant");
+
 //' Get (view) Diagnostic and Procedure Codes
 //'
 //' View the ICD, verion 9 or 10, for the Complex Chronic Conditions (CCC)
 //' categories.
 //'
 //'  The CCC categories for diagnostic and procedure codes are:
-//'  \tabular{lcc}{                                            
-//'  category        \tab \code{dx} \tab \code{pc} \cr       
-//'  neuromuscul     \tab      X    \tab      X    \cr       
-//'  cvd             \tab      X    \tab      X    \cr       
-//'  respiratory     \tab      X    \tab      X    \cr       
-//'  renal           \tab      X    \tab      X    \cr       
-//'  gi              \tab      X    \tab      X    \cr       
-//'  hemato_immu     \tab      X    \tab      X    \cr       
-//'  metabolic       \tab      X    \tab      X    \cr       
-//'  congeni_genetic \tab      X    \tab           \cr       
-//'  malignancy      \tab      X    \tab      X    \cr       
-//'  neonatal        \tab      X    \tab           \cr       
-//'  tech_dep        \tab      X    \tab      X    \cr       
-//'  transplant      \tab      X    \tab      X    \cr       
-//'  }                                                         
+//'  \tabular{lcc}{
+//'  category        \tab \code{dx} \tab \code{pc} \cr
+//'  neuromuscul     \tab      X    \tab      X    \cr
+//'  cvd             \tab      X    \tab      X    \cr
+//'  respiratory     \tab      X    \tab      X    \cr
+//'  renal           \tab      X    \tab      X    \cr
+//'  gi              \tab      X    \tab      X    \cr
+//'  hemato_immu     \tab      X    \tab      X    \cr
+//'  metabolic       \tab      X    \tab      X    \cr
+//'  congeni_genetic \tab      X    \tab           \cr
+//'  malignancy      \tab      X    \tab      X    \cr
+//'  neonatal        \tab      X    \tab           \cr
+//'  tech_dep        \tab      X    \tab      X    \cr
+//'  transplant      \tab      X    \tab      X    \cr
+//'  }
 //'
 //' The ICD codes were taken from the SAS macro provided by the reference paper.
 //'
@@ -45,7 +47,7 @@
 //' A matrix of character vectors.  Rows are the categories and columns for
 //' diagnostic and procedure codes.
 //'
-//' @export 
+//' @export
 // [[Rcpp::export]]
 Rcpp::List get_codes(int icdv) {
   codes cds(icdv);
@@ -64,7 +66,7 @@ Rcpp::List get_codes(int icdv) {
           Rcpp::wrap(cds.get_dx_tech_dep()),
           Rcpp::wrap(cds.get_dx_transplant()));
 
-  Rcpp::List pc = Rcpp::List::create( 
+  Rcpp::List pc = Rcpp::List::create(
           Rcpp::wrap(cds.get_pc_neuromusc()),
           Rcpp::wrap(cds.get_pc_cvd()),
           Rcpp::wrap(cds.get_pc_respiratory()),
@@ -92,7 +94,7 @@ Rcpp::List get_codes(int icdv) {
   rtn.attr("version") = icdv;
   rtn.attr("dim") = Rcpp::NumericVector::create(12, 2);
   rtn.attr("dimnames") = Rcpp::List::create(
-      Rcpp::CharacterVector::create("neuromusc", "cvd", "respiratory", "renal", "gi", "hemato_immu", "metabolic", "congeni_genetic", "malignancy", "neonatal", "tech_dep", "transplant"),
+      codes::col_names,
       Rcpp::CharacterVector::create("dx", "pc")
       );
   rtn.attr("class") = "pccc_codes";

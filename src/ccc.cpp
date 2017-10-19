@@ -7,8 +7,11 @@
 
 // [[Rcpp::export]]
 Rcpp::DataFrame ccc_mat_rcpp(Rcpp::CharacterMatrix& dx, Rcpp::CharacterMatrix& pc, int version = 9)
-{ 
+{
   codes cdv(version);
+
+  Rcpp::CharacterVector ccc_mat_rcpp_col_names(codes::col_names);
+  ccc_mat_rcpp_col_names.push_back("ccc_flag");
 
   Rcpp::IntegerMatrix outmat(dx.nrow(), 13);
 
@@ -17,35 +20,46 @@ Rcpp::DataFrame ccc_mat_rcpp(Rcpp::CharacterMatrix& dx, Rcpp::CharacterMatrix& p
   std::vector<std::string> dx_str;
   std::vector<std::string> pc_str;
 
-  for (size_t i=0; i < dx.nrow(); ++i) { 
+  for (size_t i=0; i < dx.nrow(); ++i) {
     dx_row = dx.row(i);
     pc_row = pc.row(i);
     dx_str = Rcpp::as<std::vector<std::string>>(dx_row);
     pc_str = Rcpp::as<std::vector<std::string>>(pc_row);
-    outmat(i,  0) = cdv.neuromusc(dx_str, pc_str);
-    outmat(i,  1) = cdv.cvd(dx_str, pc_str);
-    outmat(i,  2) = cdv.respiratory(dx_str, pc_str);
-    outmat(i,  3) = cdv.renal(dx_str, pc_str);
-    outmat(i,  4) = cdv.gi(dx_str, pc_str);
-    outmat(i,  5) = cdv.hemato_immu(dx_str, pc_str);
-    outmat(i,  6) = cdv.metabolic(dx_str, pc_str);
-    outmat(i,  7) = cdv.congeni_genetic(dx_str);
-    outmat(i,  8) = cdv.malignancy(dx_str, pc_str);
-    outmat(i,  9) = cdv.neonatal(dx_str);
+
+    if(cdv.neuromusc(dx_str, pc_str))
+      outmat(i,  0) = 1;
+    else if(cdv.cvd(dx_str, pc_str))
+      outmat(i,  1) = 1;
+    else if(cdv.respiratory(dx_str, pc_str))
+      outmat(i,  2) = 1;
+    else if(cdv.renal(dx_str, pc_str))
+      outmat(i,  3) = 1;
+    else if(cdv.gi(dx_str, pc_str))
+      outmat(i,  4) = 1;
+    else if (cdv.hemato_immu(dx_str, pc_str))
+      outmat(i,  5) = 1;
+    else if (cdv.metabolic(dx_str, pc_str))
+      outmat(i,  6) = 1;
+    else if (cdv.congeni_genetic(dx_str))
+      outmat(i,  7) = 1;
+    else if (cdv.malignancy(dx_str, pc_str))
+      outmat(i,  8) = 1;
+    else if (cdv.neonatal(dx_str))
+      outmat(i,  9) = 1;
+
     outmat(i, 10) = cdv.tech_dep(dx_str, pc_str);
     outmat(i, 11) = cdv.transplant(dx_str, pc_str);
-    outmat(i, 12) = 0; 
 
     if (sum(outmat.row(i))) {
-      outmat(i, 12) = 1; 
-    } 
+      outmat(i, 12) = 1;
+    }
   }
 
   outmat.attr("dimnames") = Rcpp::List::create(Rcpp::CharacterVector::create(),
-      Rcpp::CharacterVector::create("Neuromuscular", "CVD", "Respiratory", "Renal", "GI", "Hemato_immu", "Metabolic", "Congeni_genetic", "Malignancy", "Neonatal", "Tech_dep", "Transplant", "ccc_flag")
-      );
+              ccc_mat_rcpp_col_names
+  );
 
-//  return outmat; 
+//  return outmat;
  Rcpp::DataFrame out = Rcpp::internal::convert_using_rfunction(outmat, "as.data.frame");
  return out;
 

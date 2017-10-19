@@ -5,12 +5,18 @@
 #' It is recommended that you view the codes defining the CCC via
 #' \code{\link{get_codes}} and make sure that the ICD codes in your data set are
 #' formatted in the same way.  The ICD codes used for CCC are character strings
-#' and *do not* have decimal points.
+#' must be formatted as follows:
+#' \itemize{
+#' \item *Do not* use decimal points or other separators
+#' \item ICD 9 codes: Codes less than 10 should be left padded with 2 zeros. Codes
+#' less than 100 should be left padded with 1 zero.
+#' }
+#'
+#' See See `vignette("pccc-overview")` for more details.
 #'
 #' @references
-#' Feudtner C, et al. Pediatric complex chronic conditions classification system
-#' version 2: updated for ICD-10 and complex medical technology dependence and
-#' transplantation, BMC Pediatrics, 2014, 14:199, DOI: 10.1186/1471-2431-14-199
+#' See \code{\link{pccc-package}} for published paper on the topic of identifying
+#' Complex Chronix Conditions
 #'
 #' @author Peter DeWitt
 #'
@@ -32,27 +38,33 @@
 #' @example examples/ccc.R
 #'
 #' @export
-ccc <- function(data, id, dx_cols = NULL, pc_cols = NULL, icdv) { 
+ccc <- function(data, id, dx_cols = NULL, pc_cols = NULL, icdv) {
   UseMethod("ccc")
 }
 
 #' @method ccc data.frame
 #' @export
-ccc.data.frame <- function(data, id, dx_cols, pc_cols, icdv) { 
+ccc.data.frame <- function(data, id, dx_cols, pc_cols, icdv) {
 
   if (missing(dx_cols) & missing(pc_cols)) {
-    stop("dx_cols and pc_cols are both missing.  At least one need not be.",
+    stop("dx_cols and pc_cols are both missing.  At least one must not be.",
          call. = FALSE)
-  } 
+  }
 
   if (!missing(dx_cols)) {
     dxmat <- sapply(dplyr::select(data, !!dplyr::enquo(dx_cols)), as.character)
+    if(! is.matrix(dxmat)) {
+      dxmat <- as.matrix(dxmat)
+    }
   } else {
     dxmat <- matrix("", nrow = nrow(data))
   }
 
   if (!missing(pc_cols)) {
     pcmat <- sapply(dplyr::select(data, !!dplyr::enquo(pc_cols)), as.character)
+    if(! is.matrix(pcmat)) {
+      pcmat <- as.matrix(pcmat)
+    }
   } else {
     pcmat <- matrix("", nrow = nrow(data))
   }

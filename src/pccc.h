@@ -8,8 +8,8 @@ class codes {
   private:
     int version;
 
-    std::vector<std::string> dx_neuromusc; 
-    std::vector<std::string> dx_cvd; 
+    std::vector<std::string> dx_neuromusc;
+    std::vector<std::string> dx_cvd;
     std::vector<std::string> dx_respiratory;
     std::vector<std::string> dx_renal;
     std::vector<std::string> dx_gi;
@@ -33,7 +33,7 @@ class codes {
     //std::vector<std::string> pc_neonatal;
     std::vector<std::string> pc_tech_dep;
     std::vector<std::string> pc_transplant;
-    
+
     int find_match(const std::vector<std::string>& dx,
                    const std::vector<std::string>& pc,
                    const std::vector<std::string>& dx_codes,
@@ -69,7 +69,7 @@ class codes {
     std::vector<std::string> get_dx_neonatal()        { return dx_neonatal; };
     std::vector<std::string> get_dx_tech_dep()        { return dx_tech_dep; };
     std::vector<std::string> get_dx_transplant()      { return dx_transplant; };
-                                                                           
+
     std::vector<std::string> get_pc_neuromusc()       { return pc_neuromusc; };
     std::vector<std::string> get_pc_cvd()             { return pc_cvd; };
     std::vector<std::string> get_pc_respiratory()     { return pc_respiratory; };
@@ -80,6 +80,8 @@ class codes {
     std::vector<std::string> get_pc_malignancy()      { return pc_malignancy; };
     std::vector<std::string> get_pc_tech_dep()        { return pc_tech_dep; };
     std::vector<std::string> get_pc_transplant()      { return pc_transplant; };
+
+    const static Rcpp::CharacterVector col_names;
 };
 
 #endif

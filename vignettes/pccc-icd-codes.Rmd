@@ -1,0 +1,186 @@
+---
+title: "pccc-icd-codes"
+author: 
+- Peter DeWitt
+- James Feinstein
+- Tell Bennett
+- Seth Russell
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{pccc-icd-codes}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+
+```
+
+## Viewing ICD Codes
+The ICD codes used to define the categories of CCC have been hard-coded into the
+C++ backend of the `pccc` package.  The `get_codes` function provides the end user
+a easy way to view all of the ICD codes as strings.
+
+Make sure the library is loaded first
+
+```{r}
+library(pccc)
+```
+
+Call get_codes function:
+
+```{r}
+get_codes(9)   # ICD-9
+get_codes(10)  # ICD-10
+```
+
+`get_codes` returns a matrix of character vectors.  The
+categories of CCC are the rows and the diagnostic (`dx`) or
+procedure (`pc`) codes are the columns.  If you need to view the ICD-9 codes for `cvd`, for
+example, subset as usual for matrices.
+```{r}
+get_codes(9)["cvd", ]
+```
+
+If a user prefers to explore the ICD codes in a `data.frame`, then use the base R
+`as.data.frame` method to convert the output from `get_codes` to a
+`data.frame`.
+
+```{r}
+as.data.frame(get_codes(9))
+```
+
+# Neuromuscular
+## ICD-9
+```{r}
+get_codes(9)["neuromusc", ]
+```
+
+## ICD-10
+```{r}
+get_codes(10)["neuromusc", ]
+```
+
+# CVD
+## ICD-9
+```{r}
+get_codes(9)["cvd", ]
+```
+
+## ICD-10
+```{r}
+get_codes(10)["cvd", ]
+```
+
+# Respiratory
+## ICD-9
+```{r}
+get_codes(9)["respiratory", ]
+```
+
+## ICD-10
+```{r}
+get_codes(10)["respiratory", ]
+```
+
+# Renal
+## ICD-9
+```{r}
+get_codes(9)["renal", ]
+```
+
+## ICD-10
+```{r}
+get_codes(10)["renal", ]
+```
+
+# GI
+## ICD-9
+```{r}
+get_codes(9)["gi", ]
+```
+
+## ICD-10
+```{r}
+get_codes(10)["gi", ]
+```
+
+# Hemato Immu
+## ICD-9
+```{r}
+get_codes(9)["hemato_immu", ]
+```
+
+## ICD-10
+```{r}
+get_codes(10)["hemato_immu", ]
+```
+
+# Metabolic
+## ICD-9
+```{r}
+get_codes(9)["metabolic", ]
+```
+
+## ICD-10
+```{r}
+get_codes(10)["metabolic", ]
+```
+
+# Congeni Genetic
+## ICD-9
+```{r}
+get_codes(9)["congeni_genetic", ]
+```
+
+## ICD-10
+```{r}
+get_codes(10)["congeni_genetic", ]
+```
+
+# Malignancy
+## ICD-9
+```{r}
+get_codes(9)["malignancy", ]
+```
+
+## ICD-10
+```{r}
+get_codes(10)["malignancy", ]
+```
+
+# Neonatal
+## ICD-9
+```{r}
+get_codes(9)["neonatal", ]
+```
+
+## ICD-10
+```{r}
+get_codes(10)["neonatal", ]
+```
+
+# Tech Dep
+## ICD-9
+```{r}
+get_codes(9)["tech_dep", ]
+```
+
+## ICD-10
+```{r}
+get_codes(10)["tech_dep", ]
+```
+
+# Transplant
+## ICD-9
+```{r}
+get_codes(9)["transplant", ]
+```
+
+## ICD-10
+```{r}
+get_codes(10)["transplant", ]
+```
+
