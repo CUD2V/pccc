@@ -25,19 +25,30 @@ Rcpp::DataFrame ccc_mat_rcpp(Rcpp::CharacterMatrix& dx, Rcpp::CharacterMatrix& p
     pc_row = pc.row(i);
     dx_str = Rcpp::as<std::vector<std::string>>(dx_row);
     pc_str = Rcpp::as<std::vector<std::string>>(pc_row);
-    outmat(i,  0) = cdv.neuromusc(dx_str, pc_str);
-    outmat(i,  1) = cdv.cvd(dx_str, pc_str);
-    outmat(i,  2) = cdv.respiratory(dx_str, pc_str);
-    outmat(i,  3) = cdv.renal(dx_str, pc_str);
-    outmat(i,  4) = cdv.gi(dx_str, pc_str);
-    outmat(i,  5) = cdv.hemato_immu(dx_str, pc_str);
-    outmat(i,  6) = cdv.metabolic(dx_str, pc_str);
-    outmat(i,  7) = cdv.congeni_genetic(dx_str);
-    outmat(i,  8) = cdv.malignancy(dx_str, pc_str);
-    outmat(i,  9) = cdv.neonatal(dx_str);
+
+    if(cdv.neuromusc(dx_str, pc_str))
+      outmat(i,  0) = 1;
+    else if(cdv.cvd(dx_str, pc_str))
+      outmat(i,  1) = 1;
+    else if(cdv.respiratory(dx_str, pc_str))
+      outmat(i,  2) = 1;
+    else if(cdv.renal(dx_str, pc_str))
+      outmat(i,  3) = 1;
+    else if(cdv.gi(dx_str, pc_str))
+      outmat(i,  4) = 1;
+    else if (cdv.hemato_immu(dx_str, pc_str))
+      outmat(i,  5) = 1;
+    else if (cdv.metabolic(dx_str, pc_str))
+      outmat(i,  6) = 1;
+    else if (cdv.congeni_genetic(dx_str))
+      outmat(i,  7) = 1;
+    else if (cdv.malignancy(dx_str, pc_str))
+      outmat(i,  8) = 1;
+    else if (cdv.neonatal(dx_str))
+      outmat(i,  9) = 1;
+
     outmat(i, 10) = cdv.tech_dep(dx_str, pc_str);
     outmat(i, 11) = cdv.transplant(dx_str, pc_str);
-    outmat(i, 12) = 0;
 
     if (sum(outmat.row(i))) {
       outmat(i, 12) = 1;
