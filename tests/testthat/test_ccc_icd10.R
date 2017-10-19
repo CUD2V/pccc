@@ -50,7 +50,7 @@ test_that("icd 10 data set with all parameters - result should be unchanged.", {
 # is passed, ccc fails.
 # Test that one code results in just the one category getting flagged as true
 for (row in rownames(get_codes(10))) {
-  dx <- get_codes(9)[row,]$dx
+  dx <- get_codes(10)[row,]$dx
 
   result <- ccc(dplyr::data_frame(id = 'a',
                                   dx1 = sample(dx, 1)),
