@@ -4,6 +4,7 @@ Pediatric Complex Chronic Conditions: A R Package
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 [![Build Status](https://travis-ci.org/dewittpe/pccc.svg?branch=master)](https://travis-ci.org/dewittpe/pccc)
 [![Coverage Status](https://img.shields.io/codecov/c/github/dewittpe/pccc/master.svg)](https://codecov.io/github/dewittpe/pccc?branch=master)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/pccc)](http://cran.r-project.org/package=pccc)
 
 ## Motivation
 Version 2 of the Pediatric Complex Chronic Conditions (CCC) system was published 
