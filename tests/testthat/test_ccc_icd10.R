@@ -6,7 +6,6 @@
 #     X no input
 #     X need to test each category of CCC
 #     performance test?
-#     matching should stop after first match (if find match, don't need to check other 10 categories)
 #
 # run tests with Ctrl/Cmd + Shift + T or devtools::test()
 # for manually running, execute

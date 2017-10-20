@@ -15,6 +15,3 @@ Object from internal PCCC name space (if it exists)
 \description{
 Tool to help access internal variables to use in testthat scripts
 }
-\author{
-Seth Russell
-}

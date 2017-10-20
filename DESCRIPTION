@@ -2,10 +2,10 @@ Package: pccc
 Title: Pediatric Complex Chronic Conditions
 Version: 0.2.2.9000
 Authors@R: c(
-    person("Peter", "DeWitt", , "dewittpe@gmail.com", role = c("aut", "cre")),
-    person("Tell",  "Bennett", , "tell.bennett@ucdenver.edu", role = c("ctb")),
-    person("James", "Feinstein", , "james.feinstein@ucdenver.edu", role = c("aut", "ctb")),
-    person("Seth", "Russell", , "seth.russell@ucdenver.edu", role = c("ctb"))
+    person("Peter", "DeWitt", , "dewittpe@gmail.com", role = c("aut")),
+    person("Tell",  "Bennett", , "tell.bennett@ucdenver.edu", role = c("aut")),
+    person("James", "Feinstein", , "james.feinstein@ucdenver.edu", role = c("aut")),
+    person("Seth", "Russell", , "seth.russell@ucdenver.edu", role = c("aut", "cre"))
     )
 Description: An implementation of the pediatric complex chronic conditions (CCC)
     classification system using R and C++. Designed for the International Classification of
@@ -25,3 +25,5 @@ Suggests:
 RoxygenNote: 6.0.1
 LinkingTo: Rcpp (>= 0.12.11)
 VignetteBuilder: knitr
+URL: https://github.com/CUD2V/pccc
+BugReports: https://github.com/CUD2V/pccc/issues

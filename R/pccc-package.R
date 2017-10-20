@@ -5,8 +5,6 @@
 #' classification system.  Implemented for the International Classification of
 #' Disease (ICD) 9th and 10th revisions.
 #'
-#' @author Peter DeWitt
-#'
 #' @references
 #' Feudtner C, et al. Pediatric complex chronic conditions classification system
 #' version 2: updated for ICD-10 and complex medical technology dependence and

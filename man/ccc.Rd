@@ -64,6 +64,3 @@ Complex Chronix Conditions
 CCC.  \code{\link[dplyr]{select}} for more examples and details on how to
 identify and select the diagnostic and procedure code columns.
 }
-\author{
-Peter DeWitt
-}
