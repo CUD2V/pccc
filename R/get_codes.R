@@ -1,3 +1,4 @@
+# Since this function is pretty must just a passthrough to C++, see get_codes.cpp for documentation
 #' @method as.data.frame pccc_codes
 #' @export
 as.data.frame.pccc_codes <- function(x, ...) {
