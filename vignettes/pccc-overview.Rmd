@@ -63,14 +63,20 @@ as having a CCC.
 ## Basic Example
 
 ```{r}
-dat <- data.frame(ids = c("A", "B", "C"), code = c("0492", "492", "04.92"))
+dat <- data.frame(ids = c("A", "B", "C"), 
+                  dxs = c("3194", "319", "319.4"), 
+                  procs = c("0492", "492", "04.92"))
 dat
-ccc(dat, ids, code, code, icdv = 9)
+ccc(dat, 
+    id = ids, 
+    dx_cols = dplyr::vars(dxs), 
+    pc_cols = dplyr::vars(procs), 
+    icdv = 9)
 ```
 
 ## Extended Example
 
-This example used code available at https://github.com/magic-lantern/icd_file_generator to create a sample data file for ICD9 and ICD10. The generated data files contain randomly generated ICD codes for 1,000 patients and is comprised of 10 columns of diagnosis codes (d_cols), 10 columns of procedure codes (p_cols), and 10 columns of other data (g_cols).
+This example used a tool developed by Seth Russell (available at [icd_file_generator](https://github.com/magic-lantern/icd_file_generator)) to create a sample data file for ICD9 and ICD10. The generated data files contain randomly generated ICD codes for 1,000 patients and is comprised of 10 columns of diagnosis codes (d_cols), 10 columns of procedure codes (p_cols), and 10 columns of other data (g_cols).
 
 Sample of how ICD9 test file was generated:
 
