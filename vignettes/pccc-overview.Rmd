@@ -114,7 +114,7 @@ dplyr::summarize_at(ccc_result, vars(-id), mean) %>% print.data.frame
 
 # Logic employed
 
-There are 12 total categories of CCCs used in this package. The first group of 10 are mutually exclusive - only of them can be derived from a ICD code:
+There are 12 total categories of CCCs used in this package. The first group of 10 are mutually exclusive - only one of them can be derived from a ICD code:
 
 * Neurologic and Neuromuscular
 * Cardiovascular
@@ -139,3 +139,4 @@ To see actual specific ICD codes by category, see [pccc-icd-codes](pccc-icd-code
 # References
 
 * Feudtner C, et al. Pediatric complex chronic conditions classification system version 2: updated for ICD-10 and complex medical technology dependence and transplantation, BMC Pediatrics, 2014, 14:199, DOI: 10.1186/1471-2431-14-199
+* Feudtner C, Christakis DA, Connell FA. Pediatric deaths attributable to complex chronic conditions: a population-based study of Washington State, 1980-1997. Pediatrics. 2000;106(1 Pt 2):205-209.
