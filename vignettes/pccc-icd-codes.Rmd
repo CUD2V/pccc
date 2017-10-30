@@ -18,8 +18,27 @@ knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
 
 ```
 
-## Viewing ICD Codes
-The ICD codes used to define the categories of CCC have been hard-coded into the
+# Introduction
+There are 12 total categories of CCCs used in this package. The first group of 10 are mutually exclusive - only one of them can be derived from a ICD code:
+
+* Neurologic and Neuromuscular
+* Cardiovascular
+* Respiratory
+* Renal and Urologic
+* Gastrointestinal
+* Hematologic or Immunologic
+* Metabolic
+* Other Congenital or Genetic Defect
+* Malignancy
+* Premature and Neonatal
+
+The last 2 can be be selected in addition to the above codes - so for example, one ICD code could be both a Gastrointestinal and Technical Dependency:
+
+* Technology Dependency
+* Transplant
+
+# Viewing ICD Codes
+The ICD codes used to define the categories of CCCs have been hard-coded into the
 C++ backend of the `pccc` package.  The `get_codes` function provides the end user
 a easy way to view all of the ICD codes as strings.
 
@@ -52,7 +71,7 @@ If a user prefers to explore the ICD codes in a `data.frame`, then use the base 
 as.data.frame(get_codes(9))
 ```
 
-# Neuromuscular
+# Neurologic and Neuromuscular
 ## ICD-9
 ```{r}
 get_codes(9)["neuromusc", ]
@@ -63,7 +82,7 @@ get_codes(9)["neuromusc", ]
 get_codes(10)["neuromusc", ]
 ```
 
-# CVD
+# Cardiovascular
 ## ICD-9
 ```{r}
 get_codes(9)["cvd", ]
@@ -85,7 +104,7 @@ get_codes(9)["respiratory", ]
 get_codes(10)["respiratory", ]
 ```
 
-# Renal
+# Renal and Urologic
 ## ICD-9
 ```{r}
 get_codes(9)["renal", ]
@@ -96,7 +115,7 @@ get_codes(9)["renal", ]
 get_codes(10)["renal", ]
 ```
 
-# GI
+# Gastrointestinal
 ## ICD-9
 ```{r}
 get_codes(9)["gi", ]
@@ -107,7 +126,7 @@ get_codes(9)["gi", ]
 get_codes(10)["gi", ]
 ```
 
-# Hemato Immu
+# Hematologic or Immunologic
 ## ICD-9
 ```{r}
 get_codes(9)["hemato_immu", ]
@@ -129,7 +148,7 @@ get_codes(9)["metabolic", ]
 get_codes(10)["metabolic", ]
 ```
 
-# Congeni Genetic
+# Other Congenital or Genetic Defect
 ## ICD-9
 ```{r}
 get_codes(9)["congeni_genetic", ]
@@ -151,7 +170,7 @@ get_codes(9)["malignancy", ]
 get_codes(10)["malignancy", ]
 ```
 
-# Neonatal
+# Premature and Neonatal
 ## ICD-9
 ```{r}
 get_codes(9)["neonatal", ]
@@ -162,7 +181,7 @@ get_codes(9)["neonatal", ]
 get_codes(10)["neonatal", ]
 ```
 
-# Tech Dep
+# Technology Dependency
 ## ICD-9
 ```{r}
 get_codes(9)["tech_dep", ]
