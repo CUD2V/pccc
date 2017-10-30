@@ -78,16 +78,14 @@ Users of PCCC may find the R Package [ICD](https://jackwasey.github.io/icd/) use
 
 # PCCC Examples
 
-The `data.frame` named `dat` below has information about three patients (A-C), each of whom has a different 
-string for the ICD-9 code 04.92. The `ccc` function will only identify subject `A`
-as having a CCC.
+To illustrate the how the input formatting impacts the identification of a CCC, consider the data `data.frame` named `dat` below. These data have information about three patients (A-C). Each subject has the same ICD-9-CM diagnosis code (e.g. _Malignant neoplasm of the esophagus_, which should be sent as 150) and the same ICD-9-CM procedure code (e.g. _Implanted chemotheraputic agent_, which should be sent as 0010), but each input is formatted differently. Based on the ICD-9-CM diagosis code, the `ccc` function will only identify subject `A` as having a CCC. Based on the ICD-9-CM procedure code, the `ccc` function will only identify subject `B` as having a CCC.
 
 ## Basic Example
 
 ```{r}
 dat <- data.frame(ids = c("A", "B", "C"), 
-                  dxs = c("3194", "319", "319.4"), 
-                  procs = c("0492", "492", "04.92"))
+                  dxs = c("150", "0150", "15.0"), 
+                  procs = c("10", "0010", "00.10"))
 dat
 ccc(dat, 
     id = ids, 
