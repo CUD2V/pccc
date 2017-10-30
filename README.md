@@ -31,7 +31,7 @@ developmental version from github.
 
 ### Released version
 Starting with version 0.2.2 we are placing the source R package in the releases.
-You can view the releases at https://github.com/dewittpe/pccc/releases.  Drill
+You can view the releases at https://github.com/CUD2V/pccc/releases.  Drill
 into the release you are interested in and download the `pccc_X.Y.Z.tar.gz`
 file.  (`X.Y.Z` represents the version number string).
 
@@ -56,7 +56,7 @@ development version of `pccc` directly from github via the
       install.packages("devtools", repo = "https://cran.rstudio.com")
     }
 
-    devtools::install_github("dewittpe/pccc", build_vignettes = TRUE)
+    devtools::install_github("CUD2V/pccc", build_vignettes = TRUE)
 
 *NOTE:* If you are working on a Windows machine you will need to download and
 install [`Rtools`](https://cran.r-project.org/bin/windows/Rtools/) before

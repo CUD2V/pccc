@@ -100,7 +100,7 @@ This example used a tool developed by Seth Russell (available at [icd_file_gener
 
 Sample of how ICD9 test file was generated:
 
-```{r}
+```{r eval = FALSE}
 pccc_icd9_dataset <- generate_sample(
   v = 9,
   n_rows = 10000,
