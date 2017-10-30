@@ -18,12 +18,11 @@ knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
 ```
 
 # Introduction
-This vignette describes how the `pccc` package generates the Complex Chronic Condition Categories (CCC) from ICD-9 and
-ICD-10 codes. The categorization is based on the work of Feudtner et al.(2014). A reference document
-showing the lists of codes for each category was published as a supplement to Feudtner et al.(2014) and we
-have made it available as part of the `pccc` package. After installing the package, you can find the file on your system
-with the below `system.file` call. Open the file with your preferred/available program
-for `.docx` files (Word, etc.).
+This vignette describes how the `pccc` package generates the Complex Chronic Condition Categories (CCC) from ICD-9 and ICD-10 codes. 
+
+A CCC is “any medical condition that can be reasonably expected to last at least 12 months (unless death intervenes) and to involve either several different organ systems or 1 organ system severely enough to require specialty pediatric care and probably some period of hospitalization in a tertiary care center." The categorization is based on the work of Feudtner et al. (2000 & 2014), as referenced below. 
+
+A supplemental reference document showing the lists of codes for each category was published as a supplement to Feudtner et al.(2014) and we have made it available as part of the `pccc` package. After installing the package, you can find the file on your system with the below `system.file` call. Open the file with your preferred/available program for `.docx` files (Word, etc.).
 
 ```{r, eval = FALSE}
 system.file("pccc_references/Categories_of_CCCv2_and_Corresponding_ICD.docx", package = "pccc")
@@ -37,13 +36,35 @@ library(pccc)
 library(dplyr)
 ```
 
+# Logic employed
+
+There are 12 total categories of CCCs used in this package. The first group of 10 are mutually exclusive - only one of them can be derived from a ICD code:
+
+* Neurologic and Neuromuscular
+* Cardiovascular
+* Respiratory
+* Renal and Urologic
+* Gastrointestinal
+* Hematologic or immunologic
+* Metabolic
+* Other Congenital or Genetic Defect
+* Malignancy
+* Premature and Neonatal
+
+The last 2 can be be selected in addition to the above codes - so for example, one ICD code could be both a Gastrointestinal and Technical Dependency:
+
+* Technical Dependency
+* Transplant
+
+To see actual specific ICD codes by category, see [pccc-icd-codes](pccc-icd-codes.html)
+
 # Generating CCC categories from ICD codes
 The `ccc` function is the workhorse here. Simply put, a user will provide ICD codes as strings
-and `ccc` will return CCC categories. The ICD codes are matched exactly and should include leading zeroes,
-but should not include periods. Users of the `pccc` package will need to pre-process the ICD-9
-and ICD-10 codes in their data so that the strings are formatted in the way that
-the `pccc` package will recognize them. For example, ICD-9-CM 04.92 will only be matched by the string "0492". 
-"492" _will not_ match.
+and `ccc` will return CCC categories.
+
+**Users of the `pccc` package will need to pre-process the ICD-9 and ICD-10 codes in their data so that the strings are formatted in the way that the `pccc` package will recognize them.** 
+
+The ICD codes are matched exactly and should include leading zeroes for any ICD-9-CM codes (see specific rules below), but should not include periods.For example, ICD-9-CM 04.92 will only be matched by the string "0492". "492" _will not_ match.
 
 Specific rules for ICD Codes are:
 
@@ -54,7 +75,8 @@ Specific rules for ICD Codes are:
     
 Users of PCCC may find the R Package [ICD](https://jackwasey.github.io/icd/) useful.
 
-# PCCC Example
+
+# PCCC Examples
 
 The `data.frame` named `dat` below has information about three patients (A-C), each of whom has a different 
 string for the ICD-9 code 04.92. The `ccc` function will only identify subject `A`
@@ -80,7 +102,7 @@ This example used a tool developed by Seth Russell (available at [icd_file_gener
 
 Sample of how ICD9 test file was generated:
 
-```{r eval = FALSE}
+```{r}
 pccc_icd9_dataset <- generate_sample(
   v = 9,
   n_rows = 10000,
@@ -94,7 +116,7 @@ save(pccc_icd9_dataset, file="pccc_icd9_dataset.rda")
 
 Example using sample patient data set:
 
-```{r}
+```{r eval = FALSE}
 library(dplyr)
 library(pccc)
 
@@ -116,31 +138,6 @@ dplyr::summarize_at(ccc_result, vars(-id), mean) %>% print.data.frame
 
 
 ```
-
-
-# Logic employed
-
-There are 12 total categories of CCCs used in this package. The first group of 10 are mutually exclusive - only one of them can be derived from a ICD code:
-
-* Neurologic and Neuromuscular
-* Cardiovascular
-* Respiratory
-* Renal and Urologic
-* Gastrointestinal
-* Hematologic or immunologic
-* Metabolic
-* Other Congenital or Genetic Defect
-* Malignancy
-* Premature and Neonatal
-
-The last 2 can be be selected in addition to the above codes - so for example, one ICD code could be both a Gastrointestinal and Technical Dependency:
-
-* Technical Dependency
-* Transplant
-
-Most of the ICD diagnosis codes are matched by substring, so as new versions of ICD-10-CM are released, some refinement of the CCC code lists may be required.
-
-To see actual specific ICD codes by category, see [pccc-icd-codes](pccc-icd-codes.html)
 
 # References
 
