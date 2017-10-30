@@ -89,8 +89,8 @@ dat <- data.frame(ids = c("A", "B", "C"),
 dat
 ccc(dat, 
     id = ids, 
-    dx_cols = dplyr::vars(dxs), 
-    pc_cols = dplyr::vars(procs), 
+    dx_cols = dxs, 
+    pc_cols = procs, 
     icdv = 9)
 ```
 
