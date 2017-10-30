@@ -53,7 +53,7 @@ There are 12 total categories of CCCs used in this package. The first group of 1
 
 The last 2 can be be selected in addition to the above codes - so for example, one ICD code could be both a Gastrointestinal and Technical Dependency:
 
-* Technical Dependency
+* Technology Dependency
 * Transplant
 
 To see actual specific ICD codes by category, see [pccc-icd-codes](pccc-icd-codes.html)
