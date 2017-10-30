@@ -22,7 +22,7 @@ This vignette describes how the `pccc` package generates the Complex Chronic Con
 
 A CCC is “any medical condition that can be reasonably expected to last at least 12 months (unless death intervenes) and to involve either several different organ systems or 1 organ system severely enough to require specialty pediatric care and probably some period of hospitalization in a tertiary care center." The categorization is based on the work of Feudtner et al. (2000 & 2014), as referenced below. 
 
-A supplemental reference document showing the lists of codes for each category was published as a supplement to Feudtner et al.(2014) and we have made it available as part of the `pccc` package. After installing the package, you can find the file on your system with the below `system.file` call. Open the file with your preferred/available program for `.docx` files (Word, etc.).
+A supplemental reference document showing the lists of codes for each category was published as a supplement to Feudtner et al. (2014) and we have made it available as part of the `pccc` package. After installing the package, you can find the file on your system with the below `system.file` call. Open the file with your preferred/available program for `.docx` files (Word, etc.).
 
 ```{r, eval = FALSE}
 system.file("pccc_references/Categories_of_CCCv2_and_Corresponding_ICD.docx", package = "pccc")
@@ -75,17 +75,16 @@ Specific rules for ICD Codes are:
     
 Users of PCCC may find the R Package [ICD](https://jackwasey.github.io/icd/) useful.
 
-
 # PCCC Examples
 
-To illustrate the how the input formatting impacts the identification of a CCC, consider the data `data.frame` named `dat` below. These data have information about three patients (A-C). Each subject has the same ICD-9-CM diagnosis code (e.g. _Malignant neoplasm of the esophagus_, which should be sent as 150) and the same ICD-9-CM procedure code (e.g. _Implanted chemotheraputic agent_, which should be sent as 0010), but each input is formatted differently. Based on the ICD-9-CM diagosis code, the `ccc` function will only identify subject `A` as having a CCC. Based on the ICD-9-CM procedure code, the `ccc` function will only identify subject `B` as having a CCC.
+To illustrate the how the input formatting impacts the identification of a CCC, consider the data `data.frame` named `dat` below. These data have information about three patients (A-C). Each subject has the same ICD-9-CM diagnosis code (e.g. _Hypertrophic obstructive cardiomyopathy_, which should be sent as 4251) and the same ICD-9-CM procedure code (e.g. _Heart transplantation_, which should be sent as 3751), but each input is formatted differently. Based on the ICD-9-CM diagosis code, the `ccc` function will only identify subject `A` as having a CCC. Based on the ICD-9-CM procedure code, the `ccc` function will only identify subject `B` as having a CCC and will also flag the Transplantation category.
 
 ## Basic Example
 
 ```{r}
 dat <- data.frame(ids = c("A", "B", "C"), 
-                  dxs = c("150", "0150", "15.0"), 
-                  procs = c("10", "0010", "00.10"))
+                  dxs = c("4251", "425.1", "425.1"), 
+                  procs = c("37.51", "3751", "37.51"))
 dat
 ccc(dat, 
     id = ids, 
@@ -114,7 +113,7 @@ save(pccc_icd9_dataset, file="pccc_icd9_dataset.rda")
 
 Example using sample patient data set:
 
-```{r eval = FALSE}
+```{r}
 library(dplyr)
 library(pccc)
 
