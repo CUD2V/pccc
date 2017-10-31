@@ -18,7 +18,7 @@ knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
 ```
 
 # Introduction
-This vignette provides an example using actual publically available data to illustrate how the `pccc` package generates the Complex Chronic Condition Categories (CCC) from ICD-9 and ICD-10 codes. For an overview of the CCC classification system is avaiable, see [pccc-icd-overview](pccc-overview.html).
+This vignette provides an example using actual publically available death certificate data to illustrate how the `pccc` package generates the Complex Chronic Condition Categories (CCC) from ICD-9 and ICD-10 codes. For an overview of the CCC classification system is avaiable, see [pccc-icd-overview](pccc-overview.html).
 
 To evaluate the code chunks in this example you will need to load the
 following R packages.
@@ -30,7 +30,11 @@ library(dplyr)
 
 # Accessing and Preparing the Data
 
-* Will add language here about accessing the CDC's Multiple Cause of Death Data.
+* The Center for Disease Control maintains vital statistics data, including death certificate data. The publically available death certificate data, referred to as the Multiple Cause of Death data, contain ICD diagnostic codes specifying the diseases and conditions leading to each decedent's death. In particular, the 2006 Multiple Cause of Death data contain both ICD-9-CM and ICD-10 codes, making it an ideal example to demonstrate how the PCCC software categorizes ICD codes.
+
+  * The data documentation is available for direct download: ftp://ftp.cdc.gov/pub/Health_Statistics/NCHS/Dataset_Documentation/DVS/natality/UserGuide2006.pdf 
+  * The data are available for direct downlaod: ftp://ftp.cdc.gov/pub/Health_Statistics/NCHS/Datasets/DVS/mortality/mort2006us.zip
+
 * Will add language here about preapring/processing the ICD9 and ICD10 codes for the analysis.
 
 # Running the PCCC Software
