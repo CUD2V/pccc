@@ -1,0 +1,44 @@
+---
+title: "PCCC: An Example Using the Center for Disease Control's Multiple Cause of Death Dataset"
+author: 
+- Peter DeWitt
+- James Feinstein
+- Tell Bennett
+- Seth Russell
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{pccc-example}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+```
+
+# Introduction
+This vignette provides an example using actual publically available data to illustrate how the `pccc` package generates the Complex Chronic Condition Categories (CCC) from ICD-9 and ICD-10 codes. For an overview of the CCC classification system is avaiable, see [pccc-icd-overview](pccc-overview.html).
+
+To evaluate the code chunks in this example you will need to load the
+following R packages.
+
+```{r, message = FALSE}
+library(pccc)
+library(dplyr)
+```
+
+# Accessing and Preparing the Data
+
+* Will add language here about accessing the CDC's Multiple Cause of Death Data.
+* Will add language here about preapring/processing the ICD9 and ICD10 codes for the analysis.
+
+# Running the PCCC Software
+
+* Will add language here about running PCCC software for both diagnosis and procedure codes.
+* Will add chunks of corresponding code with tabulated CCC's.
+
+# References
+
+* Feudtner C, et al. Pediatric complex chronic conditions classification system version 2: updated for ICD-10 and complex medical technology dependence and transplantation, BMC Pediatrics, 2014, 14:199, DOI: 10.1186/1471-2431-14-199
+* Feudtner C, et al. Pediatric deaths attributable to complex chronic conditions: a population-based study of Washington State, 1980-1997. Pediatrics. 2000;106(1 Pt 2):205-209.
