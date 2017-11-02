@@ -19,23 +19,8 @@ knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
 ```
 
 # Introduction
-There are 12 total categories of CCCs used in this package. The first group of 10 are mutually exclusive - only one of them can be derived from a ICD code:
 
-* Neurologic and Neuromuscular
-* Cardiovascular
-* Respiratory
-* Renal and Urologic
-* Gastrointestinal
-* Hematologic or Immunologic
-* Metabolic
-* Other Congenital or Genetic Defect
-* Malignancy
-* Premature and Neonatal
-
-The last 2 can be be selected in addition to the above codes - so for example, one ICD code could be both a Gastrointestinal and Technical Dependency:
-
-* Technology Dependency
-* Transplant
+For an overview of the CCC categories, see [pccc-overview](pccc-overview.html).
 
 # Viewing ICD Codes
 The ICD codes used to define the categories of CCCs have been hard-coded into the

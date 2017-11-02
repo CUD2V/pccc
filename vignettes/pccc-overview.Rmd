@@ -38,7 +38,7 @@ library(dplyr)
 
 # Logic employed
 
-There are 12 total categories of CCCs used in this package. The first group of 10 are mutually exclusive - only one of them can be derived from a ICD code:
+There are 12 total categories of CCCs used in this package. The first group of 10 are mutually exclusive - only one of them can be derived from a single ICD code:
 
 * Neurologic and Neuromuscular
 * Cardiovascular
@@ -51,28 +51,32 @@ There are 12 total categories of CCCs used in this package. The first group of 1
 * Malignancy
 * Premature and Neonatal
 
-The last 2 can be be selected in addition to the above codes - so for example, one ICD code could be both a Gastrointestinal and Technical Dependency:
+The last 2 can be be selected in addition to the above codes - so for example, one ICD code could be both a Gastrointestinal and Technology Dependence:
 
 * Technology Dependency
 * Transplant
 
-To see actual specific ICD codes by category, see [pccc-icd-codes](pccc-icd-codes.html)
+To see actual specific ICD codes by category, see [pccc-icd-codes](pccc-icd-codes.html).
 
 # Generating CCC categories from ICD codes
-The `ccc` function is the workhorse here. Simply put, a user will provide ICD codes as strings
-and `ccc` will return CCC categories.
+The `ccc` function is the workhorse here. Simply put, a user will provide ICD codes as strings and `ccc` will return CCC categories. All codes in all categories employ "starts with substring" matching logic. CCC codes for ICD9 are matched on substrings and ICD 10 codes are matched on full codes, but all CCC categories use the same "starts with substring” matching logic.
 
 **Users of the `pccc` package will need to pre-process the ICD-9 and ICD-10 codes in their data so that the strings are formatted in the way that the `pccc` package will recognize them.** 
 
-The ICD codes are matched exactly and should include leading zeroes for any ICD-9-CM codes (see specific rules below), but should not include periods.For example, ICD-9-CM 04.92 will only be matched by the string "0492". "492" _will not_ match.
+Specific rules to format ICD Codes correclty:
 
-Specific rules for ICD Codes are:
-
-* Codes should be alphanumeric only - no periods, spaces or other separator characters (e.g. _Diabetes with renal manifestations, type II or unspecified type, uncontrolled_ should be sent as 25042)
+* Codes should be alphanumeric only (e.g. _Diabetes with renal manifestations, type II or unspecified type, uncontrolled_ should be sent as 25042)
+* Codes should NOT contain periods, spaces or other separator characters periods (e.g. ICD-9-CM 04.92 will only be matched by the string "0492")
 * ICD 9 codes should be at a minimum 3 digits long:
     * Codes less than 10 should be left padded with 2 zeros. E.g. _Cholera due to vibrio cholerae el tor_ should be sent as 0011) 
     * Codes less than 100 should be left padded with 1 zero. E.g. _Whooping cough_ should be sent as 033)
     
+Potential issues with imporperly formatted ICD codes:
+
+* All codes in all categories employ "starts with substring" matching logic. Because of this, if a code to be evaluated starts with a code listed in one of the CCC categories, a match will be found. This means that if a bad ICD codes is provided (such as ICD9 code 0492,25042) PCCC would indicate a match for the Neuromuscular CCC.
+* CCCs are matched in the order of the CCCs shown in the “Logic employed” section. Once a match is found, other categories are not evaluated with the exception of Technology Dependencies and Transplant CCCs.
+* If there are changes in either ICD9 or ICD10, this library may require updating to continue functioning correctly.
+
 Users of PCCC may find the R Package [ICD](https://jackwasey.github.io/icd/) useful.
 
 # PCCC Examples
@@ -138,5 +142,5 @@ dplyr::summarize_at(ccc_result, vars(-id), mean) %>% print.data.frame
 
 # References
 
-* Feudtner C, et al. Pediatric complex chronic conditions classification system version 2: updated for ICD-10 and complex medical technology dependence and transplantation, BMC Pediatrics, 2014, 14:199, DOI: 10.1186/1471-2431-14-199
+* Feudtner C, et al. Pediatric complex chronic conditions classification system version 2: updated for ICD-10 and complex medical technology dependence and transplantation, BMC Pediatrics, 2014, 14:199, DOI: 10.1186/1471-2431-14-199.
 * Feudtner C, et al. Pediatric deaths attributable to complex chronic conditions: a population-based study of Washington State, 1980-1997. Pediatrics. 2000;106(1 Pt 2):205-209.
