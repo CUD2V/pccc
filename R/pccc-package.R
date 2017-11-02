@@ -55,3 +55,7 @@ NULL
 #' @importFrom dplyr "%>%"
 # Define globalVariables so R CMD check doesn't freak out
 utils::globalVariables(".")
+
+.onUnload <- function(libpath) {
+  library.dynam.unload("pccc", libpath)
+}
