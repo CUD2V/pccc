@@ -1,7 +1,11 @@
 sudo: false
 language: r
+r:
+  - oldrel
+  - release
+  - devel
 cache: packages
-warnings_are_errors: false
+warnings_are_errors: true
 
 # whitelist
 branches:
