@@ -20,6 +20,39 @@ for (code in c(9, 10)) {
     )
   })
 
+  test_that("Checking to see that all CCCs have at least 5 diagnosis codes.", {
+    expect_true(
+      all(
+        unlist(
+          lapply(rownames(get_codes(code)), function(rn) {
+            length(get_codes(code)[[rn, "dx"]]) > 5
+          })
+        )
+      )
+    )
+  })
+
+  test_that("Checking to see that most CCCs have procedure codes.", {
+    expect_true(
+      sum(
+        unlist(
+          lapply(rownames(get_codes(code)), function(rn) {
+            length(get_codes(code)[[rn, "pc"]]) > 1
+          })
+        ),
+        na.rm = TRUE) == 10
+    )
+  })
+
+  test_that("Checking to see that a code is returned - testing first for diagnosis code from first CCC.", {
+    expect_output(
+      #                firstCCC, dx
+      return(get_codes(code)[[1, 1]][1]),
+      regexp = "\\w+",
+      perl = TRUE
+    )
+  })
+
   test_that("Checking to see that correct CCC code types are returned.", {
     expect_equal(
       colnames((get_codes(code))),
