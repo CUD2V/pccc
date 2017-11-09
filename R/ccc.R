@@ -49,6 +49,11 @@ ccc.data.frame <- function(data, id, dx_cols, pc_cols, icdv) {
          call. = FALSE)
   }
 
+  # with around 200,000 rows of data previous use of sapply is equal to this new mutate method
+  # however, due to how sapply simplifies and converts to a matrix, it doesn't always give the
+  # output as expected by the rest of this applciation (sapply will convert rows to columns)
+  # under 200k, sapply is faster
+  # over 200k mutate is faster
   if (!missing(dx_cols)) {
     dxmat <- as.matrix(dplyr::mutate_all(dplyr::select(data, !!dplyr::enquo(dx_cols)), as.character))
   } else {
