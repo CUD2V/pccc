@@ -28,11 +28,13 @@ library(pccc)
 library(dplyr)
 ```
 
-# Accessing and Preparing the Data
+# Accessing the Data
 
 The Center for Disease Control maintains vital statistics data, including death certificate data. The publically available death certificate data, referred to as the Multiple Cause of Death data, contain ICD diagnostic codes specifying the diseases and conditions leading to each decedent's death. In particular, the 2006 Multiple Cause of Death data contain both ICD-9-CM and ICD-10 codes, making it an ideal example to demonstrate how the PCCC software categorizes ICD codes. Please note that because of the way ICD-9-CM codes are mapped to ICD-10 codes (https://www.cms.gov/Medicare/Coding/ICD10/2018-ICD-10-CM-and-GEMs.html), the calculated frequencies of CCCs may differ between corresponding ICD-9-CM and ICD-10 diagnosis codes for a decedent.
 
 The data documentation and instructions for direct download are available at: ftp://ftp.cdc.gov/pub/health_statistics/nchs/datasets/comparability/icd9_icd10/ICD9_ICD10_comparability_file_documentation.pdf
+
+# Preparing the Data
   
 For this illustrative example, we have provided just 2 columns of the data for decedants <=21: the ICD-9-CM underlying cause of death diagnosis code and the ICD-10 underlying cause of death diagnosis code. If you wish to recreate the data yourself from the direct download site, you will need to utilize column positions 142-145 (ICD-9-CM) and 444-447 and restrict the data by age.
 
@@ -43,15 +45,59 @@ Within the example data, there are 2 string variables for ICD-9-CM and ICD-10 co
 ```{r}
 # Show data
 
-load("~/Documents/Clones/pccc/data/death_small_data_example.rdata")
+load("~/Documents/Clones/pccc/data/comparability.rdata")
 
-head(death_small_data_example, 15)
+head(comparability, 15)
 
 ```
 
 To run the PCCC classification on the ICD-9-CM codes:
 
+```{r}
+# Run PCCC on ICD-9-CM codes
 
+ccc_result_icd9 <-
+    ccc(comparability, # get id, dx, and pc columns
+        id      = id,
+        dx_cols = icd9,
+        pc_cols = ,
+        icdv    = 09)
+
+# review results
+head(ccc_result_icd9)
+
+# view number of patients with each CCC
+sum_results <- dplyr::summarize_at(ccc_result_icd9, vars(-id), sum) %>% print.data.frame
+
+# view percent of total population with each CCC
+dplyr::summarize_at(ccc_result_icd9, vars(-id), mean) %>% print.data.frame
+
+
+```
+
+To run the PCCC classification on the ICD-10 codes:
+
+```{r}
+# Run PCCC on ICD-10 codes
+
+ccc_result_icd10 <-
+    ccc(comparability, # get id, dx, and pc columns
+        id      = id,
+        dx_cols = icd9,
+        pc_cols = ,
+        icdv    = 10)
+
+# review results
+head(ccc_result_icd10)
+
+# view number of patients with each CCC
+sum_results <- dplyr::summarize_at(ccc_result_icd10, vars(-id), sum) %>% print.data.frame
+
+# view percent of total population with each CCC
+dplyr::summarize_at(ccc_result_icd10, vars(-id), mean) %>% print.data.frame
+
+
+```
 
 # References
 
