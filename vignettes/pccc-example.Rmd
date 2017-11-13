@@ -30,17 +30,28 @@ library(dplyr)
 
 # Accessing and Preparing the Data
 
-* The Center for Disease Control maintains vital statistics data, including death certificate data. The publically available death certificate data, referred to as the Multiple Cause of Death data, contain ICD diagnostic codes specifying the diseases and conditions leading to each decedent's death. In particular, the 2006 Multiple Cause of Death data contain both ICD-9-CM and ICD-10 codes, making it an ideal example to demonstrate how the PCCC software categorizes ICD codes.
+The Center for Disease Control maintains vital statistics data, including death certificate data. The publically available death certificate data, referred to as the Multiple Cause of Death data, contain ICD diagnostic codes specifying the diseases and conditions leading to each decedent's death. In particular, the 2006 Multiple Cause of Death data contain both ICD-9-CM and ICD-10 codes, making it an ideal example to demonstrate how the PCCC software categorizes ICD codes. Please note that because of the way ICD-9-CM codes are mapped to ICD-10 codes (https://www.cms.gov/Medicare/Coding/ICD10/2018-ICD-10-CM-and-GEMs.html), the calculated frequencies of CCCs may differ between corresponding ICD-9-CM and ICD-10 diagnosis codes for a decedent.
 
-  * The data documentation is available for direct download: ftp://ftp.cdc.gov/pub/Health_Statistics/NCHS/Dataset_Documentation/DVS/natality/UserGuide2006.pdf 
-  * The data are available for direct downlaod: ftp://ftp.cdc.gov/pub/Health_Statistics/NCHS/Datasets/DVS/mortality/mort2006us.zip
-
-* Will add language here about preapring/processing the ICD9 and ICD10 codes for the analysis.
+The data documentation and instructions for direct download are available at: ftp://ftp.cdc.gov/pub/health_statistics/nchs/datasets/comparability/icd9_icd10/ICD9_ICD10_comparability_file_documentation.pdf
+  
+For this illustrative example, we have provided just 2 columns of the data for decedants <=21: the ICD-9-CM underlying cause of death diagnosis code and the ICD-10 underlying cause of death diagnosis code. If you wish to recreate the data yourself from the direct download site, you will need to utilize column positions 142-145 (ICD-9-CM) and 444-447 and restrict the data by age.
 
 # Running the PCCC Software
 
-* Will add language here about running PCCC software for both diagnosis and procedure codes.
-* Will add chunks of corresponding code with tabulated CCC's.
+Within the example data, there are 2 string variables for ICD-9-CM and ICD-10 codes. If you inspect the first 10 rows of the codes, you will notice they conform to the formatting guidelines outlined in the PCCC overview file [pccc-icd-overview](pccc-overview.html).
+
+```{r}
+# Show data
+
+load("~/Documents/Clones/pccc/data/death_small_data_example.rdata")
+
+head(death_small_data_example, 15)
+
+```
+
+To run the PCCC classification on the ICD-9-CM codes:
+
+
 
 # References
 
