@@ -18,7 +18,7 @@ knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
 ```
 
 # Introduction
-This vignette provides an example using actual publically available death certificate data to illustrate how the `pccc` package generates the Complex Chronic Condition Categories (CCC) from ICD-9 and ICD-10 codes. For an overview of the CCC classification system is avaiable, see [pccc-icd-overview](pccc-overview.html).
+This vignette provides an example using publicly available death certificate data to illustrate how the `pccc` package generates the Complex Chronic Condition (CCC) categories from ICD-9-CM and ICD-10-CM codes. For an overview of the CCC classification system, see [pccc-overview](pccc-overview.html).
 
 To evaluate the code chunks in this example you will need to load the
 following R packages.
@@ -30,17 +30,17 @@ library(dplyr)
 
 # Accessing the Data
 
-The Center for Disease Control maintains vital statistics data, including death certificate data. The publically available death certificate data, referred to as the Multiple Cause of Death data, contain ICD diagnostic codes specifying the diseases and conditions leading to each decedent's death. In particular, the 2006 Multiple Cause of Death data contain both ICD-9-CM and ICD-10 codes, making it an ideal example to demonstrate how the PCCC software categorizes ICD codes. Please note that because of the way ICD-9-CM codes are mapped to ICD-10 codes (https://www.cms.gov/Medicare/Coding/ICD10/2018-ICD-10-CM-and-GEMs.html), the calculated frequencies of CCCs may differ between corresponding ICD-9-CM and ICD-10 diagnosis codes for a decedent.
+The Center for Disease Control maintains vital statistics including death certificate data. The publicly available death certificate data, known as the Multiple Cause of Death (MCD) file, contain ICD diagnostic codes specifying the diseases and conditions leading to each decedent's death. In particular, the 2006 MCD data contain both ICD-9-CM and ICD-10 codes, making it an ideal example to demonstrate how the PCCC software categorizes ICD codes. Please note that because of the way ICD-9-CM codes are mapped to ICD-10-CM codes (https://www.cms.gov/Medicare/Coding/ICD10/2018-ICD-10-CM-and-GEMs.html), the calculated frequencies of CCCs may differ between corresponding ICD-9-CM and ICD-10-CM diagnosis codes for a decedent.
 
 The data documentation and instructions for direct download are available at: ftp://ftp.cdc.gov/pub/health_statistics/nchs/datasets/comparability/icd9_icd10/ICD9_ICD10_comparability_file_documentation.pdf
 
 # Preparing the Data
   
-For this illustrative example, we have provided just 2 columns of the data for decedants <=21: the ICD-9-CM underlying cause of death diagnosis code and the ICD-10 underlying cause of death diagnosis code. If you wish to recreate the data yourself from the direct download site, you will need to utilize column positions 142-145 (ICD-9-CM) and 444-447 and restrict the data by age.
+For this illustrative example, we have provided just 2 columns of the data for decedants <=21 years old: the ICD-9-CM underlying cause of death diagnosis code and the ICD-10-CM underlying cause of death diagnosis code. If you wish to recreate the data yourself from the direct download site, you will need to utilize column positions 142-145 (ICD-9-CM) and 444-447 and restrict the data to records with age <21 years.
 
 # Running the PCCC Software
 
-Within the example data, there are 2 string variables for ICD-9-CM and ICD-10 codes. If you inspect the first 10 rows of the codes, you will notice they conform to the formatting guidelines outlined in the PCCC overview file [pccc-icd-overview](pccc-overview.html).
+Within the example data, there are 2 string variables for ICD-9-CM and ICD-10 codes. If you inspect the first 10 rows of the codes, you will notice they conform to the formatting guidelines outlined in the PCCC overview file [pccc-overview](pccc-overview.html).
 
 ```{r}
 # Show data
@@ -75,10 +75,10 @@ dplyr::summarize_at(ccc_result_icd9, vars(-id), mean) %>% print.data.frame
 
 ```
 
-To run the PCCC classification on the ICD-10 codes:
+To run the PCCC classification on the ICD-10-CM codes:
 
 ```{r}
-# Run PCCC on ICD-10 codes
+# Run PCCC on ICD-10-CM codes
 
 ccc_result_icd10 <-
     ccc(comparability, # get id, dx, and pc columns
