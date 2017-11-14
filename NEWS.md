@@ -8,8 +8,8 @@
 # Version 0.2.0
 
 ## API Change
-* The `ccc` function only takes one entry for codes.  There is no need to have
-  the diagnostic and procedure codes inputted seperatly.
+* The `ccc` function only takes one entry for codes.  There is no need to input
+  the diagnostic and procedure codes seperately.
 
 ## Non-User Visible Changes
 * Redesign of the C++ code.  Improved speed, fewer arguments, fewer operations.

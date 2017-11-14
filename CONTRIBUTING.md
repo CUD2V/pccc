@@ -28,8 +28,9 @@ a diagnostic or procedure code is in one of the CCC categories.
 The constructor for the `ccc_codes` class sets the version and the vector of strings.
 The vectors of ICD strings are defined by version number.  These vectors were
 copied from the SAS code found in `inst/pccc_references/ccc_version2_sas.sas`.
-Edit accordingly.  If/when ICD-11 is released extend this constructor.  All
-other functions should just work.
+In building this package, errors were discovered as described in the research letter
+that reported this work: [insert citation here]. If/when ICD-11 is released the
+`ccc_codes` class constructor will be extended.  All other functions should just work.
 
 The functions for determining CCC categories, e.g., `int ccc_codes.neuromusc(x)`
 all have a similar design.  Given a vector of diagnostic codes `x`, the function
@@ -39,9 +40,9 @@ procedures codes.  If no match is found the function returns 0.  By design, the
 comparisons stop once a match is found.
 
 The `ccc_mat_rcpp` function creates one instance of a `codes` object and then
-use the member functions to determine if any CCC category exists in a vector of
+uses the member functions to determine if any CCC category exists in a vector of
 diagnostic and procedure codes.
 
 The exported `ccc` function passes the diagnostic and procedure codes for
 multiple subsets to the `ccc_mat_rcpp` function and returns a `data.frame` with
-the subject `id`s and ccc flags.
+the subject `id`s and CCC flags.

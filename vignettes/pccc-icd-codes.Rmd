@@ -1,10 +1,10 @@
 ---
 title: "pccc-icd-codes"
 author: 
-- Peter DeWitt
 - James Feinstein
-- Tell Bennett
+- Peter DeWitt
 - Seth Russell
+- Tell Bennett
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >

@@ -24,7 +24,7 @@ are built with a C++ back-end, they are very computationally efficient.
 
 The PCCC package uses the R library [testthat](http://testthat.r-lib.org) for unit tests. All tests are automatically run upon running the "devtools::install_github" command shown below.
 
-Some additional tests on large datasets were developed by Peter DeWitte and are avaialble at https://github.com/dewittpe/pccc-testing. As 2 of the 3 require special license agreements for data access, they are not included with this repository.
+Some additional tests on large datasets were developed by Peter DeWitt and are available at https://github.com/dewittpe/pccc-testing. As 2 of the 3 require special license agreements for data access, they are not included with this repository.
 
 ## Installation
 This package is currently only on github.  Adding to The Comprehensive R Archive
