@@ -83,7 +83,7 @@ To run the PCCC classification on the ICD-10 codes:
 ccc_result_icd10 <-
     ccc(comparability, # get id, dx, and pc columns
         id      = id,
-        dx_cols = icd9,
+        dx_cols = icd10,
         pc_cols = ,
         icdv    = 10)
 
