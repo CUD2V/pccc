@@ -36,13 +36,13 @@ library(pccc)
 Call get_codes function:
 
 ```{r}
-get_codes(9)   # ICD-9
-get_codes(10)  # ICD-10
+get_codes(9)   # ICD-9-CM
+get_codes(10)  # ICD-10-CM
 ```
 
 `get_codes` returns a matrix of character vectors.  The
 categories of CCC are the rows and the diagnostic (`dx`) or
-procedure (`pc`) codes are the columns.  If you need to view the ICD-9 codes for `cvd`, for
+procedure (`pc`) codes are the columns.  If you need to view the ICD-9-CM codes for `cvd`, for
 example, subset as usual for matrices.
 ```{r}
 get_codes(9)["cvd", ]
@@ -57,133 +57,133 @@ as.data.frame(get_codes(9))
 ```
 
 # Neurologic and Neuromuscular
-## ICD-9
+## ICD-9-CM
 ```{r}
 get_codes(9)["neuromusc", ]
 ```
 
-## ICD-10
+## ICD-10-CM
 ```{r}
 get_codes(10)["neuromusc", ]
 ```
 
 # Cardiovascular
-## ICD-9
+## ICD-9-CM
 ```{r}
 get_codes(9)["cvd", ]
 ```
 
-## ICD-10
+## ICD-10-CM
 ```{r}
 get_codes(10)["cvd", ]
 ```
 
 # Respiratory
-## ICD-9
+## ICD-9-CM
 ```{r}
 get_codes(9)["respiratory", ]
 ```
 
-## ICD-10
+## ICD-10-CM
 ```{r}
 get_codes(10)["respiratory", ]
 ```
 
 # Renal and Urologic
-## ICD-9
+## ICD-9-CM
 ```{r}
 get_codes(9)["renal", ]
 ```
 
-## ICD-10
+## ICD-10-CM
 ```{r}
 get_codes(10)["renal", ]
 ```
 
 # Gastrointestinal
-## ICD-9
+## ICD-9-CM
 ```{r}
 get_codes(9)["gi", ]
 ```
 
-## ICD-10
+## ICD-10-CM
 ```{r}
 get_codes(10)["gi", ]
 ```
 
 # Hematologic or Immunologic
-## ICD-9
+## ICD-9-CM
 ```{r}
 get_codes(9)["hemato_immu", ]
 ```
 
-## ICD-10
+## ICD-10-CM
 ```{r}
 get_codes(10)["hemato_immu", ]
 ```
 
 # Metabolic
-## ICD-9
+## ICD-9-CM
 ```{r}
 get_codes(9)["metabolic", ]
 ```
 
-## ICD-10
+## ICD-10-CM
 ```{r}
 get_codes(10)["metabolic", ]
 ```
 
 # Other Congenital or Genetic Defect
-## ICD-9
+## ICD-9-CM
 ```{r}
 get_codes(9)["congeni_genetic", ]
 ```
 
-## ICD-10
+## ICD-10-CM
 ```{r}
 get_codes(10)["congeni_genetic", ]
 ```
 
 # Malignancy
-## ICD-9
+## ICD-9-CM
 ```{r}
 get_codes(9)["malignancy", ]
 ```
 
-## ICD-10
+## ICD-10-CM
 ```{r}
 get_codes(10)["malignancy", ]
 ```
 
 # Premature and Neonatal
-## ICD-9
+## ICD-9-CM
 ```{r}
 get_codes(9)["neonatal", ]
 ```
 
-## ICD-10
+## ICD-10-CM
 ```{r}
 get_codes(10)["neonatal", ]
 ```
 
 # Technology Dependency
-## ICD-9
+## ICD-9-CM
 ```{r}
 get_codes(9)["tech_dep", ]
 ```
 
-## ICD-10
+## ICD-10-CM
 ```{r}
 get_codes(10)["tech_dep", ]
 ```
 
 # Transplant
-## ICD-9
+## ICD-9-CM
 ```{r}
 get_codes(9)["transplant", ]
 ```
 
-## ICD-10
+## ICD-10-CM
 ```{r}
 get_codes(10)["transplant", ]
 ```
