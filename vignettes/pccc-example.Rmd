@@ -35,7 +35,7 @@ The data documentation and instructions for direct download are available at: ft
 
 # Preparing the Data
   
-For this illustrative example, we have provided just 2 columns of the data for decedants <=21 years old: the ICD-9-CM underlying cause of death diagnosis code and the ICD-10-CM underlying cause of death diagnosis code. If you wish to recreate the data yourself from the direct download site, you will need to utilize column positions 142-145 (ICD-9-CM) and 444-447 (ICD-10) and restrict the data to records with age <=21 years (column positions 64 - 66).
+For this illustrative example, we have provided just 2 columns of the data for decedents <=21 years old: the ICD-9-CM underlying cause of death diagnosis code and the ICD-10-CM underlying cause of death diagnosis code. If you wish to recreate the data yourself from the direct download site, you will need to utilize column positions 142-145 (ICD-9-CM) and 444-447 (ICD-10) and restrict the data to records with age <=21 years (column positions 64 - 66).
 
 Here's a sample of how the file could be read and processed:
 
