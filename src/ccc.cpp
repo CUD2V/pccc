@@ -43,6 +43,7 @@ Rcpp::DataFrame ccc_mat_rcpp(Rcpp::CharacterMatrix& dx, Rcpp::CharacterMatrix& p
     if (sum(outmat.row(i))) {
       outmat(i, 12) = 1;
     }
+    Rcpp::checkUserInterrupt();
   }
 
   outmat.attr("dimnames") = Rcpp::List::create(Rcpp::CharacterVector::create(),
