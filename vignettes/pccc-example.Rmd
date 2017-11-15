@@ -29,7 +29,7 @@ library(dplyr)
 
 # Accessing the Data
 
-The Center for Disease Control maintains vital statistics including death certificate data. The publicly available death certificate data, known as the Multiple Cause of Death (MCD) file, contain ICD diagnostic codes specifying the diseases and conditions leading to each decedent's death. In particular, the 2006 MCD data contain both ICD-9-CM and ICD-10 codes, making it an ideal example to demonstrate how the PCCC software categorizes ICD codes. Please note that because of the way ICD-9-CM codes are mapped to ICD-10-CM codes (https://www.cms.gov/Medicare/Coding/ICD10/2018-ICD-10-CM-and-GEMs.html), the calculated frequencies of CCCs may differ between corresponding ICD-9-CM and ICD-10-CM diagnosis codes for a decedent.
+The Center for Disease Control maintains vital statistics including death certificate data. The publicly available death certificate data, known as the Multiple Cause of Death (MCD) file, contain ICD diagnostic codes specifying the diseases and conditions leading to each decedent's death. In particular, the 1996 MCD data contain both ICD-9-CM and ICD-10 codes, making it an ideal example to demonstrate how the PCCC software categorizes ICD codes. Please note that because of the way ICD-9-CM codes are mapped to ICD-10-CM codes (https://www.cms.gov/Medicare/Coding/ICD10/2018-ICD-10-CM-and-GEMs.html), the calculated frequencies of CCCs may differ between corresponding ICD-9-CM and ICD-10-CM diagnosis codes for a decedent.
 
 The data documentation and instructions for direct download are available at: ftp://ftp.cdc.gov/pub/health_statistics/nchs/datasets/comparability/icd9_icd10/ICD9_ICD10_comparability_file_documentation.pdf
 
@@ -79,7 +79,7 @@ Within the example data, there are 2 string variables for ICD-9-CM and ICD-10 co
 
 ```{r}
 # Show data
-head(pccc::comparability, 15)
+head(pccc::comparability, 10)
 
 ```
 
