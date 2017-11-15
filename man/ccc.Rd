@@ -36,7 +36,7 @@ must be formatted as follows:
 less than 100 should be left padded with 1 zero.
 }
 
-See See `vignette("pccc-overview")` for more details.
+See `vignette("pccc-overview")` for more details.
 }
 \examples{
 eg_data <-

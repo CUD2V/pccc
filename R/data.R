@@ -20,7 +20,7 @@
 #'   \item{dx7}{a ICD 9 diagnosis code}
 #'   \item{dx8}{a ICD 9 diagnosis code}
 #'   \item{dx9}{a ICD 9 diagnosis code}
-#'   \item{dx10}{a ICD 9 diagnosis code} 
+#'   \item{dx10}{a ICD 9 diagnosis code}
 #'   \item{pc1}{a ICD 9 procedure codes}
 #'   \item{pc2}{a ICD 9 procedure codes}
 #'   \item{pc3}{a ICD 9 procedure codes}
@@ -67,7 +67,7 @@
 #'   \item{dx7}{a ICD 10 diagnosis code}
 #'   \item{dx8}{a ICD 10 diagnosis code}
 #'   \item{dx9}{a ICD 10 diagnosis code}
-#'   \item{dx10}{a ICD 10 diagnosis code} 
+#'   \item{dx10}{a ICD 10 diagnosis code}
 #'   \item{pc1}{a ICD 10 procedure codes}
 #'   \item{pc2}{a ICD 10 procedure codes}
 #'   \item{pc3}{a ICD 10 procedure codes}
@@ -91,3 +91,20 @@
 #' }
 #'
 "pccc_icd10_dataset"
+
+#' Multiple Cause of Death (MCOD) file extract
+#'
+#' The Center for Disease Control has made publically available death certificate data.
+#' This data set is a subset of the 2006 MCOD file for decedents aged <= 21 showing just
+#' the underlying cause of death diagnosis code in ICD-9-CM and ICD-10.
+#'
+#' See `vignette("pccc-example")` for more details about the MCOD source file.
+#'
+#' @format A data frame with 65037 rows and 3 variables.
+#' \describe{
+#'   \item{id}{Sequentialy assigned patient identifier}
+#'   \item{icd9}{Underlying Cause of Death ICD 9 CM diagnosis code}
+#'   \item{icd10}{Underlying Cause of Death ICD 10 diagnosis code}
+#' }
+#'
+"comparability"

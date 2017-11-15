@@ -12,7 +12,7 @@
 #' less than 100 should be left padded with 1 zero.
 #' }
 #'
-#' See See `vignette("pccc-overview")` for more details.
+#' See `vignette("pccc-overview")` for more details.
 #'
 #' @references
 #' See \code{\link{pccc-package}} for published paper on the topic of identifying

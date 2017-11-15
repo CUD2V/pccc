@@ -18,7 +18,7 @@ ten "other data" values, specifically:
   \item{dx7}{a ICD 10 diagnosis code}
   \item{dx8}{a ICD 10 diagnosis code}
   \item{dx9}{a ICD 10 diagnosis code}
-  \item{dx10}{a ICD 10 diagnosis code} 
+  \item{dx10}{a ICD 10 diagnosis code}
   \item{pc1}{a ICD 10 procedure codes}
   \item{pc2}{a ICD 10 procedure codes}
   \item{pc3}{a ICD 10 procedure codes}

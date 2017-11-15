@@ -74,7 +74,7 @@ Specific rules to format ICD Codes correctly:
     
 Potential issues with imporperly formatted ICD codes:
 
-* All codes in all categories employ "starts with substring" matching logic. Because of this, if a code to be evaluated starts with a code listed in one of the CCC categories, a match will be found. This means that if a bad ICD code is provided (such as ICD-9-CM code 0492,25042) PCCC would indicate a match for the Neuromuscular CCC.
+* All codes in all categories employ "starts with substring" matching logic. Because of this, if a code to be evaluated starts with a code listed in one of the CCC categories, a match will be found. As an example, if a record with an ICD-9-CM procedure code of "0492,25042" is passed due to failure to properly parse an input file, PCCC would indicate a match for the Neuromuscular CCC since one of the Neuromuscular CCC procedure substrings is 0492.
 * CCCs are matched in the order of the CCCs shown in the "Logic employed" section. Once a match is found, other categories are not evaluated with the exception of Technology Dependency and Transplant CCCs.
 * If there are changes in either ICD-9-CM or ICD-10-CM, this library may require updating to continue functioning correctly.
 
