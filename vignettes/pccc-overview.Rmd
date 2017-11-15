@@ -2,9 +2,9 @@
 title: "Pediatric Complex Chronic Conditions"
 author: 
 - Peter DeWitt
+- Seth Russell
 - James Feinstein
 - Tell Bennett
-- Seth Russell
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -51,7 +51,8 @@ There are 12 total categories of CCCs used in this package. The first group of 1
 * Malignancy
 * Premature and Neonatal
 
-The last 2 can be be selected in addition to the above codes - so for example, one ICD code could be both a Gastrointestinal and Technology Dependence:
+The last 2 can be be selected in addition to the above codes - for example, one ICD code could generate
+CCC categorization as both Gastrointestinal and Technology Dependency:
 
 * Technology Dependency
 * Transplant
@@ -59,23 +60,23 @@ The last 2 can be be selected in addition to the above codes - so for example, o
 To see actual specific ICD codes by category, see [pccc-icd-codes](pccc-icd-codes.html).
 
 # Generating CCC categories from ICD codes
-The `ccc` function is the workhorse here. Simply put, a user will provide ICD codes as strings and `ccc` will return CCC categories. All codes in all categories employ "starts with substring" matching logic. CCC codes for ICD9 are matched on substrings and ICD 10 codes are matched on full codes, but all CCC categories use the same "starts with substring” matching logic.
+The `ccc` function is the workhorse here. Simply put, a user will provide ICD codes as strings and `ccc` will return CCC categories. All codes in all categories employ "starts with substring" matching logic. CCC codes for ICD-9-CM are matched on substrings and ICD 10 codes are matched on full codes, but all CCC categories use the same "starts with substring" matching logic.
 
 **Users of the `pccc` package will need to pre-process the ICD-9 and ICD-10 codes in their data so that the strings are formatted in the way that the `pccc` package will recognize them.** 
 
-Specific rules to format ICD Codes correclty:
+Specific rules to format ICD Codes correctly:
 
 * Codes should be alphanumeric only (e.g. _Diabetes with renal manifestations, type II or unspecified type, uncontrolled_ should be sent as 25042)
 * Codes should NOT contain periods, spaces or other separator characters periods (e.g. ICD-9-CM 04.92 will only be matched by the string "0492")
-* ICD 9 codes should be at a minimum 3 digits long:
+* ICD-9-CM codes should be at a minimum 3 digits long:
     * Codes less than 10 should be left padded with 2 zeros. E.g. _Cholera due to vibrio cholerae el tor_ should be sent as 0011) 
     * Codes less than 100 should be left padded with 1 zero. E.g. _Whooping cough_ should be sent as 033)
     
 Potential issues with imporperly formatted ICD codes:
 
-* All codes in all categories employ "starts with substring" matching logic. Because of this, if a code to be evaluated starts with a code listed in one of the CCC categories, a match will be found. This means that if a bad ICD codes is provided (such as ICD9 code 0492,25042) PCCC would indicate a match for the Neuromuscular CCC.
-* CCCs are matched in the order of the CCCs shown in the “Logic employed” section. Once a match is found, other categories are not evaluated with the exception of Technology Dependencies and Transplant CCCs.
-* If there are changes in either ICD9 or ICD10, this library may require updating to continue functioning correctly.
+* All codes in all categories employ "starts with substring" matching logic. Because of this, if a code to be evaluated starts with a code listed in one of the CCC categories, a match will be found. This means that if a bad ICD code is provided (such as ICD-9-CM code 0492,25042) PCCC would indicate a match for the Neuromuscular CCC.
+* CCCs are matched in the order of the CCCs shown in the "Logic employed" section. Once a match is found, other categories are not evaluated with the exception of Technology Dependency and Transplant CCCs.
+* If there are changes in either ICD-9-CM or ICD-10-CM, this library may require updating to continue functioning correctly.
 
 Users of PCCC may find the R Package [ICD](https://jackwasey.github.io/icd/) useful.
 
@@ -99,9 +100,9 @@ ccc(dat,
 
 ## Extended Example
 
-This example used a tool developed by Seth Russell (available at [icd_file_generator](https://github.com/magic-lantern/icd_file_generator)) to create a sample data file for ICD9 and ICD10. The generated data files contain randomly generated ICD codes for 1,000 patients and is comprised of 10 columns of diagnosis codes (d_cols), 10 columns of procedure codes (p_cols), and 10 columns of other data (g_cols).
+This example used a tool developed by Seth Russell (available at [icd_file_generator](https://github.com/magic-lantern/icd_file_generator)) to create a sample data file for ICD-9-CM and ICD-10-CM. The generated data files contain randomly generated ICD codes for 1,000 patients and is comprised of 10 columns of diagnosis codes (d_cols), 10 columns of procedure codes (p_cols), and 10 columns of other data (g_cols).
 
-Sample of how ICD9 test file was generated:
+Sample of how ICD-9-CM test file was generated:
 
 ```{r eval = FALSE}
 pccc_icd9_dataset <- generate_sample(
