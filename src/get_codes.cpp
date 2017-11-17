@@ -79,7 +79,7 @@ Rcpp::List get_codes(int icdv) {
           Rcpp::wrap(cds.get_pc_transplant())
             );
 
-  size_t i=0;
+  int i=0;
   Rcpp::List rtn(24);
 
   for(i=0; i<dx.length(); ++i) {

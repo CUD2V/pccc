@@ -20,7 +20,7 @@ Rcpp::DataFrame ccc_mat_rcpp(Rcpp::CharacterMatrix& dx, Rcpp::CharacterMatrix& p
   std::vector<std::string> dx_str;
   std::vector<std::string> pc_str;
 
-  for (size_t i=0; i < dx.nrow(); ++i) {
+  for (int i=0; i < dx.nrow(); ++i) {
     dx_row = dx.row(i);
     pc_row = pc.row(i);
     dx_str = Rcpp::as<std::vector<std::string>>(dx_row);
