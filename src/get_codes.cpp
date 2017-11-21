@@ -13,20 +13,20 @@ const Rcpp::CharacterVector codes::col_names = Rcpp::CharacterVector::create("ne
 //' categories.
 //'
 //'  The CCC categories for diagnostic and procedure codes are:
-//'  \tabular{lcc}{
-//'  category        \tab \code{dx} \tab \code{pc} \cr
-//'  neuromuscul     \tab      X    \tab      X    \cr
-//'  cvd             \tab      X    \tab      X    \cr
-//'  respiratory     \tab      X    \tab      X    \cr
-//'  renal           \tab      X    \tab      X    \cr
-//'  gi              \tab      X    \tab      X    \cr
-//'  hemato_immu     \tab      X    \tab      X    \cr
-//'  metabolic       \tab      X    \tab      X    \cr
-//'  congeni_genetic \tab      X    \tab           \cr
-//'  malignancy      \tab      X    \tab      X    \cr
-//'  neonatal        \tab      X    \tab           \cr
-//'  tech_dep        \tab      X    \tab      X    \cr
-//'  transplant      \tab      X    \tab      X    \cr
+//'  \tabular{lcccc}{
+//'  category        \tab \code{dx} \tab \code{dx_fixed} \tab \code{pc} \tab \code{pc_fixed} \cr
+//'  neuromuscul     \tab      X    \tab      X           \tab     X    \tab        \cr
+//'  cvd             \tab      X    \tab      X           \tab     X    \tab        \cr
+//'  respiratory     \tab      X    \tab      X           \tab     X    \tab        \cr
+//'  renal           \tab      X    \tab                  \tab     X    \tab        \cr
+//'  gi              \tab      X    \tab                  \tab     X    \tab        \cr
+//'  hemato_immu     \tab      X    \tab                  \tab     X    \tab        \cr
+//'  metabolic       \tab      X    \tab                  \tab     X    \tab      X \cr
+//'  congeni_genetic \tab      X    \tab                  \tab          \tab        \cr
+//'  malignancy      \tab      X    \tab                  \tab     X    \tab        \cr
+//'  neonatal        \tab      X    \tab                  \tab          \tab        \cr
+//'  tech_dep        \tab      X    \tab                  \tab     X    \tab        \cr
+//'  transplant      \tab      X    \tab                  \tab     X    \tab        \cr
 //'  }
 //'
 //' The ICD codes were taken from the SAS macro provided by the reference paper.
@@ -64,6 +64,20 @@ Rcpp::List get_codes(int icdv) {
           Rcpp::wrap(cds.get_dx_tech_dep()),
           Rcpp::wrap(cds.get_dx_transplant()));
 
+  Rcpp::List dx_fixed = Rcpp::List::create(
+    Rcpp::wrap(cds.get_dx_fixed_neuromusc()),
+    Rcpp::wrap(cds.get_dx_fixed_cvd()),
+    Rcpp::wrap(cds.get_dx_fixed_respiratory()),
+    Rcpp::CharacterVector::create(),
+    Rcpp::CharacterVector::create(),
+    Rcpp::CharacterVector::create(),
+    Rcpp::CharacterVector::create(),
+    Rcpp::CharacterVector::create(),
+    Rcpp::CharacterVector::create(),
+    Rcpp::CharacterVector::create(),
+    Rcpp::CharacterVector::create(),
+    Rcpp::CharacterVector::create());
+
   Rcpp::List pc = Rcpp::List::create(
           Rcpp::wrap(cds.get_pc_neuromusc()),
           Rcpp::wrap(cds.get_pc_cvd()),
@@ -76,24 +90,36 @@ Rcpp::List get_codes(int icdv) {
           Rcpp::wrap(cds.get_pc_malignancy()),
           Rcpp::CharacterVector::create(),
           Rcpp::wrap(cds.get_pc_tech_dep()),
-          Rcpp::wrap(cds.get_pc_transplant())
-            );
+          Rcpp::wrap(cds.get_pc_transplant()));
 
-  int i=0;
-  Rcpp::List rtn(24);
+  Rcpp::List pc_fixed = Rcpp::List::create(
+    Rcpp::CharacterVector::create(),
+    Rcpp::CharacterVector::create(),
+    Rcpp::CharacterVector::create(),
+    Rcpp::CharacterVector::create(),
+    Rcpp::CharacterVector::create(),
+    Rcpp::CharacterVector::create(),
+    Rcpp::wrap(cds.get_pc_fixed_metabolic()),
+    Rcpp::CharacterVector::create(),
+    Rcpp::CharacterVector::create(),
+    Rcpp::CharacterVector::create(),
+    Rcpp::CharacterVector::create(),
+    Rcpp::CharacterVector::create());
 
-  for(i=0; i<dx.length(); ++i) {
-    rtn[i] = dx[i];
-  }
-  for(i=0; i<pc.length(); ++i) {
-    rtn[12 + i] = pc[i];
+  Rcpp::List rtn(48);
+
+  for(int i=0; i<dx.length(); ++i) {
+    rtn[i]      = dx[i];
+    rtn[12 + i] = dx_fixed[i];
+    rtn[24 + i] = pc[i];
+    rtn[36 + i] = pc_fixed[i];
   }
 
   rtn.attr("version") = icdv;
-  rtn.attr("dim") = Rcpp::NumericVector::create(12, 2);
+  rtn.attr("dim") = Rcpp::NumericVector::create(12, 4);
   rtn.attr("dimnames") = Rcpp::List::create(
       codes::col_names,
-      Rcpp::CharacterVector::create("dx", "pc")
+      Rcpp::CharacterVector::create("dx", "dx_fixed", "pc", "pc_fixed")
       );
   rtn.attr("class") = "pccc_codes";
 

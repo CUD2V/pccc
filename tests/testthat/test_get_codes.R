@@ -32,17 +32,57 @@ for (code in c(9, 10)) {
     )
   })
 
-  test_that("Checking to see that most CCCs have procedure codes.", {
+  test_that("Checking to see that 10 CCCs have procedure codes.", {
     expect_true(
       sum(
         unlist(
           lapply(rownames(get_codes(code)), function(rn) {
-            length(get_codes(code)[[rn, "pc"]]) > 1
+            length(get_codes(code)[[rn, "pc"]]) >= 1
           })
         ),
         na.rm = TRUE) == 10
     )
   })
+
+  if(code == 9) {
+    test_that("Checking to see that 1 ICD 9 CCCs has fixed procedure codes.", {
+      expect_true(
+        sum(
+          unlist(
+            lapply(rownames(get_codes(code)), function(rn) {
+              length(get_codes(code)[[rn, "pc_fixed"]]) >= 1
+            })
+          ),
+          na.rm = TRUE) == 1
+      )
+    })
+
+    test_that("Checking to see that 3 ICD 9 CCCs have fixed diagnosis codes.", {
+      expect_true(
+        sum(
+          unlist(
+            lapply(rownames(get_codes(code)), function(rn) {
+              length(get_codes(code)[[rn, "dx_fixed"]]) >= 1
+            })
+          ),
+          na.rm = TRUE) == 3
+      )
+    })
+  }
+
+  if(code == 10) {
+    test_that("Checking to see that 3 ICD 9 CCCs have fixed diagnosis codes.", {
+      expect_true(
+        sum(
+          unlist(
+            lapply(rownames(get_codes(code)), function(rn) {
+              length(get_codes(code)[[rn, "dx_fixed"]]) >= 1
+            })
+          ),
+          na.rm = TRUE) == 1
+      )
+    })
+  }
 
   test_that("Checking to see that a code is returned - testing first for diagnosis code from first CCC.", {
     expect_output(
@@ -56,7 +96,7 @@ for (code in c(9, 10)) {
   test_that("Checking to see that correct CCC code types are returned.", {
     expect_equal(
       colnames((get_codes(code))),
-      c("dx", "pc")
+      c("dx", "dx_fixed", "pc", "pc_fixed")
     )
   })
 }

@@ -11,13 +11,13 @@ codes::codes(int v)
   }
 
   if (version == 9) {
-    dx_neuromusc = {"3180","3181","3182","330","3311","3314","33189","3319","3320","3321",
+    dx_neuromusc = {"3180","3181","3182","330","331","3320","3321",
       "3330","3332","3334","3335","3337","3339","334","335","343","34501","34581","3590","3591",
       "35921","35922","35923","35929","3593","3361","3368","3379","3418","34290","3440","34481","3449","34511",
       "3453","34541","34561","34571","34591","3481","3484","3491","43401","43491","740",
       "741","742","7595","78003","9962","99663","V452","V5301","V5302"};
 
-    //dx_fixed_neuromusc = {"359","3592"};
+    dx_fixed_neuromusc = {"359","3592"};
 
     dx_cvd = {"4161","4168","4169","4240","4258","4242","4243","4250","4251","4252","4253",
       "4254","426","4270","4271","4272","4273","4274","4276","4277","4278","4279","4280","42883",
@@ -25,12 +25,12 @@ codes::codes(int v)
       "74781","74789","9960","9961","99661","99662","V421","V422","V432","V433","V450","V4581",
       "V533"};
 
-    //dx_fixed_cvd = {"416"}
+    dx_fixed_cvd = {"416"};
 
     dx_respiratory = {"32725","4160","4162","51630","51631","51637","51884","5190","2770","748","7704","V426",
       "V440","V4576","V460","V461","V550"};
 
-    //dx_fixed_respiratory = {"5163"}
+    dx_fixed_respiratory = {"5163"};
 
     dx_renal = {"34461","585","5964","59653","59654","753","99668","V420","V445","V446",
       "V451","V4573","V4574","V536","V555","V556","V56"};
@@ -93,7 +93,7 @@ codes::codes(int v)
     pc_metabolic = {"064","0652","0681","073","0764","0765","0768","0769","6241","645","6551",
       "6553","6561","6563","6841","6849","6851","6859","6861","6869","6871","6879","8606"};
 
-    //pc_fixed_metabolic = {"624}
+    pc_fixed_metabolic = {"624"};
 
     pc_malignancy = {"0010","9925"};
 
@@ -125,12 +125,12 @@ codes::codes(int v)
       "G254","G255","G2581","G2582","G2583","G2589","G259","R403","G9782","T8509XA",
       "T85190A","T85192A","T85199A","T8579XA","Z982","Z4541","Z4542", "Q851"};
 
-    //dx_fixed_neuromusc = {"G80"}
+    dx_fixed_neuromusc = {"G80"};
 
     dx_cvd = {"I270","I271","I272","I2781","I2789","I279","I340","I348","I360","I368","I370",
       "I378","I42","I43","I44","I45","I47","I48","I490","I491","I493","I494","I495","I498","I499",
       "I509","I515","I517","I5181","I63139","I63239","Q20","Q212","Q213","Q214","Q218","Q219","Q22","Q23",
-      "Q24","Q251","Q252","Q253","Q254","Q255","Q256","Q257","Q259","Q26","R001","Q282","Q283","Q289",
+      "Q24","Q251","Q252","Q253","Q254","Q255","Q256","Q257","Q258","Q259","Q26","Q268","R001","Q282","Q283","Q289",
       "Z951","T82519A","T82529A","T82539A","T82599A","T82110A","T82111A","T82120A","T82121A",
       "T82190A","T82191A","T8201XA","T8202XA","T8203XA","T8209XA","T82211A","T82212A","T82213A",
       "T82218A","T82221A","T82222A","T82223A","T82228A","T82518A","T82528A","T82538A","T82598A",
@@ -429,19 +429,41 @@ int codes::find_match(const std::vector<std::string>& dx,
   return 0;
 }
 
+
+int codes::find_fixed_match(const std::vector<std::string>& input,
+                            const std::vector<std::string>& ccc)
+{
+  size_t input_itr, ccc_itr;
+
+  for (input_itr = 0; input_itr < input.size(); ++input_itr) {
+    for (ccc_itr = 0; ccc_itr < ccc.size(); ++ccc_itr) {
+      if (input[input_itr] == ccc[ccc_itr]) {
+        //Rcpp::Rcout << "found fixed match: patient code " << input[input_itr] << " CCC match: " << ccc[ccc_itr] << "\n";
+        return 1;
+      }
+    }
+  }
+
+  return 0;
+}
+
+
 int codes::neuromusc(std::vector<std::string>& dx, std::vector<std::string>& pc)
 {
-  return find_match(dx, pc, dx_neuromusc, pc_neuromusc);
+  return find_match(dx, pc, dx_neuromusc, pc_neuromusc) ||
+         find_fixed_match(dx, dx_fixed_neuromusc);
 }
 
 int codes::cvd(std::vector<std::string>& dx, std::vector<std::string>& pc)
 {
-  return find_match(dx, pc, dx_cvd, pc_cvd);
+  return find_match(dx, pc, dx_cvd, pc_cvd) ||
+         find_fixed_match(dx, dx_fixed_cvd);
 }
 
 int codes::respiratory(std::vector<std::string>& dx, std::vector<std::string>& pc)
 {
-  return find_match(dx, pc, dx_respiratory, pc_respiratory);
+  return find_match(dx, pc, dx_respiratory, pc_respiratory) ||
+         find_fixed_match(dx, dx_fixed_respiratory);
 }
 
 int codes::renal(std::vector<std::string>& dx, std::vector<std::string>& pc)
@@ -461,12 +483,12 @@ int codes::hemato_immu(std::vector<std::string>& dx, std::vector<std::string>& p
 
 int codes::metabolic(std::vector<std::string>& dx, std::vector<std::string>& pc)
 {
-  return find_match(dx, pc, dx_metabolic, pc_metabolic);
+  return find_match(dx, pc, dx_metabolic, pc_metabolic) ||
+         find_fixed_match(pc, pc_fixed_metabolic);
 }
 
 int codes::congeni_genetic(std::vector<std::string>& dx)
 {
-  std::vector<std::string> empty;
   return find_match(dx, empty, dx_congeni_genetic, empty);
 }
 
@@ -477,7 +499,6 @@ int codes::malignancy(std::vector<std::string>& dx, std::vector<std::string>& pc
 
 int codes::neonatal(std::vector<std::string>& dx)
 {
-  std::vector<std::string> empty;
   return find_match(dx, empty, dx_neonatal, empty);
 }
 
