@@ -56,7 +56,7 @@ The last 2 can be be selected in addition to the above codes - so for example, o
 * Technology Dependency
 * Transplant
 
-To see actual specific ICD codes by category, see [pccc-icd-codes](pccc-icd-codes.html).
+To see actual specific ICD codes by category, see [pccc-icd-codes](https://github.com/dewittpe/pccc/blob/master/vignettes/pccc-icd-codes.Rmd).
 
 # Generating CCC categories from ICD codes
 The `ccc` function is the workhorse here. Simply put, a user will provide ICD codes as strings and `ccc` will return CCC categories. All codes in all categories employ "starts with substring" matching logic. CCC codes for ICD9 are matched on substrings and ICD 10 codes are matched on full codes, but all CCC categories use the same "starts with substring” matching logic.
@@ -68,8 +68,8 @@ Specific rules to format ICD Codes correclty:
 * Codes should be alphanumeric only (e.g. _Diabetes with renal manifestations, type II or unspecified type, uncontrolled_ should be sent as 25042)
 * Codes should NOT contain periods, spaces or other separator characters periods (e.g. ICD-9-CM 04.92 will only be matched by the string "0492")
 * ICD 9 codes should be at a minimum 3 digits long:
-    * Codes less than 10 should be left padded with 2 zeros. E.g. _Cholera due to vibrio cholerae el tor_ should be sent as 0011) 
-    * Codes less than 100 should be left padded with 1 zero. E.g. _Whooping cough_ should be sent as 033)
+    * Codes less than 10 should be left padded with 2 zeros. (E.g. _Cholera due to vibrio cholerae el tor_ should be sent as 0011 where original ICD-9-CM = 001.1) 
+    * Codes less than 100 should be left padded with 1 zero. (E.g. _Whooping cough_ should be sent as 033 where original ICD-9-CM = 033.9)
     
 Potential issues with imporperly formatted ICD codes:
 
@@ -81,7 +81,7 @@ Users of PCCC may find the R Package [ICD](https://jackwasey.github.io/icd/) use
 
 # PCCC Examples
 
-To illustrate the how the input formatting impacts the identification of a CCC, consider the data `data.frame` named `dat` below. These data have information about three patients (A-C). Each subject has the same ICD-9-CM diagnosis code (e.g. _Hypertrophic obstructive cardiomyopathy_, which should be sent as 4251) and the same ICD-9-CM procedure code (e.g. _Heart transplantation_, which should be sent as 3751), but each input is formatted differently. Based on the ICD-9-CM diagosis code, the `ccc` function will only identify subject `A` as having a CCC. Based on the ICD-9-CM procedure code, the `ccc` function will only identify subject `B` as having a CCC and will also flag the Transplantation category.
+To illustrate the how the input formatting impacts the identification of a CCC, consider the data `data.frame` named `dat` below. These data have information about three patients (A-C). Each subject has the same ICD-9-CM diagnosis code (e.g. _Hypertrophic obstructive cardiomyopathy_, which should be sent as 4251 with original ICD-9-CM = 425.11) and the same ICD-9-CM procedure code (e.g. _Heart transplantation_, which should be sent as 3751 with original ICD-9-CM =	37.51), but each input is formatted differently. Based on the ICD-9-CM diagosis code, the `ccc` function will only identify subject `A` as having a CCC. Based on the ICD-9-CM procedure code, the `ccc` function will only identify subject `B` as having a CCC and will also flag the Transplantation category.
 
 ## Basic Example
 
