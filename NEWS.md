@@ -1,3 +1,7 @@
+# Version 1.0.0
+
+After careful review of which ICD codes should flag which CCCs, we have made tweaks to the overall logic as well as the various CCC categories.
+
 # Version 0.2.2.9000
 
 ## API Change
