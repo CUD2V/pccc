@@ -34,7 +34,7 @@ ccc_mat_rcpp <- function(dx, pc, version = 9L) {
 #' version 2: updated for ICD-10 and complex medical technology dependence and
 #' transplantation, BMC Pediatrics, 2014, 14:199, DOI: 10.1186/1471-2431-14-199
 #'
-#' @param icdv and integer value specifying ICD verion.  Accepted values are 9
+#' @param icdv and integer value specifying ICD version.  Accepted values are 9
 #' or 10.
 #'
 #' @example examples/get_codes.R
