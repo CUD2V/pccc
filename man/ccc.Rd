@@ -57,7 +57,7 @@ ccc(eg_data,
 }
 \references{
 See \code{\link{pccc-package}} for published paper on the topic of identifying
-Complex Chronix Conditions
+Complex Chronic Conditions
 }
 \seealso{
 \code{\link{get_codes}} to view the ICD codes used to define the

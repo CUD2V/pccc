@@ -7,7 +7,7 @@ ccc_mat_rcpp <- function(dx, pc, version = 9L) {
 
 #' Get (view) Diagnostic and Procedure Codes
 #'
-#' View the ICD, verion 9 or 10, for the Complex Chronic Conditions (CCC)
+#' View the ICD, version 9 or 10, for the Complex Chronic Conditions (CCC)
 #' categories.
 #'
 #'  The CCC categories for diagnostic and procedure codes are:

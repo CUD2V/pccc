@@ -7,7 +7,7 @@
 get_codes(icdv)
 }
 \arguments{
-\item{icdv}{and integer value specifying ICD verion.  Accepted values are 9
+\item{icdv}{and integer value specifying ICD version.  Accepted values are 9
 or 10.}
 }
 \value{
@@ -15,7 +15,7 @@ A matrix of character vectors.  Rows are the categories and columns for
 diagnostic and procedure codes.
 }
 \description{
-View the ICD, verion 9 or 10, for the Complex Chronic Conditions (CCC)
+View the ICD, version 9 or 10, for the Complex Chronic Conditions (CCC)
 categories.
 }
 \details{

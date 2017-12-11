@@ -9,7 +9,7 @@ const Rcpp::CharacterVector codes::col_names = Rcpp::CharacterVector::create("ne
 
 //' Get (view) Diagnostic and Procedure Codes
 //'
-//' View the ICD, verion 9 or 10, for the Complex Chronic Conditions (CCC)
+//' View the ICD, version 9 or 10, for the Complex Chronic Conditions (CCC)
 //' categories.
 //'
 //'  The CCC categories for diagnostic and procedure codes are:

@@ -8,7 +8,7 @@
 There is a patient identifier, ten diagnosis codes, ten procedure codes, and
 ten "other data" values, specifically:
 \describe{
-  \item{id}{Sequentialy assigned patient identifier}
+  \item{id}{Sequentially assigned patient identifier}
   \item{dx1}{a ICD 10 diagnosis code}
   \item{dx2}{a ICD 10 diagnosis code}
   \item{dx3}{a ICD 10 diagnosis code}
