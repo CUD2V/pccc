@@ -16,7 +16,7 @@
 #'
 #' @references
 #' See \code{\link{pccc-package}} for published paper on the topic of identifying
-#' Complex Chronix Conditions
+#' Complex Chronic Conditions
 #'
 #' @param data a \code{data.frame} containing a patient id and all the ICD-9-CM
 #' or ICD-10-CM codes.  The \code{data.frame} passed to the function should be
