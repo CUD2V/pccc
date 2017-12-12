@@ -1,3 +1,7 @@
+## Resubmission
+This is a resubmission. In this version I have clarified the short description 
+in DESCRIPTION to remove potentially confusing acronymns.
+
 ## Test environments
 * local OS X install, R 3.4.3
 * ubuntu 12.04 (on travis-ci), R 3.4.3
