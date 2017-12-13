@@ -27,30 +27,15 @@ The PCCC package uses the R library [testthat](http://testthat.r-lib.org) for un
 Some additional tests on large datasets were developed by Peter DeWitt and are available at https://github.com/CUD2V/pccc-testing. As 2 of the 3 require special license agreements for data access, they are not included with this repository.
 
 ## Installation
-This package is currently only on github.  Adding to The Comprehensive R Archive
-Network is planned for the near future.  For now, you can install a released version or the
-developmental version from github.
 
-### Released version
-Starting with version 0.2.2 we are placing the source R package in the releases.
-You can view the releases at https://github.com/CUD2V/pccc/releases.  Drill
-into the release you are interested in and download the `pccc_X.Y.Z.tar.gz`
-file.  (`X.Y.Z` represents the version number string).
+### From CRAN
+Version 1.0.0 is available on The Comprehensive R Archive Network at https://CRAN.R-project.org/package=pccc.
 
-On you computer you can install the packge via command line
 
-    R CMD INSTALL <path>/pccc_<version>.tar.gz
-
-Or in R via
-
-    install.packages("<path>/pccc_<version>.tar.gz", repos = NULL)
-
-Or in RStudio by using the menu `Tools > Install Packages...`
-
-### Developmental 
+### Developmental version
 
 You can install the
-development version of `pccc` directly from github via the 
+developmental version of `pccc` directly from github using the 
 [`devtools`](https://github.com/hadley/devtools/) package:
 
     if (!("devtools" %in% rownames(installed.packages()))) { 
