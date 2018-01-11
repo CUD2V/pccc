@@ -1,40 +1,45 @@
 /***************************************************************************************************
-Macro Name: ccc_version2_updated11_2017_sas
+Macro Name: ccc_version2_updated01_2018_sas
 
-Function: 
-This program will be used to create CCC and CCC subcategories flag and compute number of ccc 
-category based on articles: 
+Function:
+This program will be used to create CCC and CCC subcategories flag and compute number of ccc
+category based on articles:
 Feudtner C, et al. Pediatric complex chronic conditions classification system version 2:
 updated for ICD-10 and complex medical technology dependence and transplantation.
 
-Author: Dingwei Dai
+Authors: Dingwei Dai, Seth Russell
 
-Date: 2014-04-10 
+Date: 2014-04-10
 
 Call statement:
 %ccc_version2_sas(dt_in,dt_out,dx,n_dxs,pc,n_pcs,icdv)
 run;
 Parameter definitions:
    dt_in  SAS input data set containing patient id and all ICD-9-CM or ICD-10-CM codes
-   dt_out SAS output data set containing all input data and new created CCC and CCC subcategories 
+   dt_out SAS output data set containing all input data and new created CCC and CCC subcategories
           flags and number of subcategory
-   dx prefix for ICD-9-CM or ICD-10-CM diagnosis code  
+   dx prefix for ICD-9-CM or ICD-10-CM diagnosis code
    n_dxs number of ICD-9-CM or ICD-10-CM diagnosis code (assume diagnosis variables as dx1 - dxn)
-   pc prefix for ICD-9-CM or ICD-10-CM procedure code  
+   pc prefix for ICD-9-CM or ICD-10-CM procedure code
    n_pcs number of ICD-9-CM or ICD-10-CM procedure code (assume procedure variables as px1 - pxn)
    icdv ICD version 9 or 10
 
 For example, if you use KID2009, just call:
 %ccc_version2_updated11_2017_sas(kid_2009_core,kid_2009_core_results,dx,25,pr,15,9)
 
-Updated date: 11-17-2017
+Updated date: January-10-2018
 ***************************************************************************************************/
 
-%macro ccc_version2_updated11_2017_sas(dt_in,dt_out,dx,n_dxs,pc,n_pcs,icdv);
+%macro ccc_version2_updated01_2018_sas(dt_in,dt_out,dx,n_dxs,pc,n_pcs,icdv);
 
 data &dt_out;
+   *** diagnosis codes;
+   array dxc(&n_dxs.) &dx.1 - &dx.&n_dxs.;
+   *** procedure codes;
+   array pcc(&n_pcs.) &pc.1 - &pc.&n_pcs.;
+
    set &dt_in;
- 
+
    neuromusc_ccc=0;
    cvd_ccc=0;
    respiratory_ccc=0;
@@ -48,31 +53,30 @@ data &dt_out;
    tech_dep_ccc=0;
    transplant_ccc=0;
 
-   *** diagnosis codes;
-   array dxc(&n_dxs.) &dx.1 - &dx.&n_dxs.;
-   *** procedure codes;
-   array pcc(&n_pcs.) &pc.1 - &pc.&n_pcs.;
-
    if &icdv=9 then do;
 
    do i=1 to &n_dxs.;
 
-   if dxc(i) in: ("3180","3181","3182","330","33111","33119","3314","33189","3319","3320","3321",
+   if dxc(i) in: ("3180","3181","3182","330","331","3320","3321",
           "3330","3332","3334","3335","3337","3339","334","335","343","34501","34581","3361","3368",
           "3379","3418","34290","3440","34481","3449","34511","3453","34541","34561","34571","34591",
           "3481","3484","3491","43401","43491","740","741","742","7595","78003","9962","99663",
           "V452","V5301","V5302") then neuromusc_ccc=1;
 
    else if dxc(i) in ("359","3590","3591","3592","35921","35922","35923","35929","3593") then neuromusc_ccc=1;
-   
+
    else if dxc(i) in: ("4161","4168","4169","4240","4258","4242","4243","4250","4251","4252","4253",
           "4254","426","4270","4271","4272","4273","4274","4276","4277","4278","4279","4280","42883",
           "4291","4293","43311","7450","7451","7452","7453","7456","746","7471","7472","7473","7474",
           "74781","74789","9960","9961","99661","99662","V421","V422","V432","V433","V450","V4581",
           "V533") then cvd_ccc=1;
 
+   else if dxc(i) in ("416") then cvd_ccc=1;
+
    else if dxc(i) in: ("32725","4160","4162","51630","51631","51637","51884","5190","2770","748","7704",
           "V426","V440","V4576","V460","V461","V550") then respiratory_ccc=1;
+
+  else if dxc(i) in ("5163") then respiratory_ccc=1;
 
    else if dxc(i) in: ("34461","585","5964","59653","59654","753","99668","V420","V445","V446",
           "V451","V4573","V4574","V536","V555","V556","V56") then renal_ccc=1;
@@ -83,7 +87,7 @@ data &dt_out;
 
    else if dxc(i) in: ("042","043","044","135","279","2820","2821","2822","2823","2824","2825",
           "2826","2881","2882","284","2860","2863","28732","28733","28739","28801","28802",
-          "2884","4460","4461","44621","4464","4465","4466","4467","7100","7101","7103","V08") 
+          "2884","4460","4461","44621","4464","4465","4466","4467","7100","7101","7103","V08")
           then hemato_immu_ccc=1;
 
    else if dxc(i) in: ("243","2532","2535","2536","2539","2550","25513","2552","270","271","272",
@@ -93,7 +97,7 @@ data &dt_out;
    else if dxc(i) in: ("2594","5533","7373","7560","7561","7562","7563","7564","7565","7566",
           "7567","758","7597","7598","7599") then congeni_genetic_ccc=1;
 
-   else if dxc(i) in: ("14","15","16","17","18","19","20","23","V4281","V4282") 
+   else if dxc(i) in: ("14","15","16","17","18","19","20","23","V4281","V4282")
           then malignancy_ccc=1;
 
    else if dxc(i) in: ("76401","76402","76411","76412","76421","76422","76491","76492","76501",
@@ -115,7 +119,7 @@ data &dt_out;
 
    if pcc(i) in ("0152","0153","0221","0222","0231","0232","0233","0234","0235","0239","0241",
           "0242","0293","0371","0372","0379","0393","0397","0492") then neuromusc_ccc=1;
- 
+
    else if pcc(i) in ("0050","0051","0053","0054","0055","0057","1751","1752","3581","3582","3583",
           "3584","3741","3751","3752","3753","3754","3755","3760","3761","3763","3765","3766",
           "3767","3768","3771","3772","3774","3776","3779","3780","3781","3782","3783","3785",
@@ -135,7 +139,7 @@ data &dt_out;
           "4643","4697","504", "5051","5059","526","527","5280","5282","5283","5284","5285","5286",
           "5471","9624","9636","9702") then GI_ccc=1;
 
-   else if pcc(i) in ("4100","4101","4102","4103","4104","4105","4106","4107","4108","4109","415", 
+   else if pcc(i) in ("4100","4101","4102","4103","4104","4105","4106","4107","4108","4109","415",
           "4194") then hemato_immu_ccc=1;
 
    else if pcc(i) in ("064","0652","0681","073","0764","0765","0768","0769","624","6241","645","6551",
@@ -170,18 +174,20 @@ data &dt_out;
 
    if dxc(i) in: ("E75","F71","F72","F73","F842","G111","G112","G114","G118",
           "G119","G120","G121","G122","G128","G129","G3101","G3109","G318","G3289","G71",
-          "G72","G80","G901","G938","G939","G94","Q00","Q01","Q02","Q03","Q04","Q05","Q06","Q07",
+          "G72","G800","G803","G804","G808","G901","G938","G939","G94","Q00","Q01","Q02","Q03","Q04","Q05","Q06","Q07",
           "G911","G319","G253","G9519","G9589","G909","G40311","G40301","G40211","G40219","G40411",
           "G40419","G40804","G40111","G40119","G40911","G40919","G371","G372","G378","G8190","G8290",
           "G8250","G8251","G8252","G8253","G8254","G835","G839","G931","G935","I6330","I6350","G10",
           "G20","G210","G2111","G2119","G218","G230","G231","G232","G238","G2402","G248","G254",
-          "G255","G2581","G2582","G2583","G2589","G259","G803","R403","T8509XA","T85190A",
+          "G255","G2581","G2582","G2583","G2589","G259","R403","G9782","T8509XA","T85190A",
           "T85192A","T85199A","T8579XA","Z982","Z4541","Z4542","Q851") then neuromusc_ccc=1;
-   
+
+   else if dxc(i) in ("G80") then neuromusc_ccc=1;
+
    else if dxc(i) in: ("I270","I271","I272","I2781","I2789","I279","I340","I348","I360","I368","I370",
-          "I378","I42","I43","I44","I45","I47","I48","I490","I491","I493","I494","I495","I498","I499", 
-          "I509","I515","I517","I5181","I63139","I63239","Q20","Q212","Q213","Q214","Q218","219","Q22",
-          "Q23","Q24","Q251","Q252","Q253","Q254","Q255","Q256","Q257","258","259","Q26","R001","Q282",
+          "I378","I42","I43","I44","I45","I47","I48","I490","I491","I493","I494","I495","I498","I499",
+          "I509","I515","I517","I5181","I63139","I63239","Q20","Q212","Q213","Q214","Q218","Q219","Q22",
+          "Q23","Q24","Q251","Q252","Q253","Q254","Q255","Q256","Q257","Q258","Q259","Q26","Q268","R001","Q282",
           "Q283","Q289","Z951","T82519A","T82529A","T82539A","T82599A","T82110A","T82111A","T82120A",
           "T82121A","T82190A","T82191A","T8201XA","T8202XA","T8203XA","T8209XA","T82211A","T82212A",
           "T82213A","T82218A","T82221A","T82222A","T82223A","T82228A","T82518A","T82528A","T82538A",
@@ -202,14 +208,14 @@ data &dt_out;
           "Z431","Z432","Z433","Z434","Z4651","Z4659","T8640","T8641","T8642","T86890","T86891",
           "T86899","T86850","T86851","T86859") then GI_ccc=1;
 
-   else if dxc(i) in: ("B20", "D55","D56","D57","D58","D60","D61","D71","D720","D80","D81","D82", 
+   else if dxc(i) in: ("B20", "D55","D56","D57","D58","D60","D61","D71","D720","D80","D81","D82",
           "D83","D84","D85","D87","D88","D86","M303","M359","B21","B22","B23","B24","D700","D704",
-          "D66", "D682","D6941","D6942","D761","D762","D763","D869","M300","M310","M311","M3130","M314",
+          "D66", "D682","D6941","D6942","D761","D762","D763","M300","M310","M311","M3130","M314",
           "M316","M3210","M3390","M340","M341","M349","Z21") then hemato_immu_ccc=1;
 
-   else if dxc(i) in: ("E700","E702","E703","E704","E705","E708","E710","E711","E712","E713", 
+   else if dxc(i) in: ("E700","E702","E703","E704","E705","E708","E710","E711","E712","E713",
           "E714","E715","E720","E721","E722","E723","E724","E728","E729","E740","E741","E742","E743",
-          "E744","E748","E749","E75","E760","E761","E762","E763","E770","E771","E780","E781","E782",
+          "E744","E748","E749","E760","E761","E762","E763","E770","E771","E780","E781","E782",
           "E783","E784","E785","E786","E787","E788","E789","E791","E798","E804","E805","E806","E807",
           "E830","E831","E833","E834","E88","H498","E85","E009","E230","E232","E222","E233","E237",
           "E240","E242","E243","E248","E249","E2681","E250","E258","E259","Z4681","Z794","Z9641") then metabolic_ccc=1;
@@ -246,7 +252,7 @@ data &dt_out;
 
    if dxc(i) in: ("T8600","T8601","T8602","T8609","T8610","T8611","T8612","T8620","T8621","T8622",
           "T86810","T86811","T86819","T8640","T8641","T8642","T86890","T86891","T86899","T86850",
-          "T86851","T86859","T865","T8690","T8691","T8692","T8699","T86890","T86891","T86899") then transplant_ccc=1;
+          "T86851","T86859","T865","T8690","T8691","T8692","T8699") then transplant_ccc=1;
 
    end;
 
@@ -266,7 +272,7 @@ data &dt_out;
           "00HU0MZ","00HU3MZ","00HU4MZ","00HV0MZ","00HV3MZ","00HV4MZ","00T70ZZ","00T73ZZ","00T74ZZ",
           "00W60JZ","00W63JZ","00W64JZ","00WU0JZ","00WU3JZ","01HY0MZ","01HY3MZ","0DH60MZ","0DH63MZ",
           "0DH64MZ","0W110J9","0W110JB","0W110JG","0W110JJ","3E1Q38X","3E1Q38Z") then neuromusc_ccc=1;
-   
+
    else if pcc(i) in ("02170ZP","02170ZQ","02170ZR","02BK0ZZ","02H40JZ","02H40KZ","02H43JZ","02H44JZ",
           "02H44KZ","02H60JZ","02H60KZ","02H63JZ","02H63KZ","02H63MZ","02H64JZ","02H64KZ","02H70KZ",
           "02H73JZ","02H73KZ","02H73MZ","02H74KZ","02HA0QZ","02HA0RS","02HA0RZ","02HA3QZ","02HA3RS",
@@ -470,4 +476,4 @@ data &dt_out;
    if tech_dep_ccc=1 then ccc_flag=1;
 
 run;
-%mend ccc_version2_updated11_2017_sas;
+%mend ccc_version2_updated01_2018_sas;
