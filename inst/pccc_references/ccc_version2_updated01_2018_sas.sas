@@ -12,7 +12,7 @@ Authors: Dingwei Dai, Seth Russell
 Date: 2014-04-10
 
 Call statement:
-%ccc_version2_sas(dt_in,dt_out,dx,n_dxs,pc,n_pcs,icdv)
+%ccc_version2_updated01_2018_sas(dt_in,dt_out,dx,n_dxs,pc,n_pcs,icdv)
 run;
 Parameter definitions:
    dt_in  SAS input data set containing patient id and all ICD-9-CM or ICD-10-CM codes
@@ -25,7 +25,7 @@ Parameter definitions:
    icdv ICD version 9 or 10
 
 For example, if you use KID2009, just call:
-%ccc_version2_updated11_2017_sas(kid_2009_core,kid_2009_core_results,dx,25,pr,15,9)
+%ccc_version2_updated01_2018_sas(kid_2009_core,kid_2009_core_results,dx,25,pr,15,9)
 
 Updated date: January-10-2018
 ***************************************************************************************************/
@@ -34,9 +34,9 @@ Updated date: January-10-2018
 
 data &dt_out;
    *** diagnosis codes;
-   array dxc(&n_dxs.) &dx.1 - &dx.&n_dxs.;
+   array dxc(&n_dxs.) $12 &dx.1 - &dx.&n_dxs.;
    *** procedure codes;
-   array pcc(&n_pcs.) &pc.1 - &pc.&n_pcs.;
+   array pcc(&n_pcs.) $12 &pc.1 - &pc.&n_pcs.;
 
    set &dt_in;
 
