@@ -66,7 +66,11 @@ ccc.data.frame <- function(data, id, dx_cols, pc_cols, icdv) {
     pcmat <- matrix("", nrow = nrow(data))
   }
 
-  ids <- dplyr::select(data, !!dplyr::enquo(id))
+  if (!missing(id)) {
+    ids <- dplyr::select(data, !!dplyr::enquo(id))
+  } else {
+    ids <- data.frame()[1:nrow(data), ]
+  }
 
   dplyr::bind_cols(ids, ccc_mat_rcpp(dxmat, pcmat, icdv))
 }
