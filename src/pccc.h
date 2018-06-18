@@ -40,7 +40,7 @@ class codes {
     std::vector<std::string> pc_tech_dep;
     std::vector<std::string> pc_transplant;
 
-    const std::vector<std::string> empty = {};
+    const std::vector<std::string> empty;
 
     int find_match(const std::vector<std::string>& dx,
                    const std::vector<std::string>& pc,
