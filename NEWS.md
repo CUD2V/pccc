@@ -1,3 +1,7 @@
+# Version 1.0.2
+
+Removed unnecessary initializer that causes problems with older pre-C++11 compilers
+
 # Version 1.0.1
 
 Minor update to address problem introduced by downstream dependency package rlang 0.2.0. Unit tests identified that a null argument that previously worked with enquo() now throws an error. Now check for argument and set sane default if missing.

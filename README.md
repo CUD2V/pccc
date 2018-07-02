@@ -29,7 +29,7 @@ Some additional tests on large datasets were developed by Peter DeWitt and are a
 ## Installation
 
 ### From CRAN
-Version 1.0.0 is available on The Comprehensive R Archive Network at https://CRAN.R-project.org/package=pccc.
+Version 1.0.2 is available on The Comprehensive R Archive Network at https://CRAN.R-project.org/package=pccc.
 
 
 ### Developmental version
