@@ -14,7 +14,7 @@
 #                          dx_cols = dplyr::starts_with("dx"),
 #                          pc_cols = dplyr::starts_with("pc"),
 #                          icdv    = 10)
-# random_data_test_result <- ccc(dplyr::data_frame(id = letters[1:3],
+# random_data_test_result <- ccc(dplyr::tibble(id = letters[1:3],
 #                                                  dx1 = c('sadcj89sa', '1,2.3.4,5', 'sdf 9'),
 #                                                  pc1 = c('da89v#$%', ' 90v_', 'this is a super long string compared to standard ICD codes and shouldnt break anything - if it does, the world will come to an end... Ok, so maybe not, but that means I need to fix something in this package.'),
 #                                                  other_col = LETTERS[1:3]),
@@ -43,7 +43,7 @@ for (code in c(9, 10)) {
   for (row in rownames(get_codes(code))) {
     dx <- get_codes(code)[row,]$dx
 
-    result <- ccc(dplyr::data_frame(id = 'a',
+    result <- ccc(dplyr::tibble(id = 'a',
                                     dx1 = sample(dx, 1)),
                   id      = id,
                   dx_cols = dplyr::starts_with("dx"),
@@ -64,7 +64,7 @@ for (code in c(9, 10)) {
     # not all categories have procedure codes
     pc <- get_codes(code)[row,]$pc
     if(length(pc) > 0) {
-      result <- ccc(dplyr::data_frame(id = 'a',
+      result <- ccc(dplyr::tibble(id = 'a',
                                       pc1 = sample(pc, 1)),
                     id      = id,
                     pc_cols = dplyr::starts_with("pc"),
@@ -87,7 +87,7 @@ for (code in c(9, 10)) {
   # test 1 patient with no data - should have all CCCs as FALSE
   #######
   test_that("1 patient with no diagnosis data - should have all CCCs as FALSE", {
-    expect_true(all(ccc(dplyr::data_frame(id = 'a',
+    expect_true(all(ccc(dplyr::tibble(id = 'a',
                                           dx1 = NA),
                         dx_cols = dplyr::starts_with("dx"),
                         icdv    = code) == 0))
@@ -95,7 +95,7 @@ for (code in c(9, 10)) {
 
   # Due to previous use of sapply in ccc.R, this would fail - fixed now
   test_that("1 patient with multiple rows of no diagnosis data - should have all CCCs as FALSE", {
-    expect_true(all(ccc(dplyr::data_frame(id = 'a',
+    expect_true(all(ccc(dplyr::tibble(id = 'a',
                                           dx1 = NA,
                                           dx2 = NA),
                         dx_cols = dplyr::starts_with("dx"),
@@ -104,7 +104,7 @@ for (code in c(9, 10)) {
 
 
   test_that("1 patient with no procedure data - should have all CCCs as FALSE", {
-    expect_true(all(ccc(dplyr::data_frame(id = 'a',
+    expect_true(all(ccc(dplyr::tibble(id = 'a',
                                           pc1 = NA),
                         dx_cols = dplyr::starts_with("pc"),
                         icdv    = code) == 0))
@@ -115,7 +115,7 @@ for (code in c(9, 10)) {
     expect_equal(
       c("neuromusc", "cvd", "respiratory", "renal", "gi", "hemato_immu", "metabolic", "congeni_genetic", "malignancy", "neonatal", "tech_dep", "transplant", "ccc_flag"),
       colnames(
-        ccc(dplyr::data_frame(id = 'a',
+        ccc(dplyr::tibble(id = 'a',
                               dx1 = NA),
             dx_cols = dplyr::starts_with("dx"),
             icdv    = code))

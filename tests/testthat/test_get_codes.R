@@ -87,7 +87,7 @@ for (code in c(9, 10)) {
   test_that("Checking to see that a code is returned - testing first for diagnosis code from first CCC.", {
     expect_output(
       #                firstCCC, dx
-      return(get_codes(code)[[1, 1]][1]),
+      str(get_codes(code)[[1, 1]][1]),
       regexp = "\\w+",
       perl = TRUE
     )
@@ -111,6 +111,7 @@ test_that("Checking for error if other than 9 or 10 passed in", {
 test_that("Checking for error if string passed in", {
   expect_error(
     get_codes('ABC'),
-    "Not compatible with requested type"
+    class = 'Rcpp::not_compatible'
+    # for manual verification, should be something like: "Not compatible with requested type"
   )
 })
