@@ -1,6 +1,6 @@
 Package: pccc
 Title: Pediatric Complex Chronic Conditions
-Version: 1.0.2
+Version: 1.0.3
 Authors@R: c(
     person("Peter", "DeWitt", , "dewittpe@gmail.com", role = c("aut")),
     person("Tell",  "Bennett", , "tell.bennett@ucdenver.edu", role = c("aut")),
@@ -22,7 +22,7 @@ Suggests:
     rmarkdown,
     testthat,
     readr
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1
 LinkingTo: Rcpp (>= 0.12.11)
 VignetteBuilder: knitr
 URL: https://github.com/CUD2V/pccc

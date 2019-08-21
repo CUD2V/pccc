@@ -51,23 +51,23 @@ Rcpp::List get_codes(int icdv) {
   codes cds(icdv);
 
   Rcpp::List dx = Rcpp::List::create(
-          Rcpp::wrap(cds.get_dx_neuromusc()),
-          Rcpp::wrap(cds.get_dx_cvd()),
-          Rcpp::wrap(cds.get_dx_respiratory()),
-          Rcpp::wrap(cds.get_dx_renal()),
-          Rcpp::wrap(cds.get_dx_gi()),
-          Rcpp::wrap(cds.get_dx_hemato_immu()),
-          Rcpp::wrap(cds.get_dx_metabolic()),
-          Rcpp::wrap(cds.get_dx_congeni_genetic()),
-          Rcpp::wrap(cds.get_dx_malignancy()),
-          Rcpp::wrap(cds.get_dx_neonatal()),
-          Rcpp::wrap(cds.get_dx_tech_dep()),
-          Rcpp::wrap(cds.get_dx_transplant()));
+          Rcpp::Shield<SEXP>(Rcpp::wrap(cds.get_dx_neuromusc())),
+          Rcpp::Shield<SEXP>(Rcpp::wrap(cds.get_dx_cvd())),
+          Rcpp::Shield<SEXP>(Rcpp::wrap(cds.get_dx_respiratory())),
+          Rcpp::Shield<SEXP>(Rcpp::wrap(cds.get_dx_renal())),
+          Rcpp::Shield<SEXP>(Rcpp::wrap(cds.get_dx_gi())),
+          Rcpp::Shield<SEXP>(Rcpp::wrap(cds.get_dx_hemato_immu())),
+          Rcpp::Shield<SEXP>(Rcpp::wrap(cds.get_dx_metabolic())),
+          Rcpp::Shield<SEXP>(Rcpp::wrap(cds.get_dx_congeni_genetic())),
+          Rcpp::Shield<SEXP>(Rcpp::wrap(cds.get_dx_malignancy())),
+          Rcpp::Shield<SEXP>(Rcpp::wrap(cds.get_dx_neonatal())),
+          Rcpp::Shield<SEXP>(Rcpp::wrap(cds.get_dx_tech_dep())),
+          Rcpp::Shield<SEXP>(Rcpp::wrap(cds.get_dx_transplant())));
 
   Rcpp::List dx_fixed = Rcpp::List::create(
-    Rcpp::wrap(cds.get_dx_fixed_neuromusc()),
-    Rcpp::wrap(cds.get_dx_fixed_cvd()),
-    Rcpp::wrap(cds.get_dx_fixed_respiratory()),
+    Rcpp::Shield<SEXP>(Rcpp::wrap(cds.get_dx_fixed_neuromusc())),
+    Rcpp::Shield<SEXP>(Rcpp::wrap(cds.get_dx_fixed_cvd())),
+    Rcpp::Shield<SEXP>(Rcpp::wrap(cds.get_dx_fixed_respiratory())),
     Rcpp::CharacterVector::create(),
     Rcpp::CharacterVector::create(),
     Rcpp::CharacterVector::create(),
@@ -79,18 +79,18 @@ Rcpp::List get_codes(int icdv) {
     Rcpp::CharacterVector::create());
 
   Rcpp::List pc = Rcpp::List::create(
-          Rcpp::wrap(cds.get_pc_neuromusc()),
-          Rcpp::wrap(cds.get_pc_cvd()),
-          Rcpp::wrap(cds.get_pc_respiratory()),
-          Rcpp::wrap(cds.get_pc_renal()),
-          Rcpp::wrap(cds.get_pc_gi()),
-          Rcpp::wrap(cds.get_pc_hemato_immu()),
-          Rcpp::wrap(cds.get_pc_metabolic()),
+          Rcpp::Shield<SEXP>(Rcpp::wrap(cds.get_pc_neuromusc())),
+          Rcpp::Shield<SEXP>(Rcpp::wrap(cds.get_pc_cvd())),
+          Rcpp::Shield<SEXP>(Rcpp::wrap(cds.get_pc_respiratory())),
+          Rcpp::Shield<SEXP>(Rcpp::wrap(cds.get_pc_renal())),
+          Rcpp::Shield<SEXP>(Rcpp::wrap(cds.get_pc_gi())),
+          Rcpp::Shield<SEXP>(Rcpp::wrap(cds.get_pc_hemato_immu())),
+          Rcpp::Shield<SEXP>(Rcpp::wrap(cds.get_pc_metabolic())),
           Rcpp::CharacterVector::create(),
-          Rcpp::wrap(cds.get_pc_malignancy()),
+          Rcpp::Shield<SEXP>(Rcpp::wrap(cds.get_pc_malignancy())),
           Rcpp::CharacterVector::create(),
-          Rcpp::wrap(cds.get_pc_tech_dep()),
-          Rcpp::wrap(cds.get_pc_transplant()));
+          Rcpp::Shield<SEXP>(Rcpp::wrap(cds.get_pc_tech_dep())),
+          Rcpp::Shield<SEXP>(Rcpp::wrap(cds.get_pc_transplant())));
 
   Rcpp::List pc_fixed = Rcpp::List::create(
     Rcpp::CharacterVector::create(),
@@ -99,7 +99,7 @@ Rcpp::List get_codes(int icdv) {
     Rcpp::CharacterVector::create(),
     Rcpp::CharacterVector::create(),
     Rcpp::CharacterVector::create(),
-    Rcpp::wrap(cds.get_pc_fixed_metabolic()),
+    Rcpp::Shield<SEXP>(Rcpp::wrap(cds.get_pc_fixed_metabolic())),
     Rcpp::CharacterVector::create(),
     Rcpp::CharacterVector::create(),
     Rcpp::CharacterVector::create(),

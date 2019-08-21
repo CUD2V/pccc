@@ -1,3 +1,7 @@
+# Version 1.0.3
+
+Added Rcpp::Shield<SEXP>() around Rcpp::wrap() calls inside Rcpp::List::create(). Apparently adding shield helps with some AddressSanitizer checks due to wrap calls inside List::create(). Thanks to Tomas Kalibera for pointing that out.
+
 # Version 1.0.2
 
 Removed unnecessary initializer that causes problems with older pre-C++11 compilers
