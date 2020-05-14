@@ -46,7 +46,7 @@ test_that("Correct number of columns (1 per category + Id column + summary colum
 test_that("icd 9 data set with all parameters - result should be unchanged.", {
   # saved as icd9_test_result
   expect_true(
-    dplyr::all_equal(
+    all.equal(
       ccc(pccc::pccc_icd9_dataset[, c(1:21)],
           id      = id,
           dx_cols = dplyr::starts_with("dx"),
@@ -59,7 +59,7 @@ test_that("icd 9 data set with all parameters - result should be unchanged.", {
 # should not be equal, and should have many differences
 test_that("icd 9 data set with ICD10 parameter", {
   expect_that(
-    typeof(dplyr::all_equal(
+    typeof(all.equal(
       ccc(pccc::pccc_icd9_dataset[, c(1:21)],
           id      = id,
           dx_cols = dplyr::starts_with("dx"),
@@ -72,7 +72,7 @@ test_that("icd 9 data set with ICD10 parameter", {
 
 test_that("icd 9 data set with missing id parameter", {
   expect_true(
-    dplyr::all_equal(
+    all.equal(
       ccc(pccc::pccc_icd9_dataset[, c(1:21)],
           dx_cols = dplyr::starts_with("dx"),
           pc_cols = dplyr::starts_with("pc"),
@@ -83,7 +83,7 @@ test_that("icd 9 data set with missing id parameter", {
 
 test_that("icd 9 data set with missing dx parameter", {
   expect_that(
-    typeof(dplyr::all_equal(
+    typeof(all.equal(
       ccc(pccc::pccc_icd9_dataset[, c(1:21)],
           id      = id,
           pc_cols = dplyr::starts_with("pc"),
@@ -95,7 +95,7 @@ test_that("icd 9 data set with missing dx parameter", {
 
 test_that("icd 9 data set with missing pc parameter", {
   expect_that(
-    typeof(dplyr::all_equal(
+    typeof(all.equal(
       ccc(pccc::pccc_icd9_dataset[, c(1:21)],
           id      = id,
           pc_cols = dplyr::starts_with("dx"),
@@ -108,7 +108,7 @@ test_that("icd 9 data set with missing pc parameter", {
 # should not be equal, and should have many differences
 test_that("icd 10 data set with ICD9 parameter", {
   expect_that(
-    typeof(dplyr::all_equal(
+    typeof(all.equal(
       ccc(pccc::pccc_icd10_dataset[, c(1:21)],
           id      = id,
           dx_cols = dplyr::starts_with("dx"),
@@ -139,11 +139,11 @@ test_that("icd 9 data set with no parameters", {
 test_that("random data set with all parameters ICD9 - result should be unchanged.", {
   # saved as random_data_test_result
   expect_true(
-    dplyr::all_equal(
-      ccc(dplyr::tibble(id = letters[1:3],
-                            dx1 = c('sadcj89sa', '1,2.3.4,5', 'sdf 9'),
-                            pc1 = c('da89v#$%', ' 90v_', 'this is a super long string compared to standard ICD codes and shouldnt break anything - if it does, the world will come to an end... Ok, so maybe not, but that means I need to fix something in this package.'),
-                            other_col = LETTERS[1:3]),
+    all.equal(
+      ccc(data.frame(id = letters[1:3],
+                     dx1 = c('sadcj89sa', '1,2.3.4,5', 'sdf 9'),
+                     pc1 = c('da89v#$%', ' 90v_', 'this is a super long string compared to standard ICD codes and shouldnt break anything - if it does, the world will come to an end... Ok, so maybe not, but that means I need to fix something in this package.'),
+                     other_col = LETTERS[1:3]),
           id      = id,
           dx_cols = dplyr::starts_with("dx"),
           pc_cols = dplyr::starts_with("pc"),
