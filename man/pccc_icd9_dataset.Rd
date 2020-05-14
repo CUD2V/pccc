@@ -4,7 +4,8 @@
 \name{pccc_icd9_dataset}
 \alias{pccc_icd9_dataset}
 \title{Randomly Generated ICD 9 Sample Data Set}
-\format{A data frame with 1000 rows and 31 variables.
+\format{
+A data frame with 1000 rows and 31 variables.
 There is a patient identifier, ten diagnosis codes, ten procedure codes, and
 ten "other data" values, specifically:
 \describe{
@@ -39,7 +40,8 @@ ten "other data" values, specifically:
   \item{g8}{Random data to simulate other data often present in export of patient data with 20\% of values missing.}
   \item{g9}{Random data to simulate other data often present in export of patient data with 20\% of values missing.}
   \item{g10}{Random data to simulate other data often present in export of patient data with 20\% of values missing.}
-}}
+}
+}
 \usage{
 pccc_icd9_dataset
 }

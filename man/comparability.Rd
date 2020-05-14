@@ -4,12 +4,14 @@
 \name{comparability}
 \alias{comparability}
 \title{Multiple Cause of Death (MCOD) file extract}
-\format{A data frame with 65037 rows and 3 variables.
+\format{
+A data frame with 65037 rows and 3 variables.
 \describe{
   \item{id}{Sequentially assigned patient identifier}
   \item{icd9}{Underlying Cause of Death ICD 9 CM diagnosis code}
   \item{icd10}{Underlying Cause of Death ICD 10 diagnosis code}
-}}
+}
+}
 \usage{
 comparability
 }
