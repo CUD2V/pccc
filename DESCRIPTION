@@ -1,6 +1,6 @@
 Package: pccc
 Title: Pediatric Complex Chronic Conditions
-Version: 1.0.3
+Version: 1.0.4
 Authors@R: c(
     person("Peter", "DeWitt", , "dewittpe@gmail.com", role = c("aut")),
     person("Tell",  "Bennett", , "tell.bennett@ucdenver.edu", role = c("aut")),

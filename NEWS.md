@@ -1,3 +1,9 @@
+# Version 1.0.4
+
+Updates to make code work with 1.0 version of dplyr and new vctrs (dplyr dependency). Removed use of dplyr from many tests.
+
+Also update test cases to work with new R 4.0.x feature to account for changed default to stringsAsFactors = FALSE.
+
 # Version 1.0.3
 
 Added Rcpp::Shield<SEXP>() around Rcpp::wrap() calls inside Rcpp::List::create(). Apparently adding shield helps with some AddressSanitizer checks due to wrap calls inside List::create(). Thanks to Tomas Kalibera for pointing that out.

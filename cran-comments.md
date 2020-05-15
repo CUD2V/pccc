@@ -1,6 +1,6 @@
 ## Test environments
-* local OS X install, R 3.6.1
-* ubuntu 14.04 on travis-ci (oldrel, release, devel)
+* local macOS 10.14.6 install R 3.6.3
+* ubuntu 16.04 on travis-ci (oldrel, release, devel)
 * win-builder (devel, release, oldrelease)
 * r_hub
   * Ubuntu Linux 16.04 LTS, R-release, GCC

@@ -22,7 +22,7 @@ are built with a C++ back-end, they are very computationally efficient.
 
 ## Testing and Benchmarking
 
-The PCCC package uses the R library [testthat](http://testthat.r-lib.org) for unit tests. All tests are automatically run upon running the "devtools::install_github" command shown below.
+The PCCC package uses the R library [testthat](http://testthat.r-lib.org) for unit tests. All tests are automatically run upon running the `devtools::install_github()` command shown below.
 
 Some additional tests on large datasets were developed by Peter DeWitt and are available at https://github.com/CUD2V/pccc-testing. As 2 of the 3 require special license agreements for data access, they are not included with this repository.
 
@@ -38,12 +38,14 @@ You can install the
 developmental version of `pccc` directly from github using the 
 [`devtools`](https://github.com/hadley/devtools/) package:
 
-    if (!("devtools" %in% rownames(installed.packages()))) { 
-      warning("installing devtools from https://cran.rstudio.com")
-      install.packages("devtools", repo = "https://cran.rstudio.com")
-    }
+```r
+if (!("devtools" %in% rownames(installed.packages()))) {
+  warning("installing devtools from https://cran.rstudio.com")
+  install.packages("devtools", repo = "https://cran.rstudio.com")
+}
 
-    devtools::install_github("CUD2V/pccc", build_vignettes = TRUE)
+devtools::install_github("CUD2V/pccc", build_vignettes = TRUE)
+```
 
 *NOTE:* If you are working on a Windows machine you will need to download and
 install [`Rtools`](https://cran.r-project.org/bin/windows/Rtools/) before
@@ -52,4 +54,38 @@ install [`Rtools`](https://cran.r-project.org/bin/windows/Rtools/) before
 If you are on a Linux machine or have GNU `make` configured you should be able
 to build and install this package by cloning the repository and running
 
-    make install
+```bash
+make install
+```
+
+## Steps to prepare for release of new version on CRAN
+
+First update all packages that pccc depends on.
+
+```r
+devtools::build()
+devtools::install()
+devtools::test()
+devtools::check()
+```
+
+If all of the above are successful, then commit changes and verify CI builds have succeeded at https://travis-ci.org/github/CUD2V/pccc
+
+Then, do the following:
+
+```r
+devtools::check_win_release()
+devtools::check_win_devel()
+devtools::check_win_oldrelease()
+
+devtools::check_rhub()
+```
+
+*Note:* As of May 2020, R-hub Windows server requries some custom configuration:
+
+```r
+rhub::check(
+  platform="windows-x86_64-devel",
+  env_vars=c(R_COMPILE_AND_INSTALL_PACKAGES = "always")
+)
+```
