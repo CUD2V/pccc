@@ -8,3 +8,4 @@
 ^examples$
 ^makefile$
 ^cran-comments\.md$
+^CRAN-RELEASE$

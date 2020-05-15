@@ -89,3 +89,10 @@ rhub::check(
   env_vars=c(R_COMPILE_AND_INSTALL_PACKAGES = "always")
 )
 ```
+
+If datafiles used for tests are updated, use this to check compression and potentially shrink file size:
+
+```r
+tools::checkRdaFiles('./data')
+tools::resaveRdaFiles('./data')
+```

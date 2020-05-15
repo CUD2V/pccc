@@ -1,3 +1,7 @@
+# Version 1.0.5
+
+Changed included datafiles to be of type data.frame to avoid some libraries trying to load data.table unnecessarily
+
 # Version 1.0.4
 
 Updates to make code work with 1.0 version of dplyr and new vctrs (dplyr dependency). Removed use of dplyr from many tests.
@@ -33,7 +37,7 @@ After careful review of which ICD codes should flag which CCCs, we have made twe
 
 ## API Change
 * The `ccc` function only takes one entry for codes.  There is no need to input
-  the diagnostic and procedure codes seperately.
+  the diagnostic and procedure codes separately.
 
 ## Non-User Visible Changes
 * Redesign of the C++ code.  Improved speed, fewer arguments, fewer operations.
