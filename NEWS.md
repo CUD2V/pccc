@@ -1,6 +1,6 @@
 # Version 1.0.5
 
-Changed included datafiles to be of type data.frame to avoid some libraries trying to load data.table unnecessarily.
+Changed included datafiles to be of type data.frame to avoid some libraries trying to load data.table unnecessarily. Similarly removed dependencies on dplyr::data_frame() due to deprecation.
 
 Increased R dependency to version 3.5.0 and greater due to change in how rds/rda files are created. Sample data included with package requires newer R.
 

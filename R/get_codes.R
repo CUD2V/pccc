@@ -9,7 +9,7 @@ as.data.frame.pccc_codes <- function(x, ...) {
           cd <- unlist(x[category, type])
 
           if (length(cd))
-            dplyr::data_frame(category = category, type = type, icd = cd)
+            data.frame(category = category, type = type, icd = cd)
 
         },
         category = rep(rownames(x), each = ncol(x)),
