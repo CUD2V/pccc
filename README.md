@@ -73,6 +73,12 @@ devtools::check()
 
 If all of the above are successful, then commit changes and verify CI builds have succeeded at https://travis-ci.org/github/CUD2V/pccc
 
+Next, check to see if there are any dependencies on pccc:
+
+```r
+devtools::revdep('pccc')
+```
+
 Then, do the following:
 
 ```r
