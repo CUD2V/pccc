@@ -62,6 +62,8 @@ make install
 
 First update all packages that pccc depends on.
 
+Then run the following:
+
 ```r
 devtools::build()
 devtools::install()
