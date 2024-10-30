@@ -22,7 +22,7 @@ Suggests:
     rmarkdown,
     testthat,
     readr
-RoxygenNote: 7.1.1
+RoxygenNote: 7.3.2
 LinkingTo: Rcpp (>= 0.12.11)
 VignetteBuilder: knitr
 URL: https://github.com/CUD2V/pccc
