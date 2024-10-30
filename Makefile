@@ -13,8 +13,11 @@ all: $(PKG_NAME)_$(PKG_VERSION).tar.gz
 vignettes:
 	R -e "devtools::build_vignettes()"
 
-$(PKG_NAME)_$(PKG_VERSION).tar.gz: $(RFILES) $(SRC) $(EGS) $(VIGS) DESCRIPTION
-	R -e "devtools::document()"
+R/sysdata.rda : data-raw/sysdata.R
+	Rscript --vanilla $<
+
+$(PKG_NAME)_$(PKG_VERSION).tar.gz: $(RFILES) $(SRC) $(EGS) $(VIGS) DESCRIPTION R/sysdata.rda
+	R --vanilla --quiet -e "devtools::document()"
 	R CMD build .
 
 check: $(PKG_NAME)_$(PKG_VERSION).tar.gz
@@ -24,6 +27,6 @@ install: $(PKG_NAME)_$(PKG_VERSION).tar.gz
 	R CMD INSTALL $(PKG_NAME)_$(PKG_VERSION).tar.gz
 
 clean:
-	/bin/rm -rf inst/doc/
-	/bin/rm -f  $(PKG_NAME)_*.tar.gz
-	/bin/rm -rf $(PKG_NAME).Rcheck
+	$(RM) -r inst/doc/
+	$(RM)    $(PKG_NAME)_*.tar.gz
+	$(RM) -r $(PKG_NAME).Rcheck
