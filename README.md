@@ -2,8 +2,7 @@
 Pediatric Complex Chronic Conditions: A R Package
 
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![R-CMD-check](https://github.com/dewittpe/pccc/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/dewittpe/pccc/actions/workflows/R-CMD-check.yaml)
-[![codecov](https://codecov.io/gh/dewittpe/pccc/branch/main/graph/badge.svg?token=DYiVkUwKrP)](https://app.codecov.io/gh/dewittpe/pccc)
+[![R-CMD-check](https://github.com/CUD2V/pccc/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/CUD2V/pccc/actions/workflows/R-CMD-check.yaml)
 
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/pccc)](https://cran.r-project.org/package=pccc)
 [![CRAN mirror downloads](https://cranlogs.r-pkg.org/badges/pccc)](https://www.r-pkg.org/pkg/pccc)
