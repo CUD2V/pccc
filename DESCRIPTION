@@ -15,7 +15,7 @@ Encoding: UTF-8
 LazyData: true
 Imports:
     dplyr (>= 0.7.0),
-    Rcpp (>= 0.12.11)
+    Rcpp (>= 1.0.11)
 Suggests:
     covr,
     knitr,
