@@ -1,4 +1,6 @@
 # code used to setup and store data for tests #################################
+devtools::load_all()
+
 icd9_test_result <- ccc(pccc::pccc_icd9_dataset[, c(1:21)],
                         id      = id,
                         dx_cols = dplyr::starts_with("dx"),
