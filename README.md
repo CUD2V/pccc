@@ -9,15 +9,22 @@ Pediatric Complex Chronic Conditions: A R Package
 ## Motivation
 
 ### Version 2 of PCCC Criteria
-Version 2 of the Pediatric Complex Chronic Conditions (CCC) system was published 
+[Pediatric complex chronic conditions classification system version 2:](http://bmcpediatr.biomedcentral.com/articles/10.1186/1471-2431-14-199).
+
+        Feudtner, C., Feinstein, J.A., Zhong, W. et al. Pediatric complex
+        chronic conditions classification system version 2: updated for ICD-10
+        and complex medical technology dependence and transplantation. BMC
+        Pediatr 14, 199 (2014). https://doi.org/10.1186/1471-2431-14-199
+
+
 ["Pediatric complex chronic conditions classification system version
 2: updated for ICD-10 and complex medical technology dependence and
 transplantation" by Chris Feudtner, James A Feinstein, Wenjun Zhong, Matt Hall
-and Dingwei Dai](http://bmcpediatr.biomedcentral.com/articles/10.1186/1471-2431-14-199).
+and Dingwei Dai]
 
-SAS and STATA scripts to generate CCC categories from ICD codes were provided by Feudtner et al. 
+SAS and STATA scripts to generate CCC categories from ICD codes were provided by Feudtner et al.
 as an appendix to the above manuscript. However, those scripts can take many hours to run
-on large datasets. 
+on large datasets.
 
 This package provides R functions to generate the CCC categories. Because the R functions
 are built with a C++ back-end, they are very computationally efficient.
@@ -32,91 +39,36 @@ The pccc package version 1.0.z implimented this version of the PCCC criteria.
         doi:10.1001/jamanetworkopen.2024.20579
 
 The criteria has been updated and there is a major conceptual change in the way
-technology dependencies are accounted for.  
+technology dependencies are accounted for.
 
-Version 3 of the pccc (skipping version 2) will implement version 3 of the PCCC.
-
-## Testing and Benchmarking
-
-The PCCC package uses the R library [testthat](http://testthat.r-lib.org) for unit tests. All tests are automatically run upon running the `devtools::install_github()` command shown below.
-
-Some additional tests on large datasets were developed by Peter DeWitt and are available at https://github.com/CUD2V/pccc-testing. As 2 of the 3 require special license agreements for data access, they are not included with this repository.
+Version 3 of the pccc R package (skipping version 2 so the package version will
+match the system version) will implement version 3 of the PCCC.
 
 ## Installation
 
 ### From CRAN
-Version 1.0.2 is available on The Comprehensive R Archive Network at https://CRAN.R-project.org/package=pccc.
-
+Relased version available on The Comprehensive R Archive Network at https://CRAN.R-project.org/package=pccc.
 
 ### Developmental version
 
 You can install the
-developmental version of `pccc` directly from github using the 
-[`devtools`](https://github.com/hadley/devtools/) package:
+developmental version of `pccc` directly from github using the
+[`remotes`](https://remotes.r-lib.org) package:
 
 ```r
-if (!("devtools" %in% rownames(installed.packages()))) {
-  warning("installing devtools from https://cran.rstudio.com")
-  install.packages("devtools", repo = "https://cran.rstudio.com")
+if (!("remotes" %in% rownames(installed.packages()))) {
+  warning("installing remotes from https://cran.rstudio.com")
+  install.packages("remotes", repo = "https://cran.rstudio.com")
 }
-
-devtools::install_github("CUD2V/pccc", build_vignettes = TRUE)
+remotes::install_github("CUD2V/pccc", build_vignettes = TRUE)
 ```
 
-*NOTE:* If you are working on a Windows machine you will need to download and
-install [`Rtools`](https://cran.r-project.org/bin/windows/Rtools/) before
-`devtools` will work for you.
+*NOTE:* If you are working on a Windows machine you will likely need
+[`Rtools`](https://cran.r-project.org/bin/windows/Rtools/).
 
 If you are on a Linux machine or have GNU `make` configured you should be able
 to build and install this package by cloning the repository and running
 
 ```bash
 make install
-```
-
-## Steps to prepare for release of new version on CRAN
-
-First update all packages that pccc depends on.
-
-Then run the following:
-
-```r
-devtools::build()
-devtools::install()
-devtools::test()
-devtools::check()
-```
-
-If all of the above are successful, then commit changes and verify CI builds have succeeded at https://travis-ci.org/github/CUD2V/pccc
-
-Next, check to see if there are any dependencies on pccc:
-
-```r
-devtools::revdep('pccc')
-```
-
-Then, do the following:
-
-```r
-devtools::check_win_release()
-devtools::check_win_devel()
-devtools::check_win_oldrelease()
-
-devtools::check_rhub()
-```
-
-*Note:* As of May 2020, R-hub Windows server requries some custom configuration:
-
-```r
-rhub::check(
-  platform="windows-x86_64-devel",
-  env_vars=c(R_COMPILE_AND_INSTALL_PACKAGES = "always")
-)
-```
-
-If datafiles used for tests are updated, use this to check compression and potentially shrink file size:
-
-```r
-tools::checkRdaFiles('./data')
-tools::resaveRdaFiles('./data')
 ```
