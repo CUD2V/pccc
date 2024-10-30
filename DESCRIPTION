@@ -20,10 +20,9 @@ Suggests:
     covr,
     knitr,
     rmarkdown,
-    testthat,
     readr
 RoxygenNote: 7.3.2
-LinkingTo: Rcpp (>= 0.12.11)
+LinkingTo: Rcpp (>= 1.0.11)
 VignetteBuilder: knitr
 URL: https://github.com/CUD2V/pccc
 BugReports: https://github.com/CUD2V/pccc/issues
