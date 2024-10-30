@@ -7,6 +7,8 @@ Pediatric Complex Chronic Conditions: A R Package
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/pccc)](http://cran.r-project.org/package=pccc)
 
 ## Motivation
+
+### Version 2 of PCCC Criteria
 Version 2 of the Pediatric Complex Chronic Conditions (CCC) system was published 
 ["Pediatric complex chronic conditions classification system version
 2: updated for ICD-10 and complex medical technology dependence and
@@ -19,6 +21,20 @@ on large datasets.
 
 This package provides R functions to generate the CCC categories. Because the R functions
 are built with a C++ back-end, they are very computationally efficient.
+
+The pccc package version 1.0.z implimented this version of the PCCC criteria.
+
+### Version 3 of the PCCC Criteria
+[Pediatric Complex Chronic Condition System Version 3](https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2821158)
+
+        Feinstein JA, Hall M, Davidson A, Feudtner C. Pediatric Complex Chronic
+        Condition System Version 3. JAMA Netw Open. 2024;7(7):e2420579.
+        doi:10.1001/jamanetworkopen.2024.20579
+
+The criteria has been updated and there is a major conceptual change in the way
+technology dependencies are accounted for.  
+
+Version 3 of the pccc (skipping version 2) will implement version 3 of the PCCC.
 
 ## Testing and Benchmarking
 
