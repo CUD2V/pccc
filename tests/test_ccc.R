@@ -5,13 +5,7 @@
 #
 ###############################################################################
 #
-# run tests with Ctrl/Cmd + Shift + T or devtools::test()
-# for manually running, execute
-#   library(testthat)
 library(pccc)
-library(testthat)
-
-context("PCCC - ccc function tests covering both ICD9 & ICD 10")
 
 # This test case catches a bug (now resolved) that where if only 1 patient with 1 diagnosis code
 # is passed, ccc fails.
@@ -20,42 +14,38 @@ for (code in c(9, 10)) {
   for (row in rownames(get_codes(code))) {
     dx <- get_codes(code)[row,]$dx
 
-    result <- ccc(data.frame(id = 'a',
-                             dx1 = sample(dx, 1)),
+    d <- data.frame(id = 'a', dx1 = sample(dx, 1))
+    result <- ccc(data    = d,
                   id      = id,
-                  dx_cols = dplyr::starts_with("dx"),
+                  dx_cols = grep("^dx", names(d), value = TRUE),#dplyr::starts_with("dx"),
                   icdv    = code)
 
-    test_that(paste0("Checking that ICD", code, " dx code drawn from '", row, "' sets only that one category to true."), {
-      expect_true(result[row] == 1)
-    })
+                  stopifnot(result[row] == 1L)
 
     if (!(row %in% c('tech_dep', 'transplant'))) {
       # look at other columns - should all be 0 except these 4
       tmp <- result[,!names(result) %in% c(row, 'id', 'tech_dep', 'transplant', 'ccc_flag')]
-      test_that(paste0("Checking that ICD", code, " dx code drawn from '", row, "' has all other categories set to false."), {
-        expect_true(all(tmp == 0))
-      })
+
+      #paste0("Checking that ICD", code, " dx code drawn from '", row, "' has all other categories set to false.")
+      stopifnot(all(tmp == 0))
     }
 
     # not all categories have procedure codes
     pc <- get_codes(code)[row,]$pc
     if(length(pc) > 0) {
-      result <- ccc(data.frame(id = 'a',
-                               pc1 = sample(pc, 1)),
+      d <- data.frame(id = 'a', pc1 = sample(pc, 1))
+      result <- ccc(data    = d,
                     id      = id,
-                    pc_cols = dplyr::starts_with("pc"),
+                    pc_cols = grep("^pc", names(d), value = TRUE), #dplyr::starts_with("pc"),
                     icdv    = code)
-      test_that(paste0("Checking that ICD", code, " pc code drawn from '", row, "' sets only that one category to true."), {
-        expect_true(result[row] == 1)
-      })
+      #paste0("Checking that ICD", code, " pc code drawn from '", row, "' sets only that one category to true.")
+      stopifnot(result[row] == 1)
 
       if (!(row %in% c('tech_dep', 'transplant'))) {
         # look at other columns - should all be 0 except these 4
         tmp <- result[,!names(result) %in% c(row, 'id', 'tech_dep', 'transplant', 'ccc_flag')]
-        test_that(paste0("Checking that ICD", code, " pc code drawn from '", row, "' has all other categories set to false."), {
-          expect_true(all(tmp == 0))
-        })
+        #paste0("Checking that ICD", code, " pc code drawn from '", row, "' has all other categories set to false.")
+        stopifnot(all(tmp == 0))
       }
     }
   }
@@ -63,39 +53,28 @@ for (code in c(9, 10)) {
   #######
   # test 1 patient with no data - should have all CCCs as FALSE
   #######
-  test_that("1 patient with no diagnosis data - should have all CCCs as FALSE", {
-    expect_true(all(ccc(data.frame(id = 'a',
-                                          dx1 = NA),
-                        dx_cols = dplyr::starts_with("dx"),
-                        icdv    = code) == 0))
-  })
+  #"1 patient with no diagnosis data - should have all CCCs as FALSE",
+  stopifnot(all(ccc(data.frame(id = 'a', dx1 = NA),
+                    dx_cols = dplyr::starts_with("dx"),
+                    icdv    = code) == 0))
 
   # Due to previous use of sapply in ccc.R, this would fail - fixed now
-  test_that("1 patient with multiple rows of no diagnosis data - should have all CCCs as FALSE", {
-    expect_true(all(ccc(data.frame(id = 'a',
-                                          dx1 = NA,
-                                          dx2 = NA),
-                        dx_cols = dplyr::starts_with("dx"),
-                        icdv    = code) == 0))
-  })
+  #"1 patient with multiple rows of no diagnosis data - should have all CCCs as FALSE"
+  stopifnot(all(ccc(data.frame(id = 'a', dx1 = NA, dx2 = NA),
+                    dx_cols = dplyr::starts_with("dx"),
+                    icdv    = code) == 0))
 
-
-  test_that("1 patient with no procedure data - should have all CCCs as FALSE", {
-    expect_true(all(ccc(data.frame(id = 'a',
-                                          pc1 = NA),
-                        dx_cols = dplyr::starts_with("pc"),
-                        icdv    = code) == 0))
-  })
+  #"1 patient with no procedure data - should have all CCCs as FALSE"
+  stopifnot(all(ccc(data.frame(id = 'a', pc1 = NA),
+                    dx_cols = dplyr::starts_with("pc"),
+                    icdv    = code) == 0))
 
   # As the next block of tests rely on specific column names to be present, first validate they are as expected.
-  test_that("Column names returned from ccc are as expected", {
-    expect_equal(
+  #"Column names returned from ccc are as expected"
+  stopifnot(
+    identical(
       c("neuromusc", "cvd", "respiratory", "renal", "gi", "hemato_immu", "metabolic", "congeni_genetic", "malignancy", "neonatal", "tech_dep", "transplant", "ccc_flag"),
-      colnames(
-        ccc(data.frame(id = 'a',
-                              dx1 = NA),
-            dx_cols = dplyr::starts_with("dx"),
-            icdv    = code))
+      colnames(ccc(data.frame(id = 'a', dx1 = NA), dx_cols = dplyr::starts_with("dx"), icdv = code))
     )
-  })
+  )
 }
