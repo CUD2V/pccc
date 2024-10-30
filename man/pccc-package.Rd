@@ -2,6 +2,7 @@
 % Please edit documentation in R/pccc-package.R
 \docType{package}
 \name{pccc-package}
+\alias{pccc}
 \alias{pccc-package}
 \title{pccc: Pediatric Complex Chronic Conditions}
 \description{
@@ -52,3 +53,27 @@ Feudtner C, et al. Pediatric complex chronic conditions classification system
 version 2: updated for ICD-10 and complex medical technology dependence and
 transplantation, BMC Pediatrics, 2014, 14:199, DOI: 10.1186/1471-2431-14-199
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/CUD2V/pccc}
+  \item Report bugs at \url{https://github.com/CUD2V/pccc/issues}
+}
+
+}
+\author{
+\strong{Maintainer}: Seth Russell \email{seth.russell@cuanschutz.edu} (\href{https://orcid.org/0000-0002-2436-1367}{ORCID})
+
+Authors:
+\itemize{
+  \item Peter DeWitt \email{dewittpe@gmail.com} (\href{https://orcid.org/0000-0002-6391-0795}{ORCID})
+  \item James Feinstein \email{james.feinstein@cuanschutz.edu} (\href{https://orcid.org/0000-0003-3074-8805}{ORCID})
+}
+
+Other contributors:
+\itemize{
+  \item Tell Bennett \email{tell.bennett@cuanschutz.edu} (\href{https://orcid.org/0000-0003-1483-4236}{ORCID}) [contributor]
+}
+
+}
+\keyword{internal}

@@ -45,14 +45,17 @@
 #' file.show(system.file("pccc_references", "ccc.do", package = "pccc"))
 #' }
 #'
-#' @docType package
-#' @name pccc-package
+#' @keywords internal
+"_PACKAGE"
+
+## usethis namespace: start
 #' @useDynLib pccc
+#' @importFrom dplyr "%>%"
 #' @importFrom Rcpp sourceCpp
 #' @importFrom dplyr as.tbl
+## usethis namespace: ned
 NULL
 
-#' @importFrom dplyr "%>%"
 # Define globalVariables so R CMD check doesn't freak out
 utils::globalVariables(".")
 
