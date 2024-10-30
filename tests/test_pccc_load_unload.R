@@ -5,6 +5,8 @@
 # run tests with Ctrl/Cmd + Shift + T or devtools::test()
 # for manually running, execute
 #   library(testthat)
+
+library(testthat)
 context("PCCC - Loading and unloading Package")
 
 expect_silent(library(pccc))

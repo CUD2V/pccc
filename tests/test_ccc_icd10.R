@@ -11,6 +11,7 @@
 # for manually running, execute
 #   library(testthat)
 library(pccc)
+library(testthat)
 
 context("PCCC - ccc ICD10 function tests")
 

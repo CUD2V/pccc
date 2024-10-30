@@ -9,6 +9,7 @@
 # for manually running, execute
 #   library(testthat)
 library(pccc)
+library(testthat)
 
 context("PCCC - get_codes function tests")
 
