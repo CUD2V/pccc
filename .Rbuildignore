@@ -7,6 +7,7 @@
 ^README\.md$
 ^examples$
 ^makefile$
+^Makefile$
 ^cran-comments\.md$
 ^CRAN-RELEASE$
 ^\.github$
