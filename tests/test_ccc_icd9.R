@@ -37,7 +37,7 @@ stopifnot(identical(ncol(df), 14L))
 
 # None of these should result in an error -------------------------------------
 # "icd 9 data set with all parameters - result should be unchanged."
-stopifnot(all.equal(df, pccc:::icd9_test_result))
+stopifnot(all.equal(df, test_helper(icd9_test_result)))
 
 # "icd 9 data set with missing id parameter"
 stopifnot(
@@ -47,7 +47,7 @@ stopifnot(
           pc_cols = dplyr::starts_with("pc"),
           icdv    = 9)
       ,
-     pccc:::icd9_test_result[, -1]
+     test_helper(icd9_test_result)[, -1]
   )
 )
 
@@ -60,7 +60,7 @@ df <- ccc(pccc_icd9_dataset[, c(1:21)],
 # different in interactive mode.  The difference is the quotation marks used.
 stopifnot(
   identical(
-    all.equal(df, pccc:::icd9_test_result)
+    all.equal(df, test_helper(icd9_test_result))
     ,
     c("Component \"neuromusc\": Mean absolute difference: 1",
       "Component \"cvd\": Mean absolute difference: 1",
@@ -85,7 +85,7 @@ stopifnot(identical(
                                   id      = id,
                                   pc_cols = dplyr::starts_with("dx"),
                                   icdv    = 9),
-                              pccc:::icd9_test_result),
+                              test_helper(icd9_test_result)),
                     c("Component \"neuromusc\": Mean relative difference: 35",
                       "Component \"cvd\": Mean relative difference: 3",
                       "Component \"respiratory\": Mean relative difference: 2.487179",
@@ -111,7 +111,7 @@ stopifnot(
           dx_cols = dplyr::starts_with("dx"),
           pc_cols = dplyr::starts_with("pc"),
           icdv    = 9),
-      pccc:::icd10_test_result)) == "character"
+      test_helper(icd10_test_result))) == "character"
   )
 
 # Cases that should result in an error ----------------------------------------
@@ -161,5 +161,5 @@ stopifnot(
           dx_cols = dplyr::starts_with("dx"),
           pc_cols = dplyr::starts_with("pc"),
           icdv    = 10),
-      pccc:::icd9_test_result)) == "character"
+      test_helper(icd9_test_result))) == "character"
   )

@@ -2,7 +2,7 @@
 % Please edit documentation in R/test_helper.R
 \name{test_helper}
 \alias{test_helper}
-\title{Tool to help access internal variables to use in testthat scripts}
+\title{Test Helper}
 \usage{
 test_helper(var)
 }
@@ -13,5 +13,6 @@ test_helper(var)
 Object from internal PCCC name space (if it exists)
 }
 \description{
-Tool to help access internal variables to use in testthat scripts
+Tool to help access internal variables to use in testthat scripts, or anytime
+access via \code{:::} would be needed.
 }

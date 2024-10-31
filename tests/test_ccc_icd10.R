@@ -38,5 +38,5 @@ df <-
       pc_cols = dplyr::starts_with("pc"),
       icdv    = 10)
 
-stopifnot(all.equal(df, pccc:::icd10_test_result))
+stopifnot(all.equal(df, test_helper(icd10_test_result)))
 

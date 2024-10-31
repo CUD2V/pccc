@@ -1,4 +1,7 @@
-#' Tool to help access internal variables to use in testthat scripts
+#' Test Helper
+#'
+#' Tool to help access internal variables to use in testthat scripts, or anytime
+#' access via \code{:::} would be needed.
 #'
 #' @param var bare name of the internal variable to be accessed.
 #'
