@@ -50,14 +50,11 @@
 
 ## usethis namespace: start
 #' @useDynLib pccc
-#' @importFrom dplyr "%>%"
 #' @importFrom Rcpp sourceCpp
 #' @importFrom dplyr as.tbl
-## usethis namespace: ned
+#' @importFrom tibble as_tibble
+## usethis namespace: end
 NULL
-
-# Define globalVariables so R CMD check doesn't freak out
-utils::globalVariables(".")
 
 .onUnload <- function(libpath) {
   library.dynam.unload("pccc", libpath)

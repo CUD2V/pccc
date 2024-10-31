@@ -1,3 +1,14 @@
+# Version 1.0.5.9000
+
+## New functions:
+* S3 method `as_tibble.pccc_codes` has been added to the package to replace the
+  deprecated `as.tbl` method since `dplyr::as.tbl` has been deprecated in favor
+  of `tibble::as_tibble`
+
+## Deprecations:
+* `as.tbl.pccc_codes` has been deprecated since `dplyr::as.tbl` has been
+  deprecated in favor of `tibble::as_tibble`
+
 # Version 1.0.5
 
 Changed included datafiles to be of type data.frame to avoid some libraries trying to load data.table unnecessarily. Similarly removed dependencies on dplyr::data_frame() due to deprecation.
