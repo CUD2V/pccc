@@ -1,4 +1,4 @@
-# Overview of tests for ccc():
+#i Overview of tests for ccc():
 #   ICD 9
 #     X invalid input (not real ICD codes)
 #     X check output for saved file - if it changes, I want to know
@@ -52,21 +52,29 @@ stopifnot(
 )
 
 # "icd 9 data set with missing dx parameter",
-stopifnot(identical(
-    all.equal(
-      ccc(pccc_icd9_dataset[, c(1:21)],
+df <- ccc(pccc_icd9_dataset[, c(1:21)],
           id      = id,
           pc_cols = dplyr::starts_with("pc"),
-          icdv    = 9),
-     pccc:::icd9_test_result)
+          icdv    = 9)
+# this test will pass in non-interactive mode, the strings are slightly
+# different in interactive mode.  The difference is the quotation marks used.
+stopifnot(
+  identical(
+    all.equal(df, pccc:::icd9_test_result)
     ,
-    c("Component “neuromusc”: Mean absolute difference: 1", "Component “cvd”: Mean absolute difference: 1",
-      "Component “respiratory”: Mean absolute difference: 1", "Component “renal”: Mean absolute difference: 1",
-      "Component “gi”: Mean absolute difference: 1", "Component “hemato_immu”: Mean absolute difference: 1",
-      "Component “metabolic”: Mean absolute difference: 1", "Component “congeni_genetic”: Mean absolute difference: 1",
-      "Component “malignancy”: Mean absolute difference: 1", "Component “neonatal”: Mean absolute difference: 1",
-      "Component “tech_dep”: Mean absolute difference: 1", "Component “transplant”: Mean absolute difference: 1",
-      "Component “ccc_flag”: Mean absolute difference: 1")
+    c("Component \"neuromusc\": Mean absolute difference: 1",
+      "Component \"cvd\": Mean absolute difference: 1",
+      "Component \"respiratory\": Mean absolute difference: 1",
+      "Component \"renal\": Mean absolute difference: 1",
+      "Component \"gi\": Mean absolute difference: 1",
+      "Component \"hemato_immu\": Mean absolute difference: 1",
+      "Component \"metabolic\": Mean absolute difference: 1",
+      "Component \"congeni_genetic\": Mean absolute difference: 1",
+      "Component \"malignancy\": Mean absolute difference: 1",
+      "Component \"neonatal\": Mean absolute difference: 1",
+      "Component \"tech_dep\": Mean absolute difference: 1",
+      "Component \"transplant\": Mean absolute difference: 1",
+      "Component \"ccc_flag\": Mean absolute difference: 1")
   )
 )
 
@@ -78,19 +86,19 @@ stopifnot(identical(
                                   pc_cols = dplyr::starts_with("dx"),
                                   icdv    = 9),
                               pccc:::icd9_test_result),
-                    c("Component “neuromusc”: Mean relative difference: 35",
-                      "Component “cvd”: Mean relative difference: 3",
-                      "Component “respiratory”: Mean relative difference: 2.487179",
-                      "Component “renal”: Mean relative difference: 8.8",
-                      "Component “gi”: Mean relative difference: 3.75",
-                      "Component “hemato_immu”: Mean relative difference: 3.772727",
-                      "Component “metabolic”: Mean relative difference: 6",
-                      "Component “congeni_genetic”: Mean absolute difference: 1",
-                      "Component “malignancy”: Mean absolute difference: 1",
-                      "Component “neonatal”: Mean absolute difference: 1",
-                      "Component “tech_dep”: Mean relative difference: 4.024096",
-                      "Component “transplant”: Mean relative difference: 2.512821",
-                      "Component “ccc_flag”: Mean relative difference: 9.371429")
+                    c("Component \"neuromusc\": Mean relative difference: 35",
+                      "Component \"cvd\": Mean relative difference: 3",
+                      "Component \"respiratory\": Mean relative difference: 2.487179",
+                      "Component \"renal\": Mean relative difference: 8.8",
+                      "Component \"gi\": Mean relative difference: 3.75",
+                      "Component \"hemato_immu\": Mean relative difference: 3.772727",
+                      "Component \"metabolic\": Mean relative difference: 6",
+                      "Component \"congeni_genetic\": Mean absolute difference: 1",
+                      "Component \"malignancy\": Mean absolute difference: 1",
+                      "Component \"neonatal\": Mean absolute difference: 1",
+                      "Component \"tech_dep\": Mean relative difference: 4.024096",
+                      "Component \"transplant\": Mean relative difference: 2.512821",
+                      "Component \"ccc_flag\": Mean relative difference: 9.371429")
   )
 )
 
