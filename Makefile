@@ -17,7 +17,7 @@ vignettes:
 R/sysdata.rda : data-raw/sysdata.R
 	Rscript --vanilla $<
 
-$(PKG_NAME)_$(PKG_VERSION).tar.gz: $(RFILES) $(SRC) $(EGS) $(VIGS) $(TESTS) DESCRIPTION R/sysdata.rda
+$(PKG_NAME)_$(PKG_VERSION).tar.gz: $(RFILES) $(SRC) $(EGS) $(VIGS) $(TESTS) DESCRIPTION
 	R --vanilla --quiet -e "devtools::document()"
 	R CMD build .
 

@@ -24,7 +24,8 @@ ccc_out <- ccc(data.frame(id = letters[1:3],
                pc_cols = dplyr::starts_with("pc"),
                icdv    = 10)
 ccc_out$id <- as.factor(ccc_out$id)
-rnd_test <- test_helper(random_data_test_result)
+#rnd_test <- test_helper(random_data_test_result)
+rnd_test <- readRDS("random_data_test_result.rds")
 rnd_test$id <- as.factor(rnd_test$id)
 stopifnot(all.equal(ccc_out, rnd_test))
 

@@ -1,4 +1,8 @@
 # code used to setup and store data for tests #################################
+
+# Expected to be evaluated from the tests directory interactively, uncomment
+# if/when data needs to be updated.
+
 devtools::load_all()
 
 icd9_test_result <- ccc(pccc::pccc_icd9_dataset[, c(1:21)],
@@ -19,6 +23,7 @@ random_data_test_result <- ccc(data.frame(id = letters[1:3],
                                dx_cols = dplyr::starts_with("dx"),
                                pc_cols = dplyr::starts_with("pc"),
                                icdv    = 9) # should be all non-matches for CCCs regardless of version
-usethis::use_data(icd9_test_result, icd10_test_result, random_data_test_result,
-                  internal = TRUE,
-                  overwrite = TRUE)
+
+saveRDS(icd9_test_result, file = "icd9_test_result.rds")
+saveRDS(icd10_test_result, file = "icd10_test_result.rds")
+saveRDS(random_data_test_result, file = "random_data_test_result.rds")
