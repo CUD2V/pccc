@@ -21,12 +21,11 @@ as.data.frame.pccc_codes <- function(x, ...) {
 #' @method as.tbl pccc_codes
 #' @export
 as.tbl.pccc_codes <- function(x, ...) {
-  .Deprecated(new = as_tibble)
-  dplyr::as.tbl(as.data.frame.pccc_codes(x, ...))
+  dplyr::as.tbl(as.data.frame.pccc_codes(x), ...)
 }
 
 #' @method as_tibble pccc_codes
 #' @export
 as_tibble.pccc_codes <- function(x, ...) {
-  tibble::as_tibble(as.data.frame.pccc_codes(x, ...), ...)
+  tibble::as_tibble(as.data.frame.pccc_codes(x), ...)
 }
