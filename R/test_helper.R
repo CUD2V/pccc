@@ -9,6 +9,7 @@
 #'
 #' @export
 test_helper <- function(var) {
+  .Defunct()
   # force var to be evaluted inside context of package instead of caller's environment
   eval(parse(text = deparse(substitute(var))))
 }
