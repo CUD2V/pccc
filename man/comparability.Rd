@@ -20,7 +20,8 @@ The Center for Disease Control has made publicly available death certificate dat
 This data set is a subset of the 2006 MCOD file for decedents aged <= 21 showing just
 the underlying cause of death diagnosis code in ICD-9-CM and ICD-10.
 }
-\details{
-See `vignette("pccc-example")` for more details about the MCOD source file.
+\seealso{
+\code{vignette("pccc-example")} for more details about the MCOD
+source file.
 }
 \keyword{datasets}

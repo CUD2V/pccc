@@ -98,7 +98,8 @@
 #' This data set is a subset of the 2006 MCOD file for decedents aged <= 21 showing just
 #' the underlying cause of death diagnosis code in ICD-9-CM and ICD-10.
 #'
-#' See `vignette("pccc-example")` for more details about the MCOD source file.
+#' @seealso \code{vignette("pccc-example")} for more details about the MCOD
+#' source file.
 #'
 #' @format A data frame with 65037 rows and 3 variables.
 #' \describe{
