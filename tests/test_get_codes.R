@@ -111,3 +111,12 @@ x <- tryCatch(get_codes("ABC"), error = function(e) e)
 stopifnot(inherits(x, "error"))
 stopifnot(inherits(x, "Rcpp::not_compatible"))
 stopifnot(x$message == "Not compatible with requested type: [type=character; target=integer].")
+
+# testing the S3 methods for as.tbl and as_tibble
+x <- get_codes(9)
+y <- tryCatch(dplyr::as.tbl(x), warning = function(w) w)
+stopifnot(inherits(y, "warning"))
+stopifnot(grepl("as\\.tbl.*\ was\ deprecated", y$message[1]))
+z <- tibble::as_tibble(x)
+y <- suppressWarnings(dplyr::as.tbl(x))
+stopifnot(all.equal(y, z))

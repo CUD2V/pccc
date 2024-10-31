@@ -5,6 +5,7 @@ SRC    = $(wildcard src/*.cpp)
 RFILES = $(wildcard R/*.R)
 EGS    = $(wildcard examples/*.R)
 VIGS   = $(wildcard vignettes/*.Rmd)
+TESTS  = $(wildcard tests/*.R)
 
 .PHONY: vignettes
 
@@ -16,7 +17,7 @@ vignettes:
 R/sysdata.rda : data-raw/sysdata.R
 	Rscript --vanilla $<
 
-$(PKG_NAME)_$(PKG_VERSION).tar.gz: $(RFILES) $(SRC) $(EGS) $(VIGS) DESCRIPTION R/sysdata.rda
+$(PKG_NAME)_$(PKG_VERSION).tar.gz: $(RFILES) $(SRC) $(EGS) $(VIGS) $(TESTS) DESCRIPTION R/sysdata.rda
 	R --vanilla --quiet -e "devtools::document()"
 	R CMD build .
 
