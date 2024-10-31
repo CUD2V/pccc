@@ -37,7 +37,7 @@ stopifnot(identical(ncol(df), 14L))
 
 # None of these should result in an error -------------------------------------
 # "icd 9 data set with all parameters - result should be unchanged."
-stopifnot(all.equal(df, test_helper(icd9_test_result)))
+stopifnot(all.equal(df, readRDS("icd9_test_result.rds")))
 
 # "icd 9 data set with missing id parameter"
 stopifnot(
@@ -47,7 +47,7 @@ stopifnot(
           pc_cols = dplyr::starts_with("pc"),
           icdv    = 9)
       ,
-     test_helper(icd9_test_result)[, -1]
+     readRDS("icd9_test_result.rds")[, -1]
   )
 )
 
@@ -60,7 +60,7 @@ df <- ccc(pccc_icd9_dataset[, c(1:21)],
 # different in interactive mode.  The difference is the quotation marks used.
 stopifnot(
   identical(
-    all.equal(df, test_helper(icd9_test_result))
+    all.equal(df, readRDS("icd9_test_result.rds"))
     ,
     c("Component \"neuromusc\": Mean absolute difference: 1",
       "Component \"cvd\": Mean absolute difference: 1",
@@ -85,7 +85,7 @@ stopifnot(identical(
                                   id      = id,
                                   pc_cols = dplyr::starts_with("dx"),
                                   icdv    = 9),
-                              test_helper(icd9_test_result)),
+                              readRDS("icd9_test_result.rds")),
                     c("Component \"neuromusc\": Mean relative difference: 35",
                       "Component \"cvd\": Mean relative difference: 3",
                       "Component \"respiratory\": Mean relative difference: 2.487179",
@@ -111,7 +111,7 @@ stopifnot(
           dx_cols = dplyr::starts_with("dx"),
           pc_cols = dplyr::starts_with("pc"),
           icdv    = 9),
-      test_helper(icd10_test_result))) == "character"
+      readRDS("icd10_test_result.rds"))) == "character"
   )
 
 # Cases that should result in an error ----------------------------------------
@@ -137,7 +137,7 @@ ccc_out <- ccc(data.frame(id = letters[1:3],
                pc_cols = dplyr::starts_with("pc"),
                icdv    = 9)
 ccc_out$id <- as.factor(ccc_out$id)
-rnd_test <- test_helper(random_data_test_result)
+rnd_test <- readRDS("random_data_test_result.rds")
 rnd_test$id <- as.factor(rnd_test$id)
 
 stopifnot(all.equal(ccc_out, rnd_test))
@@ -161,5 +161,5 @@ stopifnot(
           dx_cols = dplyr::starts_with("dx"),
           pc_cols = dplyr::starts_with("pc"),
           icdv    = 10),
-      test_helper(icd9_test_result))) == "character"
+      readRDS("icd9_test_result.rds"))) == "character"
   )

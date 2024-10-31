@@ -7,12 +7,7 @@
 #     X need to test each category of CCC
 #     performance test?
 #
-# run tests with Ctrl/Cmd + Shift + T or devtools::test()
-# for manually running, execute
-#   library(testthat)
 library(pccc)
-
-#context("PCCC - ccc ICD10 function tests")
 
 # "random data set with all parameters ICD10 - result should be unchanged."
 ccc_out <- ccc(data.frame(id = letters[1:3],
@@ -24,7 +19,6 @@ ccc_out <- ccc(data.frame(id = letters[1:3],
                pc_cols = dplyr::starts_with("pc"),
                icdv    = 10)
 ccc_out$id <- as.factor(ccc_out$id)
-#rnd_test <- test_helper(random_data_test_result)
 rnd_test <- readRDS("random_data_test_result.rds")
 rnd_test$id <- as.factor(rnd_test$id)
 stopifnot(all.equal(ccc_out, rnd_test))
@@ -39,5 +33,5 @@ df <-
       pc_cols = dplyr::starts_with("pc"),
       icdv    = 10)
 
-stopifnot(all.equal(df, test_helper(icd10_test_result)))
+stopifnot(all.equal(df, readRDS("icd10_test_result.rds")))
 
