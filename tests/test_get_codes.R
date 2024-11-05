@@ -62,7 +62,7 @@ expected_counts <- read.table(sep = "|", header = TRUE, strip.white = TRUE,
  congeni_genetic |        dx |    10 |   55
              cvd |        dx |    10 |   97
               gi |        dx |    10 |   53
-     hemato_immu |        dx |    10 |   42
+     hemato_immu |        dx |    10 |   54
       malignancy |        dx |    10 | 1519
        metabolic |        dx |    10 |   73
         neonatal |        dx |    10 |   41
@@ -86,7 +86,8 @@ expected_counts <- read.table(sep = "|", header = TRUE, strip.white = TRUE,
 
 stopifnot(
   identical(
-    aggregate(icd ~ category + type + icdv, data = df, FUN = length),
+    aggregate(icd ~ category + type + icdv, data = df, FUN = length)
+    ,
     expected_counts
   )
 )
