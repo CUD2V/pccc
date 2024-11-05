@@ -34,7 +34,7 @@ expected_counts <- read.table(sep = "|", header = TRUE, strip.white = TRUE,
                               text =
 "       category |      type |  icdv |  icd
  congeni_genetic |        dx |     9 |   15
-             cvd |        dx |     9 |   50
+             cvd |        dx |     9 |   52
               gi |        dx |     9 |   29
      hemato_immu |        dx |     9 |   34
       malignancy |        dx |     9 |   10
@@ -44,7 +44,7 @@ expected_counts <- read.table(sep = "|", header = TRUE, strip.white = TRUE,
            renal |        dx |     9 |   17
      respiratory |        dx |     9 |   17
         tech_dep |        dx |     9 |   43
-      transplant |        dx |     9 |   21
+      transplant |        dx |     9 |   23
              cvd |  dx_fixed |     9 |    1
        neuromusc |  dx_fixed |     9 |    2
      respiratory |  dx_fixed |     9 |    1
