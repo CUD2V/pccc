@@ -63,7 +63,7 @@ expected_counts <- read.table(sep = "|", header = TRUE, strip.white = TRUE,
              cvd |        dx |    10 |   97
               gi |        dx |    10 |   53
      hemato_immu |        dx |    10 |   42
-      malignancy |        dx |    10 |   31
+      malignancy |        dx |    10 | 1519
        metabolic |        dx |    10 |   73
         neonatal |        dx |    10 |   41
        neuromusc |        dx |    10 |   99

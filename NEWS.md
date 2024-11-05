@@ -2,7 +2,8 @@
 
 ## ICD-10 Codes corrected
 
-* M4330 is replaced with M433 to match the expected M43.3 code.
+* M4330 is replaced with M433 to match the expected M43.3 code. (re #43)
+* "C" is replaced with full valid ICD-10 codes (re #43, #39)
 
 ## New functions:
 * S3 method `as_tibble.pccc_codes` has been added to the package to replace the
