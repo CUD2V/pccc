@@ -1,5 +1,9 @@
 # Version 1.0.5.9000
 
+## ICD-10 Codes corrected
+
+* M4330 is replaced with M433 to match the expected M43.3 code.
+
 ## New functions:
 * S3 method `as_tibble.pccc_codes` has been added to the package to replace the
   deprecated `as.tbl` method since `dplyr::as.tbl` has been deprecated in favor
