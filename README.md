@@ -31,7 +31,7 @@ on large datasets.
 This package provides R functions to generate the CCC categories. Because the R functions
 are built with a C++ back-end, they are very computationally efficient.
 
-The pccc package version 1.0.z implimented this version of the PCCC criteria.
+The pccc package version 1.0.z implemented this version of the PCCC criteria.
 
 ### Version 3 of the PCCC Criteria
 [Pediatric Complex Chronic Condition System Version 3](https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2821158)
@@ -49,7 +49,7 @@ match the system version) will implement version 3 of the PCCC.
 ## Installation
 
 ### From CRAN
-Relased version available on The Comprehensive R Archive Network at https://CRAN.R-project.org/package=pccc.
+Released version available on The Comprehensive R Archive Network at https://CRAN.R-project.org/package=pccc.
 
 ### Developmental version
 
