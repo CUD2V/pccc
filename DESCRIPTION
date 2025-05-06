@@ -12,6 +12,7 @@ Description: An implementation of the pediatric complex chronic conditions (CCC)
 Depends: R (>= 3.5.0)
 License: GPL-2
 Encoding: UTF-8
+Language: en-us
 LazyData: true
 Imports:
     dplyr (>= 1.0.0),
