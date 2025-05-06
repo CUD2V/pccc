@@ -4,7 +4,7 @@
 #' \url{https://github.com/magic-lantern/icd_file_generator}. ICD codes were taken
 #' from CMS.  The ICD 9 diagnosis and procedure codes were generated with 20%
 #' missing values. Code source:
-#' \url{https://www.cms.gov/Medicare/Coding/ICD9ProviderDiagnosticCodes/codes.html}
+#' \url{https://web.archive.org/web/20171101135601/ttps://www.cms.gov/Medicare/Coding/ICD9ProviderDiagnosticCodes/codes.html}
 #'
 #' @format A data frame with 1000 rows and 31 variables.
 #' There is a patient identifier, ten diagnosis codes, ten procedure codes, and

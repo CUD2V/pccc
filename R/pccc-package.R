@@ -15,7 +15,7 @@
 #' For ease, a copy of the paper is included in this package.  See the examples
 #' below for instructions on opening this pdf from within R or outside of R.
 #' You can view the publication online at
-#' \url{https://doi.org/10.1186/1471-2431-14-199}.
+#' \doi{10.1186/1471-2431-14-199}.
 #'
 #' Feudtner et. al. provided a SAS macro and STATA program to implement the CCC.
 #' These files are also provided for reference.  See the Examples for
