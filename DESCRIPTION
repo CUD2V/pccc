@@ -1,6 +1,6 @@
 Package: pccc
 Title: Pediatric Complex Chronic Conditions
-Version: 1.0.5.9000
+Version: 1.0.6
 Authors@R: c(
     person(given = "Peter", family = "DeWitt",    email = "dewittpe@gmail.com",             role = c("aut"),        comment = c(ORCID = "0000-0002-6391-0795")),
     person(given = "Tell",  family = "Bennett",   email = "tell.bennett@cuanschutz.edu",    role = c("ctb"),        comment = c(ORCID = "0000-0003-1483-4236")),
