@@ -21,7 +21,7 @@ ccc_out <- ccc(data.frame(id = letters[1:3],
 ccc_out$id <- as.factor(ccc_out$id)
 rnd_test <- readRDS("random_data_test_result.rds")
 rnd_test$id <- as.factor(rnd_test$id)
-stopifnot(all.equal(ccc_out, rnd_test))
+stopifnot(isTRUE(all.equal(ccc_out, rnd_test)))
 
 
 #test_that("icd 10 data set with all parameters - result should be unchanged.", {
@@ -33,5 +33,10 @@ df <-
       pc_cols = dplyr::starts_with("pc"),
       icdv    = 10)
 
-stopifnot(all.equal(df, readRDS("icd10_test_result.rds")))
+expected <- readRDS("icd10_test_result.rds")
 
+stopifnot(isTRUE(all.equal(df, expected)))
+
+################################################################################
+#                                 End of File                                  #
+################################################################################
