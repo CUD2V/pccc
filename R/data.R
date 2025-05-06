@@ -51,8 +51,11 @@
 #' This dataset was produced from a tool available at
 #' \url{https://github.com/magic-lantern/icd_file_generator}. ICD codes were taken
 #' from CMS.  The code source, for both the diagnosis and produced codes can be
-#' found at \url{https://www.cms.gov/Medicare/Coding/ICD10/2017-ICD-10-CM-and-GEMs.html}
-#'
+#' found at
+#' \url{https://web.archive.org/web/20171101133239/https://www.cms.gov/Medicare/Coding/ICD10/2017-ICD-10-CM-and-GEMs.html}
+#' with a copy of the downloaded data on the package github page,
+#' \url{https://github.com/CUD2V/pccc}
+#' 
 #' @format A data frame with 1000 rows and 31 variables.
 #' There is a patient identifier, ten diagnosis codes, ten procedure codes, and
 #' ten "other data" values, specifically:

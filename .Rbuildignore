@@ -11,3 +11,5 @@
 ^cran-comments\.md$
 ^CRAN-RELEASE$
 ^\.github$
+^inst/icd/2017
+^inst/icd/2018

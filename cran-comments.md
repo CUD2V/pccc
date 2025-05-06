@@ -1,12 +1,15 @@
+# Version 1.0.6
+
+## Notes:
+
+* change in the email address of the package mantainer.  The ucdenver.edu domain
+  as been replaced by the cuanzchutz.edu domain
+
 ## Test environments
-* local macOS 10.14.6 install R 3.6.3
-* ubuntu 16.04 on travis-ci (oldrel, release, devel)
-* win-builder (devel, release, oldrelease)
-* r_hub
-  * Ubuntu Linux 16.04 LTS, R-release, GCC
-  * Windows Server 2008 R2 SP1, R-devel, 32/64 bit
-  * Fedora Linux, R-devel, clang, gfortran
-  * Debian Linux, R-devel, GCC ASAN/UBSAN
+* local macOS R 4.5.0
+* 
+* 
+* 
 
 ## R CMD check results
 

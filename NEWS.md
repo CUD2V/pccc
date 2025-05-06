@@ -13,6 +13,10 @@
     * M4330 is not a valid code, corrected to M433 (impacts congeni_genetic)
     * Add Z94.0 to transplant
 
+## Extenstions
+* Update old urls with links to wayback machine snapshots
+* Add key files to the package for reference
+
 ## New functions:
 * S3 method `as_tibble.pccc_codes` has been added to the package to replace the
   deprecated `as.tbl` method since `dplyr::as.tbl` has been deprecated in favor
