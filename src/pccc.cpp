@@ -33,7 +33,6 @@ codes::codes(int v)
       "V440","V4576","V460","V461","V550"};
 
     dx_fixed_respiratory = {"5163",
-      "7483",
       "99684" // transplant too
     };
 
