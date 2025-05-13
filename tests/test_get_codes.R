@@ -71,7 +71,7 @@ expected_counts <- read.table(sep = "|", header = TRUE, strip.white = TRUE,
      respiratory |        dx |    10 |   28
         tech_dep |        dx |    10 |  135
       transplant |        dx |    10 |   28
-       neuromusc |  dx_fixed |    10 |    4
+       neuromusc |  dx_fixed |    10 |    1
              cvd |        pc |    10 |  142
               gi |        pc |    10 |  139
      hemato_immu |        pc |    10 |   57

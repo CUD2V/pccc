@@ -133,7 +133,26 @@ codes::codes(int v)
       "G254","G255","G2581","G2582","G2583","G2589","G259","R403","G9782","T8509XA",
       "T85190A","T85192A","T85199A","T8579XA","Z982","Z4541","Z4542", "Q851"};
 
-    dx_fixed_neuromusc = {"G80", "G801", "G802", "G809"};
+    dx_fixed_neuromusc = {"G80"};
+    // NOTE: G80 and G80.3 are listed in pccc/inst/pccc_references/Categories_of_CCCv2_and_Corresponding_ICD.docx
+    // However, it appears that during some dev work the following was
+    // determined for PCCC V2
+    // G80.0 -- include
+    // G80.1 -- include
+    // G80.2 -- excluced
+    // G80.3 -- include
+    // G80.4 -- include
+    // G80.5 -- (not a valid ICD code)
+    // G80.6 -- (not a valid ICD code)
+    // G80.7 -- (not a valid ICD code)
+    // G80.8 -- include
+    // G80.9 -- exclude
+    //
+    // For version 3, all the G80.x codes will be included
+    // See Supplement 3 from
+    // Feinstein JA, Hall M, Davidson A, Feudtner C. Pediatric Complex Chronic
+    // Condition System Version 3. JAMA Netw Open. 2024;7(7):e2420579.
+    // doi:10.1001/jamanetworkopen.2024.20579
 
     dx_cvd = {"I270","I271","I272","I2781","I2789","I279","I340","I348","I360","I368","I370",
       "I378","I42","I43","I44","I45","I47","I48","I490","I491","I493","I494","I495","I498","I499",
