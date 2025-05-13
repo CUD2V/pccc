@@ -50,7 +50,7 @@ This dataset was produced from a tool available at
 \url{https://github.com/magic-lantern/icd_file_generator}. ICD codes were taken
 from CMS.  The code source, for both the diagnosis and produced codes can be
 found at
-\url{https://web.archive.org/web/20171101133239/https://www.cms.gov/Medicare/Coding/ICD10/2017-ICD-10-CM-and-GEMs.html}
+\url{https://www.cms.gov/medicare/coding-billing/icd-10-codes/icd-10-cm-icd-10-pcs-gem-archive}
 with a copy of the downloaded data on the package github page,
 \url{https://github.com/CUD2V/pccc}
 }

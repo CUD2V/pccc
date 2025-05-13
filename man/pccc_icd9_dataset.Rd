@@ -50,6 +50,6 @@ This dataset was produced from a tool available at
 \url{https://github.com/magic-lantern/icd_file_generator}. ICD codes were taken
 from CMS.  The ICD 9 diagnosis and procedure codes were generated with 20%
 missing values. Code source:
-\url{https://web.archive.org/web/20171101135601/ttps://www.cms.gov/Medicare/Coding/ICD9ProviderDiagnosticCodes/codes.html}
+\url{https://www.cms.gov/medicare/coding-billing/icd-10-codes/icd-9-cm-diagnosis-procedure-codes-abbreviated-and-full-code-titles}
 }
 \keyword{datasets}
