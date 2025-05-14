@@ -29,3 +29,4 @@ vignettes/*.pdf
 *.swo
 .Rproj.user
 inst/doc
+.DS_Store

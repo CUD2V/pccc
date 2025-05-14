@@ -1,4 +1,19 @@
-# Version 1.0.5.9000
+# Version 1.0.6
+
+## Bug fixes
+
+* Code fixes -- most of these codes were flagging transplant but not the primary organ system; these were present in original publication but missing from this package
+    * 996.83 added to CVD - it was flagging transplant but not CVD
+    * 996.84 added to respiratory
+    * 996.81 added to renal
+    * 996.82, 996.86, 996.87 added to gi
+    * ICD10 codes added to CVD: T86.20, T86.21, T86.22
+    * M4330 is not a valid code, corrected to M433 (impacts congeni_genetic)
+    * Add Z94.0 to transplant
+
+## Extenstions
+* Update old urls and adding some links to wayback machine snapshots
+* Add key files to the package for reference
 
 ## New functions:
 * S3 method `as_tibble.pccc_codes` has been added to the package to replace the

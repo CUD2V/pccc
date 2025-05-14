@@ -35,19 +35,19 @@ expected_counts <- read.table(sep = "|", header = TRUE, strip.white = TRUE,
 "       category |      type |  icdv |  icd
  congeni_genetic |        dx |     9 |   15
              cvd |        dx |     9 |   50
-              gi |        dx |     9 |   29
+              gi |        dx |     9 |   32
      hemato_immu |        dx |     9 |   34
       malignancy |        dx |     9 |   10
        metabolic |        dx |     9 |   25
         neonatal |        dx |     9 |   33
        neuromusc |        dx |     9 |   54
-           renal |        dx |     9 |   17
+           renal |        dx |     9 |   18
      respiratory |        dx |     9 |   17
         tech_dep |        dx |     9 |   43
       transplant |        dx |     9 |   21
-             cvd |  dx_fixed |     9 |    1
+             cvd |  dx_fixed |     9 |    2
        neuromusc |  dx_fixed |     9 |    2
-     respiratory |  dx_fixed |     9 |    1
+     respiratory |  dx_fixed |     9 |    2
              cvd |        pc |     9 |   53
               gi |        pc |     9 |   41
      hemato_immu |        pc |     9 |   12
@@ -60,7 +60,7 @@ expected_counts <- read.table(sep = "|", header = TRUE, strip.white = TRUE,
       transplant |        pc |     9 |   30
        metabolic |  pc_fixed |     9 |    1
  congeni_genetic |        dx |    10 |   55
-             cvd |        dx |    10 |   97
+             cvd |        dx |    10 |  100
               gi |        dx |    10 |   53
      hemato_immu |        dx |    10 |   42
       malignancy |        dx |    10 |   31
@@ -70,7 +70,7 @@ expected_counts <- read.table(sep = "|", header = TRUE, strip.white = TRUE,
            renal |        dx |    10 |   30
      respiratory |        dx |    10 |   28
         tech_dep |        dx |    10 |  135
-      transplant |        dx |    10 |   27
+      transplant |        dx |    10 |   28
        neuromusc |  dx_fixed |    10 |    1
              cvd |        pc |    10 |  142
               gi |        pc |    10 |  139
@@ -86,7 +86,8 @@ expected_counts <- read.table(sep = "|", header = TRUE, strip.white = TRUE,
 
 stopifnot(
   identical(
-    aggregate(icd ~ category + type + icdv, data = df, FUN = length),
+    aggregate(icd ~ category + type + icdv, data = df, FUN = length)
+    ,
     expected_counts
   )
 )

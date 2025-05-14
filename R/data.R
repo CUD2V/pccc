@@ -4,7 +4,7 @@
 #' \url{https://github.com/magic-lantern/icd_file_generator}. ICD codes were taken
 #' from CMS.  The ICD 9 diagnosis and procedure codes were generated with 20%
 #' missing values. Code source:
-#' \url{https://www.cms.gov/Medicare/Coding/ICD9ProviderDiagnosticCodes/codes.html}
+#' \url{https://www.cms.gov/medicare/coding-billing/icd-10-codes/icd-9-cm-diagnosis-procedure-codes-abbreviated-and-full-code-titles}
 #'
 #' @format A data frame with 1000 rows and 31 variables.
 #' There is a patient identifier, ten diagnosis codes, ten procedure codes, and
@@ -51,8 +51,11 @@
 #' This dataset was produced from a tool available at
 #' \url{https://github.com/magic-lantern/icd_file_generator}. ICD codes were taken
 #' from CMS.  The code source, for both the diagnosis and produced codes can be
-#' found at \url{https://www.cms.gov/Medicare/Coding/ICD10/2017-ICD-10-CM-and-GEMs.html}
-#'
+#' found at
+#' \url{https://www.cms.gov/medicare/coding-billing/icd-10-codes/icd-10-cm-icd-10-pcs-gem-archive}
+#' with a copy of the downloaded data on the package github page,
+#' \url{https://github.com/CUD2V/pccc}
+#' 
 #' @format A data frame with 1000 rows and 31 variables.
 #' There is a patient identifier, ten diagnosis codes, ten procedure codes, and
 #' ten "other data" values, specifically:
