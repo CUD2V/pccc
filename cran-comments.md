@@ -7,13 +7,15 @@
 
 ## Test environments
 * local macOS R 4.5.0
-* 
-* 
-* 
+* local Ubuntu 22.04.5 R 4.3.3
+* winbuilder R devel, release
+* github builder: macos release, windows release, ubuntu devel, release, oldrel
 
 ## R CMD check results
 
-0 errors | 0 warnings | 0 notes
+0 errors | 0 warnings | 1 notes
+
+Email domain update for maintainer.
 
 ## Reverse dependencies
 
