@@ -11,7 +11,7 @@
     * M4330 is not a valid code, corrected to M433 (impacts congeni_genetic)
     * Add Z94.0 to transplant
 
-## Extenstions
+## Extensions
 * Update old urls and adding some links to wayback machine snapshots
 * Add key files to the package for reference
 
