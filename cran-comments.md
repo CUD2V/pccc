@@ -15,7 +15,7 @@
 
 0 errors | 0 warnings | 1 notes
 
-Email domain update for maintainer.
+Note is related to Email domain update for maintainer.
 
 ## Reverse dependencies
 
