@@ -139,7 +139,7 @@ codes::codes(int v)
     // determined for PCCC V2
     // G80.0 -- include
     // G80.1 -- include
-    // G80.2 -- excluced
+    // G80.2 -- exclude
     // G80.3 -- include
     // G80.4 -- include
     // G80.5 -- (not a valid ICD code)
