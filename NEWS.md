@@ -12,7 +12,7 @@
     * Add Z94.0 to transplant
 
 ## Extenstions
-* Update old urls with links to wayback machine snapshots
+* Update old urls and adding some links to wayback machine snapshots
 * Add key files to the package for reference
 
 ## New functions:
