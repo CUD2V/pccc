@@ -2,13 +2,11 @@
 
 ## Bug fixes
 
-* Extend codes -- most of these codes were flagging transplant but not the primary organ system
+* Code fixes -- most of these codes were flagging transplant but not the primary organ system; these were present in original publication but missing from this package
     * 996.83 added to CVD - it was flagging transplant but not CVD
-    * 748.3 and 996.84 added to respiratory
+    * 996.84 added to respiratory
     * 996.81 added to renal
-    * 996.82 and 996.87 added to gi
-    * G80.1, G80.2, and G80.9 add to neuro as the G80 that was there did not
-      flag these codes.
+    * 996.82, 996.86, 996.87 added to gi
     * ICD10 codes added to CVD: T86.20, T86.21, T86.22
     * M4330 is not a valid code, corrected to M433 (impacts congeni_genetic)
     * Add Z94.0 to transplant
