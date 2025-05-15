@@ -10,6 +10,7 @@
 * local Ubuntu 22.04.5 R 4.3.3
 * winbuilder R devel, release
 * github builder: macos release, windows release, ubuntu devel, release, oldrel
+* rhub various builds
 
 ## R CMD check results
 
