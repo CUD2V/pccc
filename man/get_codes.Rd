@@ -22,7 +22,7 @@ categories.
 The CCC categories for diagnostic and procedure codes are:
  \tabular{lcccc}{
  category        \tab \code{dx} \tab \code{dx_fixed} \tab \code{pc} \tab \code{pc_fixed} \cr
- neuromuscul     \tab      X    \tab      X           \tab     X    \tab        \cr
+ neuromuscular   \tab      X    \tab      X           \tab     X    \tab        \cr
  cvd             \tab      X    \tab      X           \tab     X    \tab        \cr
  respiratory     \tab      X    \tab      X           \tab     X    \tab        \cr
  renal           \tab      X    \tab                  \tab     X    \tab        \cr

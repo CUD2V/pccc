@@ -13,3 +13,5 @@
 ^\.github$
 ^inst/icd/2017
 ^inst/icd/2018
+^doc$
+^Meta$

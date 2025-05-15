@@ -10,7 +10,7 @@
     * ICD10 codes added to CVD: T86.20, T86.21, T86.22
     * M4330 is not a valid code, corrected to M433 (impacts congeni_genetic)
     * Add Z94.0 to transplant
-* Adjustment to build process removing C++11 requirement as now R buid requires C++11 or newer.
+* Adjustment to build process removing C++11 requirement as now R build requires C++11 or newer.
 
 ## Extensions
 * Update old urls and adding some links to wayback machine snapshots
