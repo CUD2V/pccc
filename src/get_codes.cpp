@@ -1,6 +1,3 @@
-// Enable C++11 via this plugin (Rcpp 0.10.3 or later)
-// [[Rcpp::plugins(cpp11)]]
-
 #include <string>
 #include <Rcpp.h>
 #include "pccc.h"
