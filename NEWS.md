@@ -1,3 +1,18 @@
+# Version 1.0.6.9000
+
+## Bug fixes
+* Improve the mapping of ICD codes to conditions:
+  * ICD-9 349.1 - add to technology dependence (#45)
+  * ICD-9 V56 - add to technology dependence (#46)
+  * ICD-10 Z49 - add to technology dependence (#47)
+  * ICD-9 86.06 - add to technology dependence (#48)
+  * ICD-9 V45.85 - remove from transplant, add to technology dependence (#49)
+  * ICD-9 V53.3 - add to technology dependence (#50)
+  * ICD-9 V53.91 - remove from transplant, map to technology dependence (#51)
+  * ICD-9 V65.46 - add to technology dependence (#52)
+  * ICD-9 V42.0 - add to transplant (#54)
+  * ICD-10 Z94 - add to transplant (#55)
+
 # Version 1.0.6
 
 ## Bug fixes
