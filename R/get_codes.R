@@ -17,9 +17,3 @@ as.data.frame.pccc_codes <- function(x, ...) {
         )
   dplyr::bind_rows(out)
 }
-
-#' @method as_tibble pccc_codes
-#' @export
-as_tibble.pccc_codes <- function(x, ...) {
-  tibble::as_tibble(as.data.frame.pccc_codes(x), ...)
-}

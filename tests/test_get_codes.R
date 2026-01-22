@@ -112,8 +112,3 @@ x <- tryCatch(get_codes("ABC"), error = function(e) e)
 stopifnot(inherits(x, "error"))
 stopifnot(inherits(x, "Rcpp::not_compatible"))
 stopifnot(x$message == "Not compatible with requested type: [type=character; target=integer].")
-
-# testing the S3 method for as_tibble
-x <- get_codes(9)
-y <- tibble::as_tibble(x)
-stopifnot(tibble::is_tibble(y))

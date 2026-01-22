@@ -1,3 +1,7 @@
+# Version 1.0.7
+
+Deprecated function `dplyr::as.tbl` is being removed from upstream, so removing from PCCC package. Also, removing `as_tibble.pccc_codes` since S3 method `as_tibble.pccc_codes` calls `as.data.frame.pccc_codes`; upstream `tibble::as_tibble()` alread calls `as.data.frame.pccc_codes` without our S3 method.
+
 # Version 1.0.6
 
 ## Bug fixes
