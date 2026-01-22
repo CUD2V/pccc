@@ -51,7 +51,6 @@
 ## usethis namespace: start
 #' @useDynLib pccc
 #' @importFrom Rcpp sourceCpp
-#' @importFrom dplyr as.tbl
 #' @importFrom tibble as_tibble
 ## usethis namespace: end
 NULL
