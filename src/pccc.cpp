@@ -7,7 +7,7 @@ codes::codes(int v)
   if (v == 9 || v == 10) {
     version = v;
   } else {
-    ::Rf_error("Only ICD version 9 and 10 are supported.");
+    Rcpp::stop("Only ICD version 9 and 10 are supported.");
   }
 
   if (version == 9) {
